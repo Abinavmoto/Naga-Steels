@@ -1,0 +1,763 @@
+/* ============================================================
+   NAGA STEELS, Section layouts
+   ============================================================ */
+
+/* ============ HERO = SPEC CONFIGURATOR =======================
+   The hero is not a rotating mesh. It is the configurator: the
+   weave moves only in response to input. Motion that responds
+   reads as expensive; motion that loops reads as cheap.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-h));
+  display: flex; align-items: center;
+  padding-block: var(--s-7) var(--s-8);
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero__glow {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: min(980px, 120vw); aspect-ratio: 1;
+  top: -32%; right: -18%;
+  background: radial-gradient(circle, rgb(245 158 11 / 0.11), transparent 62%);
+}
+
+.hero__inner {
+  position: relative; z-index: 1;
+  width: 100%; max-width: var(--maxw);
+  margin-inline: auto; padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .hero { min-height: 0; }
+  .hero__inner { grid-template-columns: 1fr; gap: var(--s-7); }
+}
+
+.hero h1 { margin-bottom: var(--s-5); }
+.hero h1 em {
+  font-style: normal; color: var(--amber);
+  /* Hand-drawn underline, so it survives text reflow at any width */
+  background-image: linear-gradient(var(--amber), var(--amber));
+  background-size: 100% 2px; background-repeat: no-repeat;
+  background-position: 0 100%;
+  padding-bottom: 2px;
+}
+.hero__lede { font-size: var(--t-lg); color: var(--ink-2); margin-bottom: var(--s-6); max-width: 54ch; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-bottom: var(--s-6); }
+
+.hero__proof {
+  display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
+  padding-top: var(--s-5); border-top: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.05em; color: var(--ink-3);
+}
+.hero__proof span { display: inline-flex; align-items: center; gap: 0.4375rem; }
+.hero__proof svg { width: 13px; height: 13px; color: var(--amber); flex: none; }
+
+/* ---- Configurator stage ---------------------------------------------- */
+
+/* The whole stage, viewport AND controls, must fit inside one screen.
+   Changing a gauge is pointless if you have to scroll down to reach the
+   control and back up to see what it did. So the stage is a flex column
+   capped to the visible height, and the 3D view takes whatever is left
+   after the controls have had theirs. */
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* A definite height, not max-height. aspect-ratio + flex-shrink is
+     unreliable across browsers for actually shrinking to fit; giving the
+     container a real height and the view flex:1/min-height:0 is what
+     makes it shrink correctly instead of overflowing past the viewport. */
+  height: calc(100svh - var(--header-h) - var(--s-7));
+  max-height: 660px;
+  background: linear-gradient(165deg, var(--slate) 0%, var(--void) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-3);
+}
+@supports not (height: 100svh) {
+  .stage { height: calc(100vh - var(--header-h) - var(--s-7)); }
+}
+@media (max-width: 980px) {
+  /* Stacked below the hero copy on mobile: let it size to its content
+     instead of fighting the viewport, same as before this fix. */
+  .stage { height: auto; max-height: none; }
+}
+
+.stage__view {
+  position: relative;
+  /* No aspect-ratio: the poster SVG and the canvas both fill via
+     position:absolute; inset:0, so the view can take exactly whatever
+     height flex leaves it instead of demanding its own. */
+  flex: 1 1 auto;
+  min-height: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 44%, #1C232D 0%, #0B0D10 76%);
+}
+@media (max-width: 980px) {
+  .stage__view { aspect-ratio: 4 / 3; flex: none; min-height: 280px; }
+}
+
+/* Poster is the LCP element, NOT the canvas. The canvas fades in over it
+   only after load + idle, and only on capable devices. */
+.stage__poster {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 1;
+  transition: opacity 600ms var(--ease-out);
+}
+.stage__canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+  /* Dissolve the edges so the fabric reads as a detail of a much larger
+     fence, not as a rectangle of mesh floating in a box. Costs nothing;
+     doing the same in WebGL would mean an extra full-screen pass. */
+  -webkit-mask-image: radial-gradient(ellipse 84% 82% at 50% 46%, #000 40%, transparent 92%);
+          mask-image: radial-gradient(ellipse 84% 82% at 50% 46%, #000 40%, transparent 92%);
+}
+.stage[data-3d="live"] .stage__poster { opacity: 0; }
+.stage[data-3d="live"] .stage__canvas { opacity: 1; }
+
+/* Readout overlay: the live spec figures on the stage */
+.readout {
+  position: absolute; left: 14px; bottom: 14px;
+  display: flex; gap: var(--s-5);
+  padding: 0.625rem 0.875rem;
+  background: rgb(11 13 16 / 0.62);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  pointer-events: none;
+}
+.readout div { display: grid; gap: 2px; }
+.readout dt {
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+}
+.readout dd {
+  margin: 0;
+  font-family: var(--font-mono); font-size: 0.875rem;
+  font-variant-numeric: tabular-nums; color: var(--zinc);
+}
+@media (max-width: 420px) { .readout { gap: var(--s-4); left: 10px; bottom: 10px; } }
+
+.stage__tag {
+  position: absolute; top: 12px; left: 12px;
+  padding: 0.3125rem 0.5rem;
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3);
+  /* Sits directly over the wire, so it needs its own ground to stay
+     readable at every gauge and coating. */
+  background: rgb(11 13 16 / 0.6);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-sm);
+  pointer-events: none;
+}
+
+/* ---- Configurator controls -------------------------------------------- */
+
+/* Deliberately compact. The controls are labels and small targets; the 3D
+   view is the thing worth looking at, so the controls take the minimum they
+   need and the view keeps the rest. */
+.controls {
+  padding: 0.875rem var(--s-4) var(--s-4);
+  border-top: 1px solid var(--line);
+  display: grid; gap: 0.625rem;
+  background: var(--slate);
+  flex: none;
+}
+
+.ctrl__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 0.3125rem;
+}
+.ctrl__label, .ctrl__value { font-size: 10.5px; }
+.ctrl__label {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+}
+.ctrl__value {
+  font-family: var(--font-mono); font-size: var(--t-sm);
+  font-variant-numeric: tabular-nums; color: var(--amber);
+}
+
+/* Segmented option group, used for gauge, aperture and coating */
+.segs { display: flex; flex-wrap: wrap; gap: 0.3125rem; }
+.seg {
+  flex: 1 1 auto; min-width: 46px;
+  padding: 0.3125rem 0.375rem;
+  line-height: 1.25;
+  font-family: var(--font-mono); font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  background: var(--void);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.seg:hover { border-color: var(--ink-4); color: var(--ink); }
+/* Touch still gets a proper target, just not on desktop where it is waste. */
+@media (pointer: coarse) { .seg { min-height: 42px; } }
+.seg[aria-pressed="true"] {
+  background: var(--amber); border-color: var(--amber);
+  color: #0B0D10; font-weight: 600;
+}
+.seg__sub { display: block; font-size: 9px; opacity: 0.72; letter-spacing: 0.03em; }
+
+/* The stage CTA sits directly under the controls, so it does not need the
+   full button padding as well. */
+.controls .btn--block { padding: 0.6875rem 1rem; }
+
+/* Coating swatches carry a colour dot so the choice is visible without
+   relying on the 3D view having loaded. */
+.seg--coat { display: flex; align-items: center; justify-content: center; gap: 0.4375rem; }
+.swatch {
+  width: 11px; height: 11px; border-radius: 2px; flex: none;
+  border: 1px solid rgb(255 255 255 / 0.22);
+}
+
+/* ============ SCROLL-MORPH SHOWCASE ==========================
+   A sticky 3D stage holds position while six product panels scroll
+   past it. The model rebuilds into each product as it arrives.
+
+   CSS `position: sticky`, never ScrollTrigger `pin: true`. Sticky is
+   resolved by the browser's own scrolling machinery, the same code
+   path that moves the Android URL bar, so it cannot desynchronise
+   from the thumb. It also survives GSAP failing to load, which the
+   codebase treats as a supported state.
+   ============================================================ */
+
+.showcase {
+  display: grid;
+  position: relative;
+  border-block: 1px solid var(--line);
+  background: var(--void);
+}
+.showcase__stage, .showcase__panels { grid-area: 1 / 1; }
+
+.showcase__stage {
+  position: sticky;
+  top: var(--header-h);
+  /* svh, never dvh. `dvh` changes as the URL bar moves, which would resize
+     the canvas mid-scroll and reallocate the framebuffer on every gesture. */
+  height: calc(100svh - var(--header-h));
+  align-self: start;
+  /* MANDATORY. A full-viewport canvas that swallows touch is the fastest
+     possible way to trap a contractor hunting for a phone number. */
+  pointer-events: none;
+  overflow: hidden;
+}
+@supports not (height: 100svh) {
+  .showcase__stage { height: calc(100vh - var(--header-h)); }
+}
+@media (max-width: 860px) {
+  .showcase__stage { height: calc(100svh - var(--header-h) - 56px); }
+}
+
+.showcase__canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+  -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 48%, #000 42%, transparent 92%);
+          mask-image: radial-gradient(ellipse 78% 78% at 50% 48%, #000 42%, transparent 92%);
+}
+.showcase[data-3d="live"] .showcase__canvas { opacity: 1; }
+
+/* Fallback lattice, shown until (or instead of) the canvas. */
+.showcase__poster {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  opacity: 1;
+  transition: opacity 700ms var(--ease-out);
+}
+.showcase[data-3d="live"] .showcase__poster { opacity: 0; }
+.showcase__poster svg { width: min(74%, 560px); height: auto; opacity: 0.5; }
+
+/* ---- Progress ticks -------------------------------------------------
+   The single thing that stops a long sticky section feeling infinite:
+   it says there are exactly six, and you are on three. */
+
+.showcase__ticks {
+  position: absolute; right: clamp(1rem, 3vw, 2.5rem); top: 50%;
+  transform: translateY(-50%);
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 0.875rem;
+  pointer-events: none;
+}
+.showcase__ticks li {
+  display: flex; align-items: center; gap: 0.625rem;
+  justify-content: flex-end;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.12em; color: var(--ink-4);
+  transition: color var(--dur) var(--ease-out);
+}
+.showcase__ticks li::after {
+  content: ''; width: 18px; height: 2px;
+  background: var(--ink-4); border-radius: 2px;
+  transition: width var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
+}
+.showcase__ticks li[aria-current="true"] { color: var(--amber); }
+.showcase__ticks li[aria-current="true"]::after { width: 34px; background: var(--amber); }
+@media (max-width: 640px) {
+  .showcase__ticks li span { display: none; }
+  .showcase__ticks { gap: 0.625rem; }
+}
+
+.showcase__skip {
+  position: absolute; left: 50%; bottom: 1.25rem;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3); text-decoration: none;
+  /* Solid, never backdrop-filter. Blurring over a constantly-changing WebGL
+     layer forces a canvas readback every frame and costs 4-10ms on a Redmi. */
+  background: rgb(11 13 16 / 0.92);
+  border: 1px solid var(--line); border-radius: 100px;
+}
+.showcase__skip:hover { color: var(--amber); border-color: var(--amber); }
+
+/* ---- Panels ---------------------------------------------------------
+   The panels create the section height. That one decision makes the
+   Tier 0 collapse free: drop min-height and 600svh becomes natural
+   content height with no JavaScript at all. */
+
+.showcase__panels { position: relative; z-index: 2; pointer-events: none; }
+
+.showcase__panel {
+  min-height: 100svh;
+  display: flex; align-items: center;
+  padding-block: var(--s-8);
+}
+@supports not (min-height: 100svh) { .showcase__panel { min-height: 100vh; } }
+@media (max-width: 768px) { .showcase__panel { min-height: 85svh; } }
+@media (min-width: 1200px) { .showcase__panel { min-height: 110svh; } }
+
+.showcase__card {
+  pointer-events: auto;
+  width: min(440px, 100%);
+  background: rgb(20 24 31 / 0.92);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-6);
+  box-shadow: var(--shadow-3);
+  display: grid; gap: 0.625rem;
+  opacity: 0.35;
+  transform: translateY(10px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out),
+              border-color var(--dur-slow) var(--ease-out);
+}
+.showcase__panel[data-active="true"] .showcase__card {
+  opacity: 1; transform: none; border-color: var(--ink-4);
+}
+.showcase__idx {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.16em; color: var(--amber);
+}
+.showcase__card h3 { font-size: var(--t-xl); }
+.showcase__card > p { color: var(--ink-2); font-size: 0.9375rem; }
+.showcase__card .card__specs { margin-top: var(--s-2); border-top: 0; padding-top: 0; }
+.showcase__go {
+  margin-top: var(--s-3);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--amber); text-decoration: none;
+}
+.showcase__go svg { width: 13px; height: 13px; transition: transform var(--dur); }
+.showcase__go:hover svg { transform: translateX(4px); }
+
+/* Alternate sides on desktop so the eye moves and the model is never
+   permanently hidden behind the card. */
+@media (min-width: 981px) {
+  .showcase__panel:nth-child(even) { justify-content: flex-end; }
+}
+
+/* ---- Tier 0 and reduced motion --------------------------------------
+   Collapse to a plain stack. Reduced motion must disable the STICKY, not
+   just the 3D: a pinned panel whose content changes as you scroll is
+   motion, whatever is rendering it. */
+
+.showcase[data-3d="off"] .showcase__stage { display: none; }
+.showcase[data-3d="off"] .showcase__panel { min-height: 0; padding-block: var(--s-5); }
+.showcase[data-3d="off"] .showcase__card { opacity: 1; transform: none; }
+.showcase[data-3d="off"] .showcase__panels {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: var(--s-4);
+}
+.showcase[data-3d="off"] .showcase__card { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase__stage { position: static; display: none; }
+  .showcase__panel { min-height: 0; padding-block: var(--s-5); }
+  .showcase__card { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============ BRANDS & SUPPLY PARTNERS =======================
+   A quiet band, not a logo salad. The role label matters more than
+   the logo: "authorised dealer" is the claim doing the work.
+   ============================================================ */
+
+.brands {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+@media (max-width: 900px) { .brands { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .brands { grid-template-columns: 1fr; } }
+
+.brandcard {
+  background: var(--slate);
+  padding: var(--s-5);
+  display: grid; align-content: start; gap: 0.375rem;
+}
+.brandcard__idx {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.14em; color: var(--ink-4);
+  padding-bottom: var(--s-4);
+}
+.brandcard__role {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber);
+}
+.brandcard__name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.0625rem; letter-spacing: -0.02em; color: var(--ink);
+}
+.brandcard p { font-size: 0.8125rem; color: var(--ink-3); line-height: 1.55; }
+
+/* ============ APPLICATIONS ===================================
+   The only photography on the site. See the disclaimer in the
+   markup: these are illustrative, not Naga Steels' own projects.
+   ============================================================ */
+
+.apps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+}
+@media (max-width: 900px) { .apps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .apps { grid-template-columns: 1fr; } }
+
+.appcard {
+  position: relative;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--slate);
+  text-decoration: none; color: var(--ink);
+  transition: border-color var(--dur) var(--ease-out),
+              transform var(--dur) var(--ease-out);
+}
+.appcard:hover { border-color: var(--amber); transform: translateY(-3px); color: var(--ink); }
+
+.appcard__media {
+  position: relative; display: block;
+  aspect-ratio: 3 / 2; overflow: hidden;
+  background: var(--void);
+}
+.appcard__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  /* Knock the saturation back so six unrelated photographs read as one set
+     and do not fight the amber. Restored slightly on hover. */
+  filter: saturate(0.55) contrast(1.05) brightness(0.82);
+  transition: filter var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+.appcard:hover .appcard__media img {
+  filter: saturate(0.9) contrast(1.05) brightness(0.95);
+  transform: scale(1.04);
+}
+.appcard__media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgb(20 24 31 / 0.9) 100%);
+}
+
+.appcard__body { padding: var(--s-5); display: grid; gap: 0.4375rem; }
+.appcard__idx {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.14em; color: var(--amber);
+}
+.appcard__body strong {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.0625rem; letter-spacing: -0.02em;
+}
+.appcard__blurb { font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
+.appcard__spec {
+  margin-top: 0.25rem; padding-top: var(--s-3);
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-mono); font-size: 11.5px;
+  color: var(--ink-3); line-height: 1.5;
+}
+
+.disclaimer {
+  margin-top: var(--s-5);
+  font-size: var(--t-xs); color: var(--ink-4);
+  display: flex; gap: 0.5rem; align-items: flex-start;
+  max-width: 74ch;
+}
+.disclaimer svg { width: 13px; height: 13px; flex: none; margin-top: 2px; }
+
+/* ============ QUOTE BUILDER ================================== */
+
+.qb { position: relative; }
+.qb__shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--s-6);
+  align-items: start;
+}
+@media (max-width: 900px) { .qb__shell { grid-template-columns: 1fr; } }
+
+.qb__steps { display: grid; gap: var(--s-5); }
+
+.step {
+  position: relative;
+  padding-left: calc(var(--s-6) + 0.5rem);
+}
+.step::before {
+  content: attr(data-n);
+  position: absolute; left: 0; top: 0;
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: var(--t-sm);
+  border: 1px solid var(--line); border-radius: 50%;
+  color: var(--ink-3);
+  transition: all var(--dur) var(--ease-out);
+}
+.step[data-done="true"]::before {
+  border-color: var(--amber); color: var(--amber);
+}
+/* Connector rule between steps */
+.step:not(:last-child)::after {
+  content: ''; position: absolute;
+  left: 15px; top: 34px; bottom: calc(var(--s-5) * -1 + 4px);
+  width: 1px; background: var(--line);
+}
+.step h3 { font-size: 1rem; margin-bottom: 0.375rem; }
+.step__hint { font-size: var(--t-sm); color: var(--ink-3); margin-bottom: var(--s-4); }
+.step__body { display: grid; gap: var(--s-4); }
+
+.field { display: grid; gap: 0.4375rem; }
+.field > label {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+.input, .select {
+  width: 100%;
+  padding: 0.6875rem 0.8125rem;
+  background: var(--void);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  transition: border-color var(--dur-fast);
+}
+.input::placeholder { color: var(--ink-4); }
+.input:focus, .select:focus { border-color: var(--amber); outline: none; }
+.select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%),
+                    linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+.select option { background: var(--slate); }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+@media (max-width: 460px) { .field-row { grid-template-columns: 1fr; } }
+
+/* ---- Live message preview ----------------------------------------- */
+
+.preview {
+  position: sticky; top: calc(var(--header-h) + var(--s-4));
+  background: var(--slate);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+@media (max-width: 900px) { .preview { position: static; } }
+
+.preview__bar {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6875rem 0.875rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+.preview__bar svg { width: 14px; height: 14px; color: var(--signal); }
+
+.preview__msg {
+  margin: 0; padding: var(--s-5) var(--s-4);
+  font-family: var(--font-mono); font-size: 0.8125rem;
+  line-height: 1.75; color: var(--ink-2);
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 340px; overflow-y: auto;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 27px, var(--line-soft) 27px 28px);
+}
+.preview__msg b { color: var(--ink); font-weight: 600; }
+.preview__actions {
+  padding: var(--s-4); border-top: 1px solid var(--line);
+  display: grid; gap: var(--s-3);
+}
+.preview__note {
+  font-size: var(--t-xs); color: var(--ink-4); text-align: center; line-height: 1.5;
+}
+
+.copybtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.625rem; width: 100%;
+  font-size: var(--t-sm); color: var(--ink-3);
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  transition: all var(--dur-fast);
+}
+.copybtn:hover { color: var(--ink); border-color: var(--ink-4); }
+.copybtn svg { width: 15px; height: 15px; }
+
+/* ============ CALCULATOR ===================================== */
+
+.calc__shell {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: var(--s-6); align-items: start;
+}
+@media (max-width: 820px) { .calc__shell { grid-template-columns: 1fr; } }
+
+.calc__out {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  overflow: hidden;
+}
+.calc__cell { background: var(--slate); padding: var(--s-5); display: grid; gap: 0.3125rem; }
+.calc__n {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--t-2xl); letter-spacing: -0.035em;
+  color: var(--amber); font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.calc__n small { font-size: 0.5em; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
+.calc__k {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+}
+.calc__note {
+  font-size: var(--t-sm); color: var(--ink-3);
+  padding: var(--s-4); border: 1px dashed var(--line);
+  border-radius: var(--r-sm); margin-top: var(--s-4); line-height: 1.6;
+}
+
+/* ============ QUALITY / STANDARDS ============================ */
+
+.qual {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-4);
+}
+.qual__item {
+  padding: var(--s-5);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  background: var(--slate);
+}
+.qual__item h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+.qual__item p { font-size: 0.875rem; color: var(--ink-2); }
+.qual__std {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; color: var(--amber);
+  display: block; margin-bottom: var(--s-3);
+}
+
+/* ============ SERVICE AREAS ================================== */
+
+.areas {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  overflow: hidden;
+}
+.area {
+  background: var(--slate); padding: var(--s-4) var(--s-5);
+  display: grid; gap: 0.1875rem;
+  transition: background var(--dur-fast);
+}
+.area:hover { background: var(--slate-hi); }
+.area__n { font-weight: 600; font-size: 0.9375rem; }
+.area__d {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  color: var(--ink-3); letter-spacing: 0.04em;
+}
+
+/* ============ ARTICLE (product pages) ======================== */
+
+.article { max-width: var(--maxw-text); }
+.article h2 { font-size: var(--t-2xl); margin-top: var(--s-7); margin-bottom: var(--s-4); }
+.article h3 { font-size: var(--t-lg); margin-top: var(--s-6); margin-bottom: var(--s-3); }
+.article p  { color: var(--ink-2); margin-bottom: var(--s-4); }
+.article ul, .article ol { color: var(--ink-2); padding-left: 1.25rem; margin-bottom: var(--s-4); }
+.article li { margin-bottom: 0.5rem; }
+.article li::marker { color: var(--amber); }
+.article strong { color: var(--ink); font-weight: 600; }
+
+.pagehead {
+  padding-block: var(--s-6) var(--s-7);
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.pagehead h1 { font-size: var(--t-3xl); margin-bottom: var(--s-4); }
+
+/* Related links strip at the foot of each product page */
+.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-3); }
+.related a {
+  display: flex; flex-direction: column; gap: 0.25rem;
+  padding: var(--s-4); text-decoration: none;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--slate);
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.related a:hover { border-color: var(--amber); background: var(--slate-hi); }
+.related strong { color: var(--ink); font-size: 0.9375rem; font-weight: 600; }
+.related span { font-size: var(--t-xs); color: var(--ink-3); font-family: var(--font-mono); }
+
+/* ---- CTA band --------------------------------------------------------- */
+
+.ctaband {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(135deg, var(--slate) 0%, var(--void) 100%);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.ctaband h2 { font-size: var(--t-2xl); margin-bottom: var(--s-4); }
+.ctaband p { color: var(--ink-2); max-width: 52ch; margin: 0 auto var(--s-6); }
+.ctaband__row { display: flex; flex-wrap: wrap; gap: var(--s-3); justify-content: center; }
+
+/* ---- Scroll reveal base state -----------------------------------------
+   JS adds .is-in. If JS never runs, the CSS below is overridden by the
+   no-js rule in the HTML head, so content is always visible.            */
+[data-reveal] { opacity: 0; transform: translateY(18px); }
+[data-reveal].is-in {
+  opacity: 1; transform: none;
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

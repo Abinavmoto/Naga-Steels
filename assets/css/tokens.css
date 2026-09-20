@@ -1,0 +1,79 @@
+/* ============================================================
+   NAGA STEELS, Design Tokens
+   Industrial Precision Minimalism
+   Language: engineering drawing, not SaaS landing page.
+   ============================================================ */
+
+:root {
+  /* ---- Surface ---------------------------------------------------- */
+  --void:        #0B0D10;   /* page base, deeper than slate for contrast */
+  --slate:       #14181F;   /* raised surfaces, cards */
+  --slate-hi:    #1B212A;   /* hover / elevated */
+  --line:        #262D38;   /* hairline borders */
+  --line-soft:   #1A2029;   /* grid lines, very low contrast */
+
+  /* ---- Ink -------------------------------------------------------- */
+  --ink:         #F2F5F8;   /* primary text */
+  --ink-2:       #A7B0BC;   /* secondary text */
+  --ink-3:       #6B7683;   /* tertiary / captions */
+  --ink-4:       #3D4652;   /* disabled, faint rules */
+
+  /* ---- Material ---------------------------------------------------- */
+  --zinc:        #C8CDD4;   /* galvanized highlight */
+  --zinc-dim:    #8D97A3;
+  --amber:       #F59E0B;   /* ACTIONS ONLY, never decorative */
+  --amber-hi:    #FBBF24;
+  --amber-dim:   #B4740A;
+  --pvc:         #2F6B3A;   /* PVC coating swatch */
+  --signal:      #25D366;   /* WhatsApp green */
+
+  /* ---- Type ------------------------------------------------------- */
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Inter', 'Inter Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* Fluid type scale: clamp(min, fluid, max) */
+  --t-xs:   0.75rem;
+  --t-sm:   0.8125rem;
+  --t-base: 1rem;
+  --t-lg:   clamp(1.0625rem, 0.4vw + 0.95rem, 1.1875rem);
+  --t-xl:   clamp(1.25rem, 0.8vw + 1.05rem, 1.5rem);
+  --t-2xl:  clamp(1.5rem, 1.6vw + 1.1rem, 2.125rem);
+  --t-3xl:  clamp(2rem, 3vw + 1.2rem, 3.25rem);
+  --t-4xl:  clamp(2.5rem, 5.5vw + 1rem, 5rem);
+
+  /* ---- Space (8pt grid) ------------------------------------------- */
+  --s-1: 0.25rem;  --s-2: 0.5rem;   --s-3: 0.75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;   --s-6: 2rem;     --s-7: 3rem;     --s-8: 4rem;
+  --s-9: 6rem;     --s-10: 8rem;
+
+  --section-y: clamp(4rem, 9vw, 7.5rem);
+  --gutter:    clamp(1.125rem, 4vw, 3rem);
+  --maxw:      1280px;
+  --maxw-text: 68ch;
+
+  /* ---- Form ------------------------------------------------------- */
+  --r-sm: 3px;    /* deliberately tight, machined rather than soft */
+  --r-md: 5px;
+  --r-lg: 8px;
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-2: 0 4px 20px -4px rgb(0 0 0 / 0.55);
+  --shadow-3: 0 20px 60px -12px rgb(0 0 0 / 0.7);
+  --glow-amber: 0 0 0 1px rgb(245 158 11 / 0.35), 0 8px 30px -8px rgb(245 158 11 / 0.45);
+
+  /* ---- Motion ------------------------------------------------------ */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur:      260ms;
+  --dur-slow: 520ms;
+
+  --header-h: 64px;
+}
+
+/* Motion is opt-out at the token level, so every transition that
+   references --dur collapses at once rather than needing per-rule guards. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 1ms; --dur: 1ms; --dur-slow: 1ms; }
+}

@@ -1,0 +1,51 @@
+/* ============================================================
+   NAGA STEELS, Self-hosted fonts
+   ------------------------------------------------------------
+   Self-hosted rather than the Google Fonts CDN: one fewer DNS
+   lookup + TLS handshake on an Indian mobile connection, no
+   third-party request, and the files can never change under us.
+
+   Four faces only (137 KB total, latin subset). Weight 500 is
+   deliberately absent. The browser synthesises it from 400,
+   which is imperceptible here and saves 47 KB.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Inter-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Inter-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/SpaceGrotesk-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/JetBrainsMono-400.woff2') format('woff2');
+}
+
+/* Metric-matched fallback. Without this, the swap from the system font
+   to Inter shifts every line of body copy and costs CLS. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}

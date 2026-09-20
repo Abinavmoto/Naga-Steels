@@ -1,0 +1,552 @@
+/* ============================================================
+   NAGA STEELS, Components
+   ============================================================ */
+
+/* ---- Buttons ------------------------------------------------------
+   Amber is reserved exclusively for actions. Nothing amber on this
+   site is un-clickable, so the eye learns in one screen where to go. */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--s-3);
+  padding: 0.875rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: var(--amber); color: #0B0D10;
+  box-shadow: var(--glow-amber);
+}
+.btn--primary:hover { background: var(--amber-hi); color: #0B0D10; }
+
+.btn--wa { background: var(--signal); color: #05230F; }
+.btn--wa:hover { background: #2EE676; color: #05230F; }
+
+.btn--ghost {
+  background: transparent; color: var(--ink);
+  border-color: var(--line);
+}
+.btn--ghost:hover { border-color: var(--ink-3); background: var(--slate); color: var(--ink); }
+
+.btn--sm { padding: 0.5rem 0.875rem; font-size: var(--t-sm); }
+.btn--lg { padding: 1.0625rem 2rem; font-size: 1.0625rem; }
+.btn--block { width: 100%; }
+
+/* On touch devices every control gets a 44px minimum height regardless of
+   its visual size. A thumb is not a mouse pointer, and this audience is
+   overwhelmingly on phones. */
+@media (pointer: coarse) {
+  .btn--sm { min-height: 44px; }
+}
+
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* ---- Header -------------------------------------------------------- */
+
+.header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h);
+  display: flex; align-items: center;
+  background: rgb(11 13 16 / 0.72);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+          backdrop-filter: blur(14px) saturate(150%);
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur) var(--ease-out);
+}
+/* Fallback for browsers without backdrop-filter. Stays legible. */
+@supports not (backdrop-filter: blur(1px)) {
+  .header { background: #0B0D10; }
+}
+
+.header__inner {
+  width: 100%; max-width: var(--maxw); margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex; align-items: center; gap: var(--s-5);
+}
+
+.brand {
+  display: flex; align-items: center; gap: 0.625rem;
+  text-decoration: none; color: var(--ink);
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.0625rem; letter-spacing: -0.03em;
+  /* NEVER shrink. An earlier version used `min-width:0; flex:0 1 auto` to make
+     room on narrow screens, but combined with the nowrap below that shrank the
+     BOX while the TEXT kept its full width, so the brand spilled straight over
+     the nav. Space is made by shedding header items at breakpoints instead,
+     which is predictable. */
+  flex: none;
+}
+.brand:hover { color: var(--ink); }
+.brand__mark { width: 30px; height: 30px; flex: none; }
+.brand > span { white-space: nowrap; }
+.brand__sub {
+  display: block;
+  font-family: var(--font-mono); font-size: 9px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-3); line-height: 1; margin-top: 2px;
+  white-space: nowrap;
+}
+
+.nav { display: flex; gap: var(--s-1); margin-left: auto; flex: none; }
+.nav a {
+  padding: var(--s-2) var(--s-3);
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--ink-2); text-decoration: none;
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+  transition: color var(--dur-fast), background var(--dur-fast);
+}
+.nav a:hover { color: var(--ink); background: var(--slate); }
+.nav a[aria-current="page"] { color: var(--amber); }
+
+.header__cta { display: flex; align-items: center; gap: var(--s-3); flex: none; }
+
+/* The status pill never appears in the header at any width. It can read
+   "Closed, opens Monday 10 AM", roughly 200px of monospace, and the header
+   is capped at --maxw (1280px). Brand + eight nav items + two buttons
+   already fill that, so there is no viewport where the pill fits. It lives
+   in the footer instead, where there is room for the full sentence. */
+.header .pill { display: none; }
+
+/* Below this, the desktop nav is replaced by the burger, never by nothing.
+   1180px is measured: eight nav items plus the brand and both buttons need
+   that much before the Get Quote button starts being pushed off-screen. */
+@media (max-width: 1180px) {
+  .nav { display: none; }
+  .header__cta { margin-left: auto; }
+}
+@media (max-width: 560px) { .header__cta .btn--ghost { display: none; } }
+@media (max-width: 420px) { .brand__sub { display: none; } }
+
+/* ---- Mobile menu ----------------------------------------------------
+   Below 1080px the desktop nav is hidden. Before this existed there was no
+   navigation at all on a phone except the footer, which stops being
+   acceptable once there are ten pages to reach. */
+
+.burger {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  margin-right: calc(var(--s-2) * -1);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  flex: none;
+}
+/* Must come AFTER the base rule above, not with the .nav breakpoint higher
+   up the file: equal specificity means source order decides, and putting it
+   earlier left the burger hidden at every width. */
+@media (max-width: 1180px) { .burger { display: inline-flex; } }
+.burger:hover { background: var(--slate); }
+.burger span {
+  position: relative;
+  display: block; width: 19px; height: 1.5px;
+  background: currentColor; border-radius: 2px;
+  transition: transform var(--dur) var(--ease-out), background var(--dur-fast);
+}
+.burger span::before, .burger span::after {
+  content: ''; position: absolute; left: 0;
+  width: 19px; height: 1.5px; background: currentColor; border-radius: 2px;
+  transition: transform var(--dur) var(--ease-out), top var(--dur) var(--ease-out);
+}
+.burger span::before { top: -6px; }
+.burger span::after  { top: 6px; }
+
+/* Morph to a close icon. The middle bar goes transparent rather than
+   display:none so the transition stays smooth. */
+.burger[aria-expanded="true"] span { background: transparent; }
+.burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span::after  { top: 0; transform: rotate(-45deg); }
+
+.menu {
+  position: fixed; inset: 0; z-index: 200;
+  visibility: hidden;
+  pointer-events: none;
+}
+.menu[data-open="true"] { visibility: visible; pointer-events: auto; }
+
+.menu__scrim {
+  position: absolute; inset: 0;
+  background: rgb(6 8 10 / 0.72);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out);
+}
+.menu[data-open="true"] .menu__scrim { opacity: 1; }
+
+.menu__panel {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: min(330px, 86vw);
+  background: var(--slate);
+  border-left: 1px solid var(--line);
+  box-shadow: var(--shadow-3);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--s-5) var(--s-5) calc(var(--s-6) + env(safe-area-inset-bottom));
+  transform: translateX(100%);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.menu[data-open="true"] .menu__panel { transform: none; }
+
+.menu__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: var(--s-5); margin-bottom: var(--s-5);
+  border-bottom: 1px solid var(--line);
+}
+.menu__label {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
+.menu__close {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--ink-2);
+}
+.menu__close:hover { color: var(--ink); border-color: var(--ink-4); }
+.menu__close svg { width: 15px; height: 15px; }
+
+.menu nav { display: grid; gap: 1px; }
+.menu nav a {
+  /* Caption on its own line, not inline beside the label. A long label like
+     "GI, MS & Steel Sheets" wraps to two lines in a 330px panel, and an
+     inline caption then floats away from the text it belongs to. */
+  display: grid; gap: 1px;
+  padding: 0.8125rem 0.5rem;
+  color: var(--ink); text-decoration: none;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem;
+  letter-spacing: -0.02em; line-height: 1.25;
+  border-bottom: 1px solid var(--line-soft);
+  transition: color var(--dur-fast), padding-left var(--dur-fast);
+}
+.menu nav a:hover, .menu nav a:focus-visible { color: var(--amber); padding-left: 0.875rem; }
+.menu nav a[aria-current="page"] { color: var(--amber); }
+.menu nav a i {
+  font-style: normal;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.1em; color: var(--ink-4);
+}
+
+.menu__foot { margin-top: auto; padding-top: var(--s-6); display: grid; gap: var(--s-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .menu__panel, .menu__scrim { transition: none; }
+}
+
+/* The panel is the only thing that should scroll while the menu is open. */
+body.menu-open { overflow: hidden; }
+
+/* ---- Open-now pill ------------------------------------------------- */
+
+.pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.3125rem 0.6875rem;
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.pill__dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ink-4); flex: none;
+}
+.pill[data-open="true"]  { color: var(--ink); border-color: rgb(37 211 102 / 0.35); }
+.pill[data-open="true"] .pill__dot {
+  background: var(--signal);
+  box-shadow: 0 0 0 3px rgb(37 211 102 / 0.16);
+  animation: pulse 2.4s var(--ease-in-out) infinite;
+}
+.pill[data-open="false"] .pill__dot { background: var(--ink-4); }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgb(37 211 102 / 0.16); }
+  50%      { box-shadow: 0 0 0 6px rgb(37 211 102 / 0.04); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pill__dot { animation: none !important; }
+}
+
+/* ---- Sticky mobile action bar --------------------------------------
+   Always-available conversion path. This audience scrolls fast with a
+   thumb hunting for a phone number, so never make them hunt.           */
+
+.actionbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  display: none;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.actionbar a {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.9375rem 0.5rem;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.9375rem;
+  text-decoration: none;
+}
+.actionbar .ab-call { background: var(--slate); color: var(--ink); }
+.actionbar .ab-wa   { background: var(--signal); color: #05230F; }
+.actionbar svg { width: 19px; height: 19px; }
+
+@media (max-width: 860px) {
+  .actionbar { display: flex; }
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+}
+
+/* ---- Panel / card -------------------------------------------------- */
+
+.panel {
+  position: relative;
+  background: var(--slate);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+/* ---- Trust bar ------------------------------------------------------ */
+
+.trustbar {
+  border-block: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--slate) 0%, var(--void) 100%);
+}
+.trustbar__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-inline: 1px solid var(--line);
+}
+.trust {
+  background: var(--void);
+  padding: var(--s-6) var(--s-5);
+  display: flex; flex-direction: column; gap: 0.375rem;
+}
+.trust__v {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--t-xl); letter-spacing: -0.03em;
+  color: var(--ink);
+  display: flex; align-items: center; gap: 0.4375rem;
+}
+.trust__v svg { width: 17px; height: 17px; color: var(--amber); flex: none; }
+.trust__l {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+}
+@media (max-width: 780px) {
+  .trustbar__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- Catalogue cards ------------------------------------------------ */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: var(--s-4);
+}
+
+.card {
+  position: relative;
+  display: flex; flex-direction: column;
+  background: var(--slate);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-5);
+  text-decoration: none; color: var(--ink);
+  overflow: hidden;
+  transition: border-color var(--dur) var(--ease-out),
+              background var(--dur) var(--ease-out),
+              transform var(--dur) var(--ease-out);
+}
+.card::after {
+  /* Amber sweep on hover, drawn not animated-in-JS */
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%),
+              rgb(245 158 11 / 0.07), transparent 42%);
+  opacity: 0; transition: opacity var(--dur) var(--ease-out);
+  pointer-events: none;
+}
+.card:hover {
+  border-color: var(--ink-4);
+  background: var(--slate-hi);
+  transform: translateY(-2px);
+  color: var(--ink);
+}
+.card:hover::after { opacity: 1; }
+
+.card__fig {
+  height: 128px; margin: calc(var(--s-5) * -1) calc(var(--s-5) * -1) var(--s-5);
+  border-bottom: 1px solid var(--line);
+  background: var(--void);
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+}
+.card__fig svg { width: 100%; height: 100%; }
+
+.card__idx {
+  position: absolute; top: 10px; right: 12px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.1em; color: var(--ink-4);
+}
+.card h3 { font-size: 1.0625rem; margin-bottom: 0.4375rem; }
+.card p { font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
+
+.card__specs {
+  margin-top: var(--s-4); padding-top: var(--s-4);
+  border-top: 1px dashed var(--line);
+  display: flex; flex-wrap: wrap; gap: 0.375rem;
+}
+.chip {
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.04em;
+  padding: 0.1875rem 0.4375rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.card__go {
+  margin-top: var(--s-4);
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--amber);
+  display: flex; align-items: center; gap: 0.4375rem;
+}
+.card__go svg { width: 13px; height: 13px; transition: transform var(--dur) var(--ease-out); }
+.card:hover .card__go svg { transform: translateX(4px); }
+
+/* ---- Spec table ------------------------------------------------------ */
+
+.spectable { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.spectable th, .spectable td {
+  padding: 0.6875rem 0.875rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.spectable thead th {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 400;
+  border-bottom-color: var(--ink-4);
+}
+.spectable tbody tr { transition: background var(--dur-fast); }
+.spectable tbody tr:hover { background: var(--slate-hi); }
+.spectable td:first-child { color: var(--ink); font-weight: 500; }
+.spectable .num {
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  color: var(--zinc);
+}
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ---- FAQ ------------------------------------------------------------- */
+
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  list-style: none; cursor: pointer;
+  padding: var(--s-5) var(--s-7) var(--s-5) 0;
+  position: relative;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: var(--t-lg); letter-spacing: -0.02em;
+  transition: color var(--dur-fast);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--amber); }
+.faq summary::after {
+  content: ''; position: absolute; right: 6px; top: 50%;
+  width: 11px; height: 11px; margin-top: -5px;
+  border-right: 1.5px solid var(--amber);
+  border-bottom: 1.5px solid var(--amber);
+  transform: rotate(45deg); transform-origin: center;
+  transition: transform var(--dur) var(--ease-out);
+}
+.faq details[open] summary::after { transform: rotate(-135deg); }
+.faq details > div {
+  padding-bottom: var(--s-5);
+  color: var(--ink-2); max-width: var(--maxw-text);
+}
+
+/* ---- Footer ----------------------------------------------------------- */
+
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--slate);
+  padding-block: var(--s-8) var(--s-6);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: var(--s-7) var(--s-5);
+}
+@media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .footer__grid { grid-template-columns: 1fr; } }
+
+/* Semantically h2 (they follow page-level h2s, so h4 would skip a level in
+   the document outline) but sized as small labels. Heading level is about
+   structure, not size. That is what CSS is for. */
+.footer .footer__h {
+  font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: var(--s-4);
+  line-height: 1.4;
+}
+.footer ul { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+.footer ul a { color: var(--ink-2); text-decoration: none; font-size: 0.875rem; }
+.footer ul a:hover { color: var(--amber); }
+
+.footer address { font-style: normal; color: var(--ink-2); font-size: 0.875rem; line-height: 1.7; }
+.footer address a { color: var(--ink); text-decoration: none; }
+.footer address a:hover { color: var(--amber); }
+
+.footer__bottom {
+  margin-top: var(--s-7); padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: var(--s-4);
+  justify-content: space-between; align-items: center;
+  font-size: var(--t-sm); color: var(--ink-3);
+}
+.gstin {
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.05em; color: var(--ink-3);
+}
+
+/* Static map: an image that links out. A live Maps iframe costs ~500KB
+   and a pile of third-party requests for something people only tap. */
+.mapcard {
+  display: block; position: relative;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  overflow: hidden; text-decoration: none;
+  background: var(--void);
+  transition: border-color var(--dur);
+}
+.mapcard:hover { border-color: var(--amber); }
+.mapcard svg { width: 100%; height: 132px; display: block; }
+.mapcard__label {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 0.5rem 0.6875rem;
+  background: linear-gradient(transparent, rgb(11 13 16 / 0.92) 55%);
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber);
+}
+
+/* ---- Breadcrumb -------------------------------------------------------- */
+
+.crumb {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: var(--t-xs);
+  letter-spacing: 0.06em; color: var(--ink-3);
+  padding-top: var(--s-5);
+}
+.crumb a { color: var(--ink-3); text-decoration: none; }
+.crumb a:hover { color: var(--amber); }
+.crumb span[aria-current] { color: var(--ink-2); }

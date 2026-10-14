@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 782" width="1200" height="782" role="img" aria-label="Placeholder for supply update three">
+  <!-- SLOT: update-3 · 1.53:1 · target 1200x782 · delivery lorry -->
+  <rect width="1200" height="782" fill="#E8ECE6"/>
+  <g fill="none" stroke="#006837" stroke-opacity=".32" stroke-width="7">
+    <rect x="220" y="260" width="450" height="220"/>
+    <path d="M670 330h180l100 90v60H670z"/>
+    <circle cx="360" cy="520" r="52"/><circle cx="840" cy="520" r="52"/>
+  </g>
+  <text x="600" y="650" fill="#5C625D" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with delivery / dispatch photography</text>
+  <text x="600" y="698" fill="#9C7A1C" font-family="monospace" font-size="24" text-anchor="middle">1200 × 782</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 782" width="1200" height="782" role="img" aria-label="Placeholder for supply update one">
+  <!-- SLOT: update-1 · 1.53:1 · target 1200x782 · stock / yard -->
+  <rect width="1200" height="782" fill="#E8ECE6"/>
+  <g fill="none" stroke="#006837" stroke-opacity=".3" stroke-width="6">
+    <rect x="180" y="250" width="320" height="70"/><rect x="180" y="340" width="320" height="70"/>
+    <rect x="180" y="430" width="320" height="70"/>
+    <circle cx="820" cy="330" r="110"/><circle cx="820" cy="330" r="62"/>
+  </g>
+  <text x="600" y="630" fill="#5C625D" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with yard / stock photography</text>
+  <text x="600" y="678" fill="#9C7A1C" font-family="monospace" font-size="24" text-anchor="middle">1200 × 782</text>
+</svg>

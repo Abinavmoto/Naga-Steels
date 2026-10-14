@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  HERO PLATE, placeholder.
+
+  ⚠ This is a generated vector plate, NOT photography. It exists so the
+  hero has a considered material backdrop today rather than a broken
+  image reference or an empty colour field.
+
+  It must be replaced with a real photograph before launch. The brief is
+  in CONTENT-SOURCES.md: a 2560px-wide landscape shot of a galvanised
+  chain-link perimeter in raking light, or the Chitrakara Street yard
+  with stock visible. Owner-supplied yard photography is strongly
+  preferred over stock, and converts better than either.
+
+  Drawn as a woven chain-link field with a depth gradient, so that at the
+  16% opacity the hero applies it reads as material texture rather than
+  as a pattern swatch.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"
+     preserveAspectRatio="xMidYMid slice" role="presentation">
+  <defs>
+    <linearGradient id="hp-wire" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#0E7A43"/>
+      <stop offset="45%"  stop-color="#065C32"/>
+      <stop offset="100%" stop-color="#03341D"/>
+    </linearGradient>
+
+    <pattern id="hp-weave" width="104" height="104" patternUnits="userSpaceOnUse">
+      <path d="M0 0 L52 52 L0 104" fill="none" stroke="url(#hp-wire)" stroke-width="9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M104 0 L52 52 L104 104" fill="none" stroke="url(#hp-wire)" stroke-width="9"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M52 52 L104 104" fill="none" stroke="#011F11" stroke-width="13"
+            stroke-linecap="round" opacity=".55"/>
+      <path d="M104 0 L52 52" fill="none" stroke="url(#hp-wire)" stroke-width="9"
+            stroke-linecap="round"/>
+    </pattern>
+
+    <!-- Depth: the weave recedes to the right, which gives the plate a
+         sense of a run of fence rather than flat wallpaper. -->
+    <linearGradient id="hp-depth" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0%"   stop-color="#F7F6F1" stop-opacity="0"/>
+      <stop offset="55%"  stop-color="#F7F6F1" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="#F7F6F1" stop-opacity=".8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="#E7EAE5"/>
+  <g transform="skewY(-6) translate(0,70)">
+    <rect x="-80" y="-120" width="1760" height="1100" fill="url(#hp-weave)"/>
+  </g>
+  <rect width="1600" height="900" fill="url(#hp-depth)"/>
+</svg>

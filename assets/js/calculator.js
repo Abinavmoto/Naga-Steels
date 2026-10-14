@@ -53,6 +53,8 @@ export function initCalculator() {
     $('c-rolls').textContent = fmt(r.rolls);
     $('c-posts').textContent = fmt(r.linePosts);
     $('c-struts').textContent = fmt(r.struts);
+    // innerHTML is safe here: both interpolations are numbers derived from
+    // Number() coercion in read(), never raw user strings.
     $('c-area').innerHTML = `${fmt(r.area)} <small>sq ft</small>`;
 
     const supplied = r.rolls * input.rollLength;

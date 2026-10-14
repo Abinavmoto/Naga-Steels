@@ -4,42 +4,56 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Naga Steels Madurai | Chain Link Fencing Manufacturer</title>
-<meta name="description" content="Chain link fencing made to your gauge in Madurai since 2002. Welded mesh, barbed wire, GI wire, sheets and roofing. WhatsApp quote in 30 seconds.">
+<title>Steel Distributor, Metal Supplier &amp; Fencing Manufacturer Madurai | Naga Steels</title>
+<meta name="description" content="Naga Steels supplies GI and MS sheets, steel plate, wire, mesh, roofing sheets, nails, bolts and wire rope across Madurai and South Tamil Nadu since 2002. Naga Fencing is our chain link brand.">
 <link rel="canonical" href="https://nagasteels.github.io/">
 
-<meta name="theme-color" content="#0B0D10">
+<meta name="theme-color" content="#006837">
 <meta name="format-detection" content="telephone=yes">
 <meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="geo.region" content="IN-TN">
 <meta name="geo.placename" content="Madurai">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Naga Steels">
 <meta property="og:locale" content="en_IN">
-<meta property="og:title" content="Naga Steels Madurai | Fencing Manufacturer Since 2002">
-<meta property="og:description" content="Chain link woven to your gauge in our own works, plus mesh, wire, sheet and roofing. Madurai and across South Tamil Nadu since 2002.">
+<meta property="og:title" content="Steel Distributor, Metal Supplier &amp; Naga Fencing Manufacturer | Naga Steels">
+<meta property="og:description" content="Established 2002. Steel, sheets, plate, wire, mesh, roofing and hardware across Madurai and South Tamil Nadu. Naga Fencing is our fencing brand.">
 <meta property="og:url" content="https://nagasteels.github.io/">
 <meta property="og:image" content="https://nagasteels.github.io/assets/img/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Naga Steels, fencing woven to your gauge. Madurai, since 2002.">
+<meta property="og:image:alt" content="Naga Steels, steel, metal and Naga Fencing supply from Madurai since 2002.">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-<link rel="preload" href="assets/fonts/SpaceGrotesk-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Inter-600.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- LCP candidate. The first hero column is the largest above-the-fold
+     paint, so it is fetched at high priority; columns 02 and 03 are left
+     to normal discovery.
+
+     This now matches a real <img> in the markup rather than a CSS
+     background declared through a custom property. A preload that
+     cannot be matched to an element is fetched anyway and then warned
+     about as unused, so the old arrangement paid the bytes twice over
+     without ever raising the element's own priority. -->
+<link rel="preload" href="assets/img/home/hero-01-fencing.png" as="image" fetchpriority="high">
 
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/sections.css">
+<!-- Homepage-only blocks. Not loaded by the other 23 pages. -->
+<link rel="stylesheet" href="assets/css/home.css">
 
 <!-- If JS never runs, every [data-reveal] element must still be visible.
-     This is set before first paint so there is no flash of hidden content. -->
+     Set before first paint so there is no flash of hidden content. -->
 <script>document.documentElement.classList.add('js');</script>
 <style>html:not(.js) [data-reveal]{opacity:1;transform:none}</style>
 
@@ -48,24 +62,40 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "HardwareStore",
-      "@id": "https://nagasteels.github.io/#business",
+      "@type": "Organization",
+      "@id": "https://nagasteels.github.io/#organization",
       "name": "Naga Steels",
-      "description": "Fencing manufacturer and steel supplier in Madurai, Tamil Nadu, trading since 2002. Chain link fencing woven to specification under the Naga Fencing brand, plus welded wire mesh, barbed wire, GI wire, GI and MS sheet, roofing sheet and steel hardware.",
       "url": "https://nagasteels.github.io/",
+      "foundingDate": "2002",
+      "email": "nagasteelsindia@gmail.com",
       "telephone": "+919943606823",
+      "taxID": "33DGWPK4434F1Z7",
+      "founder": { "@type": "Person", "name": "R. Kavitha" },
+      "brand": [{ "@type": "Brand", "name": "Naga Fencing" }],
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://nagasteels.github.io/#logo",
+        "url": "https://nagasteels.github.io/assets/img/brand/naga-steels-main-logo.jpeg"
+      },
+      "sameAs": ["https://www.indiamart.com/naga-steels-madurai/"]
+    },
+    {
+      "@type": "HardwareStore",
+      "@id": "https://nagasteels.github.io/#localbusiness",
+      "name": "Naga Steels",
+      "description": "Steel distributor, wholesaler and metal supplier in Madurai, Tamil Nadu, trading since 2002. GI and MS sheet, steel plate, GI and steel wire, wire rope, woven and welded mesh, colour-coated roofing sheet, nails, bolts and hardware. Chain link fencing manufactured under the Naga Fencing brand.",
+      "url": "https://nagasteels.github.io/",
+      "image": "https://nagasteels.github.io/assets/img/og-home.jpg",
+      "telephone": "+919943606823",
+      "email": "nagasteelsindia@gmail.com",
       "taxID": "33DGWPK4434F1Z7",
       "currenciesAccepted": "INR",
       "priceRange": "₹₹",
-      "foundingDate": "2002",
       "slogan": "The right material. The right specification.",
-      "brand": [
-        { "@type": "Brand", "name": "Naga Fencing" }
-      ],
-      "founder": { "@type": "Person", "name": "R. Kavitha" },
+      "parentOrganization": { "@id": "https://nagasteels.github.io/#organization" },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "124, Chitrakkara Street, Kamarajar Salai, Madurai Main",
+        "streetAddress": "124, Chitrakara Street",
         "addressLocality": "Madurai",
         "addressRegion": "Tamil Nadu",
         "postalCode": "625001",
@@ -80,75 +110,142 @@
       "areaServed": [
         { "@type": "City", "name": "Madurai" },
         { "@type": "City", "name": "Dindigul" },
-        { "@type": "City", "name": "Virudhunagar" },
         { "@type": "City", "name": "Theni" },
+        { "@type": "City", "name": "Sivaganga" },
+        { "@type": "City", "name": "Virudhunagar" },
         { "@type": "City", "name": "Sivakasi" },
+        { "@type": "City", "name": "Rajapalayam" },
         { "@type": "City", "name": "Ramanathapuram" },
+        { "@type": "City", "name": "Rameswaram" },
+        { "@type": "City", "name": "Kovilpatti" },
+        { "@type": "City", "name": "Thoothukudi" },
+        { "@type": "City", "name": "Tenkasi" },
         { "@type": "City", "name": "Tirunelveli" },
-        { "@type": "City", "name": "Karaikudi" }
+        { "@type": "City", "name": "Nagercoil" }
       ],
-      "sameAs": ["https://www.indiamart.com/naga-steels-madurai/"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Fencing, Wire and Roofing Products",
+        "name": "Steel, metal and Naga Fencing product range",
         "itemListElement": [
-          { "@type": "OfferCatalog", "name": "GI Chain Link Fencing" },
-          { "@type": "OfferCatalog", "name": "GI Welded Wire Mesh" },
-          { "@type": "OfferCatalog", "name": "Barbed Wire" },
-          { "@type": "OfferCatalog", "name": "GI Wire and Binding Wire" },
-          { "@type": "OfferCatalog", "name": "GI, MS and Steel Sheets" },
-          { "@type": "OfferCatalog", "name": "Roofing Sheets" },
-          { "@type": "OfferCatalog", "name": "Wire Nails, Ropes and Fasteners" }
+          { "@type": "OfferCatalog", "name": "Fencing systems", "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI chain link fencing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Heavy-duty chain link" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "PVC-coated chain link" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Barbed wire" } }
+          ]},
+          { "@type": "OfferCatalog", "name": "GI, MS and steel sheet", "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI plain sheet" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI rolling shutter sheet" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "MS sheet" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Steel plate" } }
+          ]},
+          { "@type": "OfferCatalog", "name": "Industrial wire products", "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI wire" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Binding wire" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Steel wire rope" } }
+          ]},
+          { "@type": "OfferCatalog", "name": "Wire and welded mesh", "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI wire mesh" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Welded wire mesh" } }
+          ]},
+          { "@type": "OfferCatalog", "name": "Roofing sheet supply", "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Colour-coated roofing sheet" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI corrugated roofing sheet" } }
+          ]},
+          { "@type": "OfferCatalog", "name": "Nails, bolts and hardware", "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "MS wire nails" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "GI bolts" } }
+          ]}
         ]
       }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://nagasteels.github.io/#service-madetospec",
+      "name": "Made-to-spec chain link manufacturing",
+      "serviceType": "Chain link fencing manufacturing",
+      "provider": { "@id": "https://nagasteels.github.io/#organization" },
+      "areaServed": { "@type": "State", "name": "Tamil Nadu" },
+      "description": "Chain link woven to the wire size, mesh opening, height, length and quantity specified by the customer."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://nagasteels.github.io/#service-supply",
+      "name": "Steel and metal material supply",
+      "serviceType": "Material supply",
+      "provider": { "@id": "https://nagasteels.github.io/#organization" },
+      "areaServed": { "@type": "State", "name": "Tamil Nadu" },
+      "description": "GI wire and sheets, MS sheets, wire mesh, weld mesh, barbed wire, coated sheets and related hardware."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://nagasteels.github.io/#service-review",
+      "name": "Requirement and BOQ review",
+      "serviceType": "Specification review",
+      "provider": { "@id": "https://nagasteels.github.io/#organization" },
+      "description": "Drawings, bills of quantity, reference photos and line-item schedules converted into a usable quotation."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://nagasteels.github.io/#service-dispatch",
+      "name": "Dispatch and delivery coordination",
+      "serviceType": "Dispatch coordination",
+      "provider": { "@id": "https://nagasteels.github.io/#organization" },
+      "description": "Purchasing unit, quantity, address, vehicle access and required date reviewed before delivery is confirmed. Freight quoted separately from material."
     },
     {
       "@type": "WebSite",
       "@id": "https://nagasteels.github.io/#website",
       "url": "https://nagasteels.github.io/",
       "name": "Naga Steels",
-      "publisher": { "@id": "https://nagasteels.github.io/#business" },
+      "publisher": { "@id": "https://nagasteels.github.io/#organization" },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://nagasteels.github.io/#webpage",
+      "url": "https://nagasteels.github.io/",
+      "name": "Steel Distributor, Metal Supplier & Fencing Manufacturer Madurai | Naga Steels",
+      "isPartOf": { "@id": "https://nagasteels.github.io/#website" },
+      "about": { "@id": "https://nagasteels.github.io/#organization" },
       "inLanguage": "en-IN"
     },
     {
       "@type": "FAQPage",
       "@id": "https://nagasteels.github.io/#faq",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is the minimum order for chain link fencing in Madurai?",
-          "acceptedAnswer": { "@type": "Answer", "text": "There is no fixed minimum for collection from our Chitrakkara Street godown in Madurai, because we cut from the roll. For delivery to other districts a lorry load is typically 500 kg or more, because below that the freight per kilogram stops making sense for you. Tell us your running feet on WhatsApp and we will confirm whether it is worth delivering or better collected." }
-        },
-        {
-          "@type": "Question",
-          "name": "Which gauge chain link should I use for farm fencing?",
-          "acceptedAnswer": { "@type": "Answer", "text": "10 SWG (3.25 mm) in a 2 inch mesh is the standard choice for agricultural boundary fencing and handles cattle pressure well. For a light garden or poultry boundary, 12 SWG (2.64 mm) is enough and costs less. For industrial perimeter, solar parks or anywhere security matters, use 8 SWG (4.06 mm)." }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between hot-dip galvanized and PVC coated chain link?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Hot-dip galvanized wire is dipped in molten zinc so the coating bonds to the steel and covers every cut end and knuckle, giving roughly 15 to 25 years outdoors. PVC coated wire has a galvanized core sealed inside a plastic jacket, lasting 20 to 30 years and performing better in coastal or high-humidity conditions such as Ramanathapuram and Tirunelveli. PVC costs more per foot but is usually the cheaper choice over the life of the fence near the sea." }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you deliver fencing material outside Madurai?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We regularly dispatch to Dindigul, Virudhunagar, Theni, Sivakasi, Karaikudi, Aruppukottai, Usilampatti, Ramanathapuram and Tirunelveli. Nearby towns such as Melur and Thirumangalam can often be same-day. Send your delivery pin on WhatsApp and we will quote the material and the freight separately, so you can see exactly what the transport is costing you." }
-        },
-        {
-          "@type": "Question",
-          "name": "How is chain link fencing sold, by weight or by length?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Chain link is normally priced by weight (per kilogram), but quoted to you in running feet at a given height, because that is how you buy it. The weight for a given length depends on the gauge and the mesh aperture. A heavier gauge or a tighter mesh puts more steel into the same running foot. Always compare quotes at the same gauge and the same aperture, otherwise you are not comparing the same fence." }
-        },
-        {
-          "@type": "Question",
-          "name": "How many fencing posts do I need for my boundary?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Posts are normally set at 10 foot centres for standard chain link, so the count is your perimeter divided by 10, plus one to close the run, plus extra struts at each corner and gate. Our material calculator on this page works this out for you along with the number of rolls required." }
-        },
-        {
-          "@type": "Question",
-          "name": "What thickness roofing sheet should I use for a shed?",
-          "acceptedAnswer": { "@type": "Answer", "text": "For an agricultural godown or a domestic shed, 0.45 to 0.50 mm colour-coated sheet is the usual specification. For a factory shed or anywhere with a longer purlin span, go to 0.55 mm or above. We cut sheets to your rafter length so you do not pay for overlap waste." }
-        }
+        { "@type": "Question", "name": "Where is Naga Steels located?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Naga Steels is at 124, Chitrakara Street, Madurai 625001, Tamil Nadu. The godown is open Monday to Saturday, 10:00 AM to 8:00 PM, and closed on Sunday. Collection is usually same-day because we hold stock rather than ordering it in." } },
+        { "@type": "Question", "name": "What products does Naga Steels supply?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Six families: fencing systems including chain link and barbed wire, GI and MS sheet and plate, GI and steel wire and wire rope, woven and welded mesh, colour-coated and GI roofing sheet, and nails, bolts and fencing hardware. Availability depends on the required specification." } },
+        { "@type": "Question", "name": "What is Naga Fencing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Naga Fencing is the dedicated Naga Steels brand for chain link, coated chain link, heavy-duty fencing, barbed wire and related boundary-fencing requirements. Naga Steels is the master brand covering all steel and metal supply." } },
+        { "@type": "Question", "name": "What is the minimum order for chain link fencing in Madurai?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is no fixed minimum for collection from our Chitrakara Street godown, because we cut from the roll. For delivery to other districts a lorry load is typically 500 kg or more, because below that the freight per kilogram stops making sense for you. Tell us your running feet on WhatsApp and we will confirm whether it is worth delivering or better collected." } },
+        { "@type": "Question", "name": "Which gauge chain link should I use for farm fencing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "10 SWG (3.25 mm) in a 2 inch mesh is the standard choice for agricultural boundary fencing and handles cattle pressure well. For a light garden or poultry boundary, 12 SWG (2.64 mm) is enough and costs less. For industrial perimeter, solar parks or anywhere security matters, use 8 SWG (4.06 mm)." } },
+        { "@type": "Question", "name": "What is the difference between hot-dip galvanized and PVC coated chain link?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Hot-dip galvanized wire is dipped in molten zinc so the coating bonds to the steel and covers every cut end and knuckle, giving roughly 15 to 25 years outdoors. PVC coated wire has a galvanized core sealed inside a plastic jacket, lasting 20 to 30 years and performing better in coastal or high-humidity conditions such as Ramanathapuram and Tirunelveli. PVC costs more per foot but is usually the cheaper choice over the life of the fence near the sea." } },
+        { "@type": "Question", "name": "Is chain link sold by weight or by length?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Chain link is normally priced by weight, per kilogram, but quoted to you in running feet at a given height because that is how you buy it. The weight for a given length depends on the gauge and the mesh aperture. A heavier gauge or a tighter mesh puts more steel into the same running foot. Always compare quotes at the same gauge and the same aperture, otherwise you are not comparing the same fence." } },
+        { "@type": "Question", "name": "How many fencing posts do I need for my boundary?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Posts are normally set at 10 foot centres for standard chain link, so the count is your perimeter divided by 10, plus one to close the run, plus extra struts at each corner and gate. The material calculator on this page works this out for you along with the number of rolls required." } },
+        { "@type": "Question", "name": "What is the difference between wire mesh and weld mesh?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wire mesh is woven, so the wires interlock and the sheet stays flexible, which suits screening, plastering and poultry work. Weld mesh is electrically welded at every intersection, which makes a flat, rigid panel that will not sag, and suits partitions, machine guarding and protective enclosures." } },
+        { "@type": "Question", "name": "What thickness roofing sheet should I use for a shed?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For an agricultural godown or a domestic shed, 0.45 to 0.50 mm colour-coated sheet is the usual specification. For a factory shed or anywhere with a longer purlin span, go to 0.55 mm or above. We cut sheets to your rafter length so you do not pay for overlap waste." } },
+        { "@type": "Question", "name": "Do you cut sheet and roofing to size?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. GI and MS sheet is cut to size from stock, and roofing sheet is cut to your rafter length. You buy the piece you need rather than the offcut, and there is no overlap waste to carry on the invoice." } },
+        { "@type": "Question", "name": "Do you supply Tata Wiron and VNC products?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We supply Tata Wiron galvanized, binding and fencing wire as a dealer, and VNC Group products as a distributor, including Bestfence fencing systems, Bestwire wire products, Bestarc welding electrodes and Voltwire electric-fence products. Product availability and current manufacturer specifications are confirmed during quotation." } },
+        { "@type": "Question", "name": "Where does Naga Steels deliver?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Delivery enquiries are accepted across Madurai and South Tamil Nadu, including Dindigul, Theni, Sivaganga, Virudhunagar, Sivakasi, Ramanathapuram, Rameswaram, Kovilpatti, Thoothukudi, Tirunelveli, Tenkasi, Rajapalayam and Nagercoil or Kanyakumari. Every route remains subject to order and logistics confirmation." } },
+        { "@type": "Question", "name": "Is freight included in the quoted rate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, and deliberately so. Material and transport are quoted separately, so you can always see what the freight is costing you and decide whether collection makes more sense. Unloading arrangements are agreed before dispatch." } },
+        { "@type": "Question", "name": "What information do you need to give me a quotation?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Send the product, the dimensions or wire specification, an approximate quantity and the delivery location. A drawing, a bill of quantities or a reference photograph also helps. With that we can usually reply with a rate rather than four follow-up questions." } },
+        { "@type": "Question", "name": "Do you provide installation or civil work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We are a material supplier and a fencing manufacturer. We supply the chain link, posts material, wire and fixings, and we review drawings and BOQs against them, but we do not treat material supply, civil work and installation as the same thing. For erection we will say so plainly rather than quote for work we do not perform." } }
       ]
     }
   ]
@@ -159,45 +256,72 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- ============================ UTILITY BAR ============================ -->
+<div class="utilbar">
+  <div class="utilbar__inner">
+    <div class="utilbar__group">
+      <span>GSTIN <strong class="mono1">33DGWPK4434F1Z7</strong></span>
+      <span>Mon&nbsp;–&nbsp;Sat, 10:00 AM&nbsp;–&nbsp;8:00 PM</span>
+    </div>
+    <div class="utilbar__group">
+      <span class="pill" data-open-pill data-open="false" hidden>
+        <span class="pill__dot"></span><span data-open-text>Checking…</span>
+      </span>
+      <a href="mailto:nagasteelsindia@gmail.com">nagasteelsindia@gmail.com</a>
+      <a href="tel:+919943606823" class="mono">+91 99436 06823</a>
+    </div>
+  </div>
+</div>
+
 <!-- ============================ HEADER ============================ -->
 <header class="header">
   <div class="header__inner">
     <a class="brand" href="./" aria-label="Naga Steels, home">
-      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="1" y="1" width="30" height="30" rx="3" stroke="#262D38"/>
-        <path d="M7 23V9l18 14V9" stroke="#F59E0B" stroke-width="2.4"
-              stroke-linecap="square" stroke-linejoin="round"/>
-        <circle cx="7" cy="9" r="1.8" fill="#C8CDD4"/>
-        <circle cx="25" cy="23" r="1.8" fill="#C8CDD4"/>
-      </svg>
-      <span>Naga Steels<span class="brand__sub">Madurai · Since 2002</span></span>
+      <span class="brand__medallion">
+        <img src="assets/img/brand/naga-steels-main-logo.jpeg" width="512" height="512" alt="">
+      </span>
+      <span class="brand__text">
+        <strong>Naga Steels</strong>
+        <small>Madurai · Since 2002</small>
+      </span>
     </a>
 
-    <nav class="nav" aria-label="Products">
-      <a href="./chain-link-fencing/">Chain Link</a>
-      <a href="./welded-wire-mesh/">Weld Mesh</a>
-      <a href="./barbed-wire/">Barbed Wire</a>
-      <a href="./gi-wire/">GI Wire</a>
-      <a href="./steel-sheets/">Sheets</a>
-      <a href="./roofing-sheets/">Roofing</a>
-      <a href="./steel-hardware/">Hardware</a>
-      <a href="./service-areas/">Delivery</a>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav__group">
+        <button class="nav__trigger" type="button" aria-expanded="false" aria-controls="nav-products">
+          Products
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav__panel" id="nav-products">
+          <a href="chain-link-fencing-madurai/"><strong>Chain Link Fencing</strong><small>8 – 12 SWG · woven to spec</small></a>
+          <a href="gi-sheet-dealer-madurai/"><strong>GI Sheets &amp; Plate</strong><small>Plain, shutter, cut to size</small></a>
+          <a href="gi-wire-supplier-madurai/"><strong>GI Wire &amp; Rope</strong><small>8 – 18 SWG · binding · rope</small></a>
+          <a href="ms-sheet-dealer-madurai/"><strong>MS Sheets &amp; Plate</strong><small>1 – 6 mm · IS 2062</small></a>
+          <a href="wire-mesh-supplier-madurai/"><strong>Wire Mesh</strong><small>Woven GI mesh rolls</small></a>
+          <a href="weld-mesh-supplier-madurai/"><strong>Weld Mesh</strong><small>Rolls &amp; rigid panels</small></a>
+          <a href="barbed-wire-supplier-madurai/"><strong>Barbed Wire</strong><small>IS 278 · boundary runs</small></a>
+          <a href="colour-coated-sheet-supplier-madurai/"><strong>Roofing Sheets</strong><small>Cut to rafter length</small></a>
+          <a href="steel-hardware-supplier-madurai/"><strong>Nails, Bolts &amp; Hardware</strong><small>By size and weight</small></a>
+          <a href="products/"><strong>All six families</strong><small>Complete catalogue</small></a>
+          <span class="nav__panel-foot">
+            <span>Six product families, one invoice, one lorry.</span>
+            <span class="mono">Madurai 625001</span>
+          </span>
+        </div>
+      </div>
+      <a href="fencing-manufacturer-madurai/">Naga Fencing</a>
+      <a href="tata-wiron-dealer-madurai/">Tata Wiron</a>
+      <a href="#applications">Applications</a>
+      <a href="services-delivery/">Delivery</a>
+      <a href="about/">About</a>
+      <a href="contact/">Contact</a>
+      <a class="btn btn--sm" href="#quote">Get a Quote</a>
     </nav>
 
-    <div class="header__cta">
-      <span class="pill" data-open-pill data-open="false" hidden>
-        <span class="pill__dot"></span><span data-open-text>Checking…</span>
-      </span>
-      <a class="btn btn--ghost btn--sm" href="tel:+919943606823">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2Z"/></svg>
-        Call
-      </a>
-      <a class="btn btn--primary btn--sm" href="#quote">Get Quote</a>
-      <button class="burger" id="burger" type="button"
-              aria-expanded="false" aria-controls="menu" aria-label="Open menu">
-        <span></span>
-      </button>
-    </div>
+    <button class="burger" id="burger" type="button"
+            aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -205,20 +329,29 @@
   <div class="menu__scrim"></div>
   <div class="menu__panel" role="dialog" aria-modal="true" aria-label="Site menu">
     <div class="menu__head">
-      <span class="menu__label">Products &amp; Ranges</span>
+      <span class="menu__label">Products &amp; Company</span>
       <button class="menu__close" type="button" aria-label="Close menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
     <nav aria-label="All pages">
-          <a href="./chain-link-fencing/">Chain Link Fencing <i>8 to 12 SWG</i></a>
-          <a href="./welded-wire-mesh/">Welded Wire Mesh <i>Rolls & panels</i></a>
-          <a href="./barbed-wire/">Barbed Wire <i>IS 278</i></a>
-          <a href="./gi-wire/">GI & Binding Wire <i>8 to 18 SWG</i></a>
-          <a href="./steel-sheets/">GI, MS & Steel Sheets <i>Plain & plate</i></a>
-          <a href="./roofing-sheets/">Roofing Sheets <i>Cut to length</i></a>
-          <a href="./steel-hardware/">Nails, Ropes & Bolts <i>By weight</i></a>
-          <a href="./service-areas/">Delivery Areas <i>South Tamil Nadu</i></a>
+      <a href="products/">All products <i>Six families</i></a>
+      <a href="chain-link-fencing-madurai/">Chain Link Fencing <i>8 – 12 SWG</i></a>
+      <a href="gi-wire-supplier-madurai/">GI Wire &amp; Rope <i>8 – 18 SWG</i></a>
+      <a href="gi-sheet-dealer-madurai/">GI Sheets &amp; Plate <i>Cut to size</i></a>
+      <a href="ms-sheet-dealer-madurai/">MS Sheets &amp; Plate <i>IS 2062</i></a>
+      <a href="wire-mesh-supplier-madurai/">Wire Mesh <i>Woven rolls</i></a>
+      <a href="weld-mesh-supplier-madurai/">Weld Mesh <i>Rolls &amp; panels</i></a>
+      <a href="barbed-wire-supplier-madurai/">Barbed Wire <i>IS 278</i></a>
+      <a href="colour-coated-sheet-supplier-madurai/">Roofing Sheets <i>Cut to length</i></a>
+      <a href="steel-hardware-supplier-madurai/">Nails, Bolts &amp; Hardware <i>By weight</i></a>
+      <span class="menu__section">Brands &amp; company</span>
+      <a href="fencing-manufacturer-madurai/">Naga Fencing <i>Our fencing brand</i></a>
+      <a href="tata-wiron-dealer-madurai/">Tata Wiron <i>Dealer supply</i></a>
+      <a href="vnc-products-distributor-madurai/">VNC Products <i>Distributor supply</i></a>
+      <a href="services-delivery/">Services &amp; Delivery <i>South Tamil Nadu</i></a>
+      <a href="about/">About <i>Since 2002</i></a>
+      <a href="contact/">Contact <i>Madurai 625001</i></a>
     </nav>
     <div class="menu__foot">
       <a class="btn btn--wa btn--block" href="https://wa.me/919943606823?text=Hi%20Naga%20Steels%2C%20I%20would%20like%20a%20quote." target="_blank" rel="noopener">WhatsApp a quote</a>
@@ -229,457 +362,1163 @@
 
 <main id="main">
 
-<!-- ============================ HERO = CONFIGURATOR ============================ -->
-<section class="hero">
-  <div class="grid-bg" aria-hidden="true"></div>
-  <div class="hero__glow" aria-hidden="true"></div>
+<!-- The page's single h1. Visually hidden, and placed here rather than in
+     the hero for two reasons. First, heading order: the updates carousel
+     below contains h3s, and an h1 further down the document would put
+     them before it. Second, the hero's visual headline is three separate
+     column titles; promoting any one of them to h1 would make the page's
+     most important heading describe a third of the business. -->
+<h1 class="visually-hidden">Naga Steels, steel distributor, metal supplier and fencing manufacturer in Madurai since 2002</h1>
 
-  <div class="hero__inner">
+<!-- ============================ 01 · THREE-COLUMN HERO ============================
+     Columns are real anchors, not div[role=link] with onclick. Same
+     visual, but keyboard-navigable, middle-clickable and crawlable.
 
-    <div class="hero__copy">
-      <p class="eyebrow">Fencing Manufacturer · Madurai · Since 2002</p>
-      <h1>Fencing woven to <em>your</em> gauge.</h1>
-      <p class="hero__lede">
-        We make the chain link ourselves and stock the steel that goes with it.
-        Set your specification here and it goes straight to WhatsApp as a rate request.
-      </p>
+     The column titles are spans, not headings: they are three parallel
+     labels, not a document outline. The page h1 is above. -->
+<section class="homehero" id="home-hero" aria-label="Our three areas of supply">
+  <div class="homehero__row">
+    <a class="hcol" href="fencing-manufacturer-madurai/">
+      <!-- alt="" is correct here: the column anchor already carries its own
+           label, title and description as real text. Describing the photo
+           again would make a screen reader read the same card twice. -->
+      <span class="hcol__bg">
+        <img src="assets/img/home/hero-01-fencing.png" width="1024" height="1536" alt=""
+             fetchpriority="high" decoding="async">
+      </span>
+      <span class="hcol__inner">
+        <span class="hcol__label">Naga Fencing</span>
+        <span class="hcol__title">
+          <span class="hcol__main">Made-to-Spec</span>
+          <span class="hcol__sub">Chain Link Fencing</span>
+        </span>
+        <span class="hcol__line"></span>
+        <span class="hcol__text">Woven to your wire size, mesh opening and height. Not sold off a shelf.</span>
+        <span class="hcol__cta">Explore fencing <i aria-hidden="true">→</i></span>
+      </span>
+    </a>
 
-      <div class="hero__cta">
-        <a class="btn btn--primary btn--lg" href="#quote">
-          Build my quote
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <a class="hcol" href="products/">
+      <span class="hcol__bg">
+        <img src="assets/img/home/hero-02-steel.png" width="1024" height="1536" alt=""
+             loading="lazy" decoding="async">
+      </span>
+      <span class="hcol__inner">
+        <span class="hcol__label">Naga Steels</span>
+        <span class="hcol__title">
+          <span class="hcol__main">Steel, Sheets</span>
+          <span class="hcol__sub">&amp; Roofing Supply</span>
+        </span>
+        <span class="hcol__line"></span>
+        <span class="hcol__text">GI and MS sheet, plate, wire, mesh, roofing and hardware. Cut to size from stock.</span>
+        <span class="hcol__cta">Explore products <i aria-hidden="true">→</i></span>
+      </span>
+    </a>
+
+    <a class="hcol" href="contractor-steel-supply/">
+      <span class="hcol__bg">
+        <img src="assets/img/home/hero-03-contractor.png" width="1024" height="1536" alt=""
+             loading="lazy" decoding="async">
+      </span>
+      <span class="hcol__inner">
+        <span class="hcol__label">Projects</span>
+        <span class="hcol__title">
+          <span class="hcol__main">Contractor</span>
+          <span class="hcol__sub">&amp; Project Supply</span>
+        </span>
+        <span class="hcol__line"></span>
+        <span class="hcol__text">Drawings and BOQs reviewed line by line, then quoted against one schedule.</span>
+        <span class="hcol__cta">Explore project supply <i aria-hidden="true">→</i></span>
+      </span>
+    </a>
+  </div>
+
+  <button class="homehero__scroll" type="button" data-scroll-next="focus" aria-label="Scroll to what's new">
+    <span>Scroll down</span>
+    <i aria-hidden="true">↓</i>
+  </button>
+</section>
+
+<!-- ============================ 02 · SUPPLY UPDATES ============================
+     Editorial news rail. Slides are stacked and toggled with [hidden]
+     rather than translated on a track: the teasers are different lengths,
+     and a transform carousel would need them equal-height or it reflows
+     on every advance. All three slides are real HTML, so slides 2 and 3
+     are crawlable even though only slide 1 is visible. -->
+<section class="updates" id="updates" aria-labelledby="updates-title" aria-roledescription="carousel">
+  <div class="wrap">
+    <div class="updates__head">
+      <div>
+        <p class="eyebrow" id="updates-title">From the yard</p>
+      </div>
+      <div class="updates__nav">
+        <button class="updates__btn" type="button" data-prev aria-label="Previous update">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="updates__btn" type="button" data-next aria-label="Next update">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- No aria-live here. The APG carousel pattern sets it to "off"
+         while auto-rotation is running, because a polite region that
+         re-announces a full news teaser every seven seconds is far more
+         disruptive to a screen-reader user than silence. home.js
+         switches it to "polite" only once the user takes manual
+         control, at which point an announcement is expected. -->
+    <div class="updates__viewport">
+      <!-- <a> may contain flow content, so the headings and paragraphs below
+           sit in <div>s rather than <span>s. A <span> can only hold phrasing
+           content, which would make the h3 invalid. -->
+      <a class="update" href="products/" data-slide>
+        <div class="update__media">
+          <img src="assets/img/home/update-1.png" width="1200" height="782"
+               alt="Steel sheet, wire coils and mesh rolls stacked in a supply yard" decoding="async">
+        </div>
+        <div class="update__body">
+          <span class="update__tag">What we supply</span>
+          <h3>Steel, sheets, wire, mesh &amp; fencing</h3>
+          <p>Naga Steels supplies metal products for fabrication, construction, roofing,
+             industrial, agricultural and contractor requirements. Naga Fencing is our
+             dedicated fencing brand.</p>
+          <span class="update__more">See the full range <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="update" href="fencing-manufacturer-madurai/" data-slide hidden>
+        <div class="update__media">
+          <img src="assets/img/home/update-2.png" width="1200" height="782"
+               alt="Galvanised chain link mesh roll ready for dispatch" loading="lazy" decoding="async">
+        </div>
+        <div class="update__body">
+          <span class="update__tag">Manufacturing</span>
+          <h3>Chain link woven to your specification</h3>
+          <p>Wire size, mesh opening, height, length and quantity are set by you, not by what
+             happens to be on the shelf. Send a drawing, a BOQ or a reference photograph and we
+             will quote against it.</p>
+          <span class="update__more">About Naga Fencing <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+
+      <a class="update" href="services-delivery/" data-slide hidden>
+        <div class="update__media">
+          <img src="assets/img/home/update-3.png" width="1200" height="782"
+               alt="Loaded lorry prepared for a steel material delivery run" loading="lazy" decoding="async">
+        </div>
+        <div class="update__body">
+          <span class="update__tag">Delivery</span>
+          <h3>Fourteen districts across South Tamil Nadu</h3>
+          <p>From Dindigul and Theni through to Thoothukudi, Tirunelveli and Kanyakumari.
+             Material and freight are quoted separately, so you can always see what the
+             transport is costing you.</p>
+          <span class="update__more">Delivery coverage <span aria-hidden="true">→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Plain buttons, not role="tab". The slides are anchors, not
+         tabpanels, so a tablist here would promise a relationship to
+         assistive tech that does not exist. aria-current carries the
+         selected state instead. -->
+    <div class="updates__dots">
+      <button class="updates__dot" type="button" data-dot aria-current="true"  aria-label="Show update 1 of 3"></button>
+      <button class="updates__dot" type="button" data-dot aria-current="false" aria-label="Show update 2 of 3"></button>
+      <button class="updates__dot" type="button" data-dot aria-current="false" aria-label="Show update 3 of 3"></button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================ 02b · BRAND STRIP ============================ -->
+<section class="brandstrip" aria-labelledby="brandstrip-title">
+  <div class="wrap brandstrip__grid">
+    <div class="brandstrip__head">
+      <p class="eyebrow">Brands &amp; supply partners</p>
+      <strong id="brandstrip-title">One master brand. One fencing brand. Two supply partners.</strong>
+      <p>Steel distributor · Wholesaler · Metal supplier · Est. 2002</p>
+    </div>
+    <div class="brandstrip__row">
+      <a href="about/">
+        <img src="assets/img/brand/naga-steels-main-logo.jpeg" width="512" height="512" alt="Naga Steels logo">
+        <span><strong>Naga Steels</strong><small>Master brand</small></span>
+      </a>
+      <a href="fencing-manufacturer-madurai/">
+        <img src="assets/img/brand/naga-fencing-logo.svg" width="512" height="512" alt="Naga Fencing logo">
+        <span><strong>Naga Fencing</strong><small>Fencing brand</small></span>
+      </a>
+      <a href="tata-wiron-dealer-madurai/">
+        <img src="assets/img/brand/tata-wiron-mark.svg" width="160" height="160" alt="Tata Wiron wire products">
+        <span><strong>Tata Wiron</strong><small>Dealer supply</small></span>
+      </a>
+      <a href="vnc-products-distributor-madurai/">
+        <img src="assets/img/brand/vnc-group-mark.svg" width="160" height="160" alt="VNC Group products">
+        <span><strong>VNC Group</strong><small>Distributor supply</small></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 02c · WHAT'S NEW MOSAIC ============================
+     66/34 split: one feature card, two stacked. The scroll cue above
+     targets this section. -->
+<section class="focus" id="focus" aria-labelledby="focus-title">
+  <div class="wrap">
+    <div class="focus__head">
+      <p class="eyebrow">What Naga Steels does</p>
+      <h2 id="focus-title">Material, manufactured and supplied.</h2>
+    </div>
+
+    <div class="focus__grid">
+      <article class="fcard fcard--lg">
+        <img class="fcard__bg" src="assets/img/home/focus-feature.png" width="1486" height="1061"
+             alt="Chain link weaving machine producing galvanised diamond mesh"
+             loading="lazy" decoding="async">
+        <div class="fcard__content">
+          <span class="fcard__label">Our own manufacturing</span>
+          <h3 class="fcard__name">Naga Fencing<br>Chain Link</h3>
+          <span class="fcard__line"></span>
+          <p class="fcard__text">
+            Chain link woven to the wire size, mesh opening, height, length and quantity you
+            specify. Compare any quote at the same gauge and the same aperture, or you are not
+            comparing the same fence.
+          </p>
+          <div class="fcard__actions">
+            <a class="btn" href="fencing-manufacturer-madurai/">Explore Naga Fencing <span aria-hidden="true">→</span></a>
+            <a class="btn btn--invert" href="#quote">Request a quote</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="focus__col">
+        <a class="fcard fcard--sm" href="tata-wiron-dealer-madurai/">
+          <img class="fcard__bg" src="assets/img/home/focus-small-1.png" width="1480" height="990"
+               alt="" loading="lazy" decoding="async">
+          <span class="fcard__content">
+            <span class="fcard__label">Dealer supply</span>
+            <span class="fcard__name">Tata Wiron<br>Wire Products</span>
+            <span class="fcard__line"></span>
+            <span class="fcard__link">Explore wire <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+
+        <a class="fcard fcard--sm" href="vnc-products-distributor-madurai/">
+          <img class="fcard__bg" src="assets/img/home/focus-small-2.png" width="1480" height="990"
+               alt="" loading="lazy" decoding="async">
+          <span class="fcard__content">
+            <span class="fcard__label">Distributor supply</span>
+            <span class="fcard__name">VNC Group<br>Products</span>
+            <span class="fcard__line"></span>
+            <span class="fcard__link">Explore VNC range <i aria-hidden="true">→</i></span>
+          </span>
         </a>
       </div>
-
-      <p class="hero__proof">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 24 years in Madurai</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> GSTIN verified</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 5.0 on Google</span>
-      </p>
-    </div>
-
-    <!-- ---- Configurator stage ---- -->
-    <div class="stage" id="stage" data-3d="poster">
-      <span class="regmark tl" aria-hidden="true"></span>
-      <span class="regmark br" aria-hidden="true"></span>
-
-      <div class="stage__view">
-        <span class="stage__tag">Fig. 01 / Chain link weave</span>
-
-        <!-- Poster: inline SVG so it costs zero network requests and paints
-             immediately. This is the LCP element, never the canvas. It is
-             also the complete experience on low-end devices. -->
-        <svg class="stage__poster" id="poster" viewBox="0 0 480 400"
-             preserveAspectRatio="xMidYMid slice" role="img"
-             aria-label="Technical diagram of a galvanized chain link wire weave">
-          <defs>
-            <linearGradient id="wireGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%"   stop-color="#E2E6EA"/>
-              <stop offset="45%"  stop-color="#98A2AE"/>
-              <stop offset="100%" stop-color="#5A646F"/>
-            </linearGradient>
-            <pattern id="weave" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path d="M0 0 L40 40 L0 80" fill="none" stroke="url(#wireGrad)"
-                    stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M80 0 L40 40 L80 80" fill="none" stroke="url(#wireGrad)"
-                    stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M40 40 L80 80" fill="none" stroke="#0B0D10"
-                    stroke-width="7" stroke-linecap="round" opacity=".55"/>
-              <path d="M80 0 L40 40" fill="none" stroke="url(#wireGrad)"
-                    stroke-width="5" stroke-linecap="round"/>
-            </pattern>
-            <radialGradient id="vig" cx="50%" cy="44%" r="62%">
-              <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#0B0D10" stop-opacity=".95"/>
-            </radialGradient>
-          </defs>
-          <rect width="480" height="400" fill="#12171E"/>
-          <rect width="480" height="400" fill="url(#weave)" opacity=".9"/>
-          <rect width="480" height="400" fill="url(#vig)"/>
-        </svg>
-
-        <!-- Canvas is created and attached by JS only on capable devices. -->
-        <canvas class="stage__canvas" id="weave-canvas" aria-hidden="true"></canvas>
-
-        <dl class="readout" id="readout">
-          <div><dt>Gauge</dt><dd id="ro-gauge">10 SWG</dd></div>
-          <div><dt>Wire Ø</dt><dd id="ro-mm">3.25 mm</dd></div>
-          <div><dt>Mesh</dt><dd id="ro-ap">1"</dd></div>
-        </dl>
-      </div>
-
-      <!-- ---- Controls ---- -->
-      <div class="controls">
-        <div class="ctrl" data-ctrl="gauge">
-          <div class="ctrl__head">
-            <span class="ctrl__label">Wire gauge</span>
-            <span class="ctrl__value" id="lbl-gauge">10 SWG · 3.25 mm</span>
-          </div>
-          <!-- 8-12 SWG only: this stage shows chain link, and chain link is
-               not woven below 12 SWG. Offering 14 here would let someone
-               configure a spec the yard cannot supply. -->
-          <div class="segs" role="group" aria-label="Wire gauge">
-            <button class="seg" type="button" data-gauge="8"  aria-pressed="false">8<span class="seg__sub">4.06 mm</span></button>
-            <button class="seg" type="button" data-gauge="10" aria-pressed="true">10<span class="seg__sub">3.25 mm</span></button>
-            <button class="seg" type="button" data-gauge="12" aria-pressed="false">12<span class="seg__sub">2.64 mm</span></button>
-          </div>
-        </div>
-
-        <div class="ctrl" data-ctrl="aperture">
-          <div class="ctrl__head">
-            <span class="ctrl__label">Mesh aperture</span>
-            <span class="ctrl__value" id="lbl-ap">1 inch · 25 mm</span>
-          </div>
-          <div class="segs" role="group" aria-label="Mesh aperture">
-            <button class="seg" type="button" data-ap="1"   aria-pressed="true">1"</button>
-            <button class="seg" type="button" data-ap="1.5" aria-pressed="false">1½"</button>
-            <button class="seg" type="button" data-ap="2"   aria-pressed="false">2"</button>
-            <button class="seg" type="button" data-ap="2.5" aria-pressed="false">2½"</button>
-            <button class="seg" type="button" data-ap="3"   aria-pressed="false">3"</button>
-          </div>
-        </div>
-
-        <div class="ctrl" data-ctrl="coating">
-          <div class="ctrl__head">
-            <span class="ctrl__label">Coating</span>
-            <span class="ctrl__value" id="lbl-coat">15–25 yr life</span>
-          </div>
-          <div class="segs" role="group" aria-label="Coating">
-            <button class="seg seg--coat" type="button" data-coat="gi" aria-pressed="true">
-              <span class="swatch" style="background:#B9BEC4"></span>Hot-Dip GI</button>
-            <button class="seg seg--coat" type="button" data-coat="pvc" aria-pressed="false">
-              <span class="swatch" style="background:#1E6B3C"></span>PVC Green</button>
-            <button class="seg seg--coat" type="button" data-coat="ec" aria-pressed="false">
-              <span class="swatch" style="background:#D6DBE1"></span>Electro GI</button>
-          </div>
-        </div>
-
-        <a class="btn btn--wa btn--block" id="hero-wa" href="#quote">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
-          Send this spec on WhatsApp
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================ TRUST BAR ============================ -->
-<section class="trustbar" aria-label="Credentials">
-  <div class="wrap" style="padding-inline:0">
-    <div class="trustbar__grid">
-      <div class="trust">
-        <span class="trust__v">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
-          GSTIN Verified
-        </span>
-        <span class="trust__l mono">33DGWPK4434F1Z7</span>
-      </div>
-      <div class="trust">
-        <span class="trust__v">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg>
-          5.0 Rated
-        </span>
-        <span class="trust__l">On Google Business</span>
-      </div>
-      <div class="trust">
-        <span class="trust__v">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          24 Years
-        </span>
-        <span class="trust__l">Trading since 2002</span>
-      </div>
-      <div class="trust">
-        <span class="trust__v">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          12 Towns
-        </span>
-        <span class="trust__l">South TN delivery</span>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================ BRANDS ============================ -->
-<section class="section" id="brands" style="padding-block:var(--s-8)">
+<!-- ============================ 02d · WHY NAGA STEELS ============================
+     Dark stat band. --mx/--my drive a pointer-following spotlight and
+     default to 50% so the gradient is centred without JS and on touch.
+     The GSTIN cell is a static badge, not a counter: it is a boolean,
+     and animating it to a number would be theatre. -->
+<section class="why" aria-labelledby="why-title">
   <div class="wrap">
-    <header data-reveal style="margin-bottom:var(--s-6);max-width:62ch">
-      <p class="eyebrow">Brands &amp; Supply Partners</p>
-      <h2 style="font-size:var(--t-2xl)">We make the fencing. We stock the rest.</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        Naga Fencing is our own manufacturing brand, so chain link is woven to the
-        gauge and mesh you specify rather than sold from whatever is on the shelf.
-        Everything else comes from names you already know.
-      </p>
-    </header>
-    <div class="brands" id="brands-grid" data-reveal>
-      <noscript>
-        <div class="brandcard"><strong class="brandcard__name">Naga Steels</strong>
-        <p>Master brand. Steel, GI and MS sheet, plate, wire, mesh, roofing and hardware.</p></div>
-        <div class="brandcard"><strong class="brandcard__name">Naga Fencing</strong>
-        <p>Our fencing brand. Chain link woven to your specification.</p></div>
-        <div class="brandcard"><strong class="brandcard__name">Tata Wiron</strong>
-        <p>Dealer. Galvanized, binding and fencing wire.</p></div>
-        <div class="brandcard"><strong class="brandcard__name">VNC Group</strong>
-        <p>Distributor. Bestfence, Bestwire, Bestarc, Voltwire.</p></div>
-      </noscript>
+    <div class="why__grid" data-why-grid>
+      <div class="why__intro">
+        <p class="eyebrow">Why Naga Steels?</p>
+        <h2 id="why-title">Twenty-four years of the same trade, from the same street.</h2>
+        <p>
+          A fencing manufacturer and a steel supplier in one place, so the mesh, the sheet,
+          the wire and the fixings arrive on one invoice and one lorry.
+        </p>
+        <a class="btn btn--gold" href="about/">More about us <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="why__card">
+        <span class="why__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <span class="why__n" data-count="24">24</span>
+        <span class="why__k">Years trading</span>
+        <span class="why__sub">Since 2002, same street</span>
+      </div>
+
+      <div class="why__card">
+        <span class="why__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </span>
+        <span class="why__n" data-count="6">6</span>
+        <span class="why__k">Product families</span>
+        <span class="why__sub">Fencing to fasteners</span>
+      </div>
+
+      <div class="why__card">
+        <span class="why__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </span>
+        <span class="why__n" data-count="14">14</span>
+        <span class="why__k">Districts served</span>
+        <span class="why__sub">South Tamil Nadu</span>
+      </div>
+
+      <div class="why__card">
+        <span class="why__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <span class="why__n why__n--sm">GSTIN</span>
+        <span class="why__k">Verified business</span>
+        <span class="why__sub mono">33DGWPK4434F1Z7</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================ CATALOGUE / SHOWCASE ============================
-     The six panels below are real HTML, not injected the way #cards was.
-     600svh of sticky canvas with no crawlable text would be a serious SEO
-     regression, so every panel carries a real h3 and a real link. -->
+<!-- ============================ 02e · RANGE CAROUSEL ============================
+     Pure CSS marquee: two identical sets, translated -50%, so the loop
+     has no seam and costs no JavaScript. Paused on hover and on
+     focus-within; on touch and under prefers-reduced-motion the CSS
+     turns it into a native horizontal scroller and hides the clone,
+     which is what keeps it inside WCAG 2.2.2.
 
-<section class="section" id="catalogue" style="padding-bottom:var(--s-6)">
-  <div class="wrap">
-    <header data-reveal style="max-width:62ch">
-      <p class="eyebrow">Catalogue · 07 Ranges</p>
-      <h2>Everything a boundary needs, from one yard.</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        Seven ranges covering fencing, mesh, wire, sheet and fixings, so a single lorry
-        closes the whole job instead of three suppliers and three delivery dates.
-      </p>
-    </header>
-  </div>
-</section>
-
-<section class="showcase" id="showcase" data-3d="off">
-  <div class="showcase__stage" aria-hidden="true">
-    <div class="showcase__poster" id="showcase-poster"></div>
-    <canvas class="showcase__canvas" id="showcase-canvas"></canvas>
-    <ol class="showcase__ticks" id="showcase-ticks">
-      <li aria-current="true"><span>Chain Link</span></li>
-      <li><span>Weld Mesh</span></li>
-      <li><span>Barbed Wire</span></li>
-      <li><span>GI Wire</span></li>
-      <li><span>Sheets</span></li>
-      <li><span>Roofing</span></li>
-      <li><span>Hardware</span></li>
-    </ol>
-    <a class="showcase__skip" href="#quote">Skip to enquiry ↓</a>
-  </div>
-
-  <div class="showcase__panels wrap">
-
-    <article class="showcase__panel" data-product="chain-link" data-active="true">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 01</span>
-        <h3>GI Chain Link Fencing</h3>
-        <p>Hot-dip galvanized, PVC coated and heavy-duty slatted chain link, woven to your
-           aperture and gauge in our own works and cut to the running length you need.</p>
-        <span class="card__specs">
-          <span class="chip">8 to 12 SWG</span><span class="chip">1" to 3" mesh</span>
-          <span class="chip">GI / PVC</span><span class="chip">3ft to 8ft</span>
-        </span>
-        <a class="showcase__go" href="chain-link-fencing/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-    <article class="showcase__panel" data-product="weld-mesh">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 02</span>
-        <h3>GI Welded Wire Mesh</h3>
-        <p>Electrically welded at every intersection for a flat, rigid sheet that will not
-           sag. Used in RCC wall plaster, cattle and poultry enclosures, and machine guarding.</p>
-        <span class="card__specs">
-          <span class="chip">10 to 16 SWG</span><span class="chip">½" to 4" grid</span>
-          <span class="chip">Rolls &amp; panels</span><span class="chip">GI</span>
-        </span>
-        <a class="showcase__go" href="welded-wire-mesh/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-    <article class="showcase__panel" data-product="barbed-wire">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 03</span>
-        <h3>Barbed Wire</h3>
-        <p>Double-strand galvanized barbed wire with consistent barb spacing, plus concertina
-           coils for security topping. The most economical way to close a long boundary.</p>
-        <span class="card__specs">
-          <span class="chip">12 × 14 SWG</span><span class="chip">IS 278</span>
-          <span class="chip">3" to 6" barb</span><span class="chip">~500 m coil</span>
-        </span>
-        <a class="showcase__go" href="barbed-wire/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-    <article class="showcase__panel" data-product="gi-wire">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 04</span>
-        <h3>GI Wire &amp; Binding Wire</h3>
-        <p>Galvanized iron wire from 8 to 18 SWG in commercial and heavy zinc coating. Rebar
-           binding wire, fence tension line wire and weaving wire, by the coil or by weight.</p>
-        <span class="card__specs">
-          <span class="chip">8 to 18 SWG</span><span class="chip">40 to 275 GSM</span>
-          <span class="chip">Coil / bundle</span><span class="chip">IS 280</span>
-        </span>
-        <a class="showcase__go" href="gi-wire/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-    <article class="showcase__panel" data-product="sheets">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 05</span>
-        <h3>GI, MS &amp; Steel Sheets</h3>
-        <p>Galvanized plain sheet, GI rolling shutter sheet, mild steel sheet and steel plate
-           from 0.30 to 6 mm. Cut to size from stock, so you buy the piece not the offcut.</p>
-        <span class="card__specs">
-          <span class="chip">0.30 to 6 mm</span><span class="chip">GI / MS / plate</span>
-          <span class="chip">Cut to size</span><span class="chip">IS 277 / 2062</span>
-        </span>
-        <a class="showcase__go" href="steel-sheets/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-    <article class="showcase__panel" data-product="roofing">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 06</span>
-        <h3>Roofing Sheets</h3>
-        <p>Corrugated colour-coated sheet, galvalume and GI roofing sheet with ridge caps and
-           flashing. Cut to your rafter length so there is no overlap waste on site.</p>
-        <span class="card__specs">
-          <span class="chip">0.30 to 0.80 mm</span><span class="chip">Cut to length</span>
-          <span class="chip">GI / GL / PPGI</span><span class="chip">Colour range</span>
-        </span>
-        <a class="showcase__go" href="roofing-sheets/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-    <article class="showcase__panel" data-product="hardware">
-      <div class="showcase__card">
-        <span class="showcase__idx">Range 07</span>
-        <h3>Nails, Ropes &amp; Fasteners</h3>
-        <p>Mild steel wire nails by size and weight, galvanized and ungalvanized steel wire
-           rope for rigging and lifting, and GI nuts, bolts and fencing fittings.</p>
-        <span class="card__specs">
-          <span class="chip">MS wire nails</span><span class="chip">6 to 20 mm rope</span>
-          <span class="chip">GI bolts</span><span class="chip">By weight</span>
-        </span>
-        <a class="showcase__go" href="steel-hardware/">View range &amp; specs
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ============================ APPLICATIONS ============================ -->
-<section class="section" id="applications" style="background:var(--slate);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <header data-reveal style="margin-bottom:var(--s-7);max-width:62ch">
-      <p class="eyebrow">Applications · 06 Cases</p>
-      <h2>Tell us the job, not the product code.</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        Most people arrive knowing what they need to enclose, not which gauge does it.
-        Find the job below and we have already picked the specification that suits it.
-      </p>
-    </header>
-
-    <div class="apps" id="apps-grid" data-reveal>
-      <noscript>
-        <p><a href="chain-link-fencing/">Agricultural, industrial, solar and residential
-        fencing</a> · <a href="welded-wire-mesh/">Warehouse and storage mesh</a> ·
-        <a href="steel-sheets/">Contractor material supply</a></p>
-      </noscript>
-    </div>
-
-    <!-- These photographs came from the client's previous site, where each one
-         carried this same disclaimer. It stays until real yard photography
-         replaces them. Presenting illustrative images as completed projects
-         would be the one thing on this site that is not true. -->
-    <p class="disclaimer" data-reveal>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <span>Images above are illustrative of each application. They do not show completed
-      Naga Steels projects. Photographs of our own yard and finished work are being
-      added.</span>
+     The clone is aria-hidden and its links are removed from the tab
+     order, so the duplicate cards are invisible to assistive tech. -->
+<section class="rangecar" aria-labelledby="rangecar-title">
+  <div class="wrap rangecar__head">
+    <p class="eyebrow">Complete material range</p>
+    <h2 id="rangecar-title">Explore the range.</h2>
+    <p>
+      From boundary fencing and barbed wire to sheet, plate, wire rope, mesh, roofing and
+      fixings. Tell us the specification and the quantity, and we will tell you the rate.
     </p>
   </div>
+
+  <div class="rangecar__shell">
+  <div class="rangecar__viewport" tabindex="0" role="group" aria-label="Product range, scrollable">
+    <div class="rangecar__track">
+      <div class="rangecar__set">
+        <a class="rcard" href="chain-link-fencing-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-01.png" width="800" height="800" alt="GI chain link mesh" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Naga Fencing</span>
+            <span class="rcard__name">GI Chain Link</span>
+            <span class="rcard__text">Hot-dip galvanised, 8 to 12 SWG, woven to your mesh opening.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="chain-link-fencing-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-02.png" width="800" height="800" alt="PVC coated chain link mesh" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Naga Fencing</span>
+            <span class="rcard__name">PVC Coated Chain Link</span>
+            <span class="rcard__text">Galvanised core in a plastic jacket. The right call near the coast.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="barbed-wire-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-03.png" width="800" height="800" alt="Barbed wire" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Naga Fencing</span>
+            <span class="rcard__name">Barbed Wire</span>
+            <span class="rcard__text">IS 278 barbed wire for economical boundary demarcation over long runs.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="weld-mesh-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-04.png" width="800" height="800" alt="Welded mesh panel" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Mesh</span>
+            <span class="rcard__name">Weld Mesh Panels</span>
+            <span class="rcard__text">Welded at every intersection. Flat, rigid and will not sag.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="wire-mesh-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-05.png" width="800" height="800" alt="Woven wire mesh" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Mesh</span>
+            <span class="rcard__name">Woven Wire Mesh</span>
+            <span class="rcard__text">Flexible woven mesh for screening, plastering and poultry work.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="gi-wire-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-06.png" width="800" height="800" alt="GI wire coil" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Wire &amp; Rope</span>
+            <span class="rcard__name">GI Wire</span>
+            <span class="rcard__text">8 to 18 SWG galvanised wire, 40 to 275 GSM zinc coating.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="gi-wire-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-07.png" width="800" height="800" alt="Binding wire coil" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Wire &amp; Rope</span>
+            <span class="rcard__name">Binding Wire</span>
+            <span class="rcard__text">Annealed binding wire by coil weight for reinforcement work.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="gi-wire-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-08.png" width="800" height="800" alt="Steel wire rope" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Wire &amp; Rope</span>
+            <span class="rcard__name">Steel Wire Rope</span>
+            <span class="rcard__text">Wire rope by diameter and construction for lifting and rigging.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="gi-sheet-dealer-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-09.png" width="800" height="800" alt="GI plain sheet stack" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Sheets &amp; Plate</span>
+            <span class="rcard__name">GI Plain Sheet</span>
+            <span class="rcard__text">Galvanised sheet from 0.30 mm, cut to size from stock.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="ms-sheet-dealer-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-10.png" width="800" height="800" alt="MS sheet and plate" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Sheets &amp; Plate</span>
+            <span class="rcard__name">MS Sheet &amp; Plate</span>
+            <span class="rcard__text">IS 2062 mild steel from 1 mm to 6 mm for fabrication.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="gi-sheet-dealer-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-11.png" width="800" height="800" alt="GI rolling shutter sheet" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Sheets &amp; Plate</span>
+            <span class="rcard__name">Rolling Shutter Sheet</span>
+            <span class="rcard__text">GI shutter sheet supplied by gauge and running length.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="colour-coated-sheet-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-12.png" width="800" height="800" alt="Colour coated roofing sheet" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Roofing</span>
+            <span class="rcard__name">Colour Coated Sheet</span>
+            <span class="rcard__text">PPGI roofing cut to rafter length, so you skip the overlap waste.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="colour-coated-sheet-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-13.png" width="800" height="800" alt="GI corrugated roofing sheet" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Roofing</span>
+            <span class="rcard__name">GI Corrugated Sheet</span>
+            <span class="rcard__text">Plain galvanised corrugated roofing for sheds and godowns.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="steel-hardware-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-14.png" width="800" height="800" alt="MS wire nails" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Hardware</span>
+            <span class="rcard__name">MS Wire Nails</span>
+            <span class="rcard__text">Wire and concrete nails by size, supplied by weight.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+        <a class="rcard" href="steel-hardware-supplier-madurai/">
+          <span class="rcard__img"><img src="assets/img/home/range-15.png" width="800" height="800" alt="GI bolts and fencing fixings" loading="lazy" decoding="async"></span>
+          <span class="rcard__body">
+            <span class="rcard__family">Hardware</span>
+            <span class="rcard__name">GI Bolts &amp; Fixings</span>
+            <span class="rcard__text">Galvanised bolts, nuts and fencing fixings by size and grade.</span>
+            <span class="rcard__cta">View product <i aria-hidden="true">→</i></span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Visual duplicate only. aria-hidden + inert keeps it out of the
+           accessibility tree and the tab order. -->
+      <div class="rangecar__set rangecar__set--clone" aria-hidden="true" inert>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-01.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Naga Fencing</span><span class="rcard__name">GI Chain Link</span><span class="rcard__text">Hot-dip galvanised, 8 to 12 SWG, woven to your mesh opening.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-02.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Naga Fencing</span><span class="rcard__name">PVC Coated Chain Link</span><span class="rcard__text">Galvanised core in a plastic jacket. The right call near the coast.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-03.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Naga Fencing</span><span class="rcard__name">Barbed Wire</span><span class="rcard__text">IS 278 barbed wire for economical boundary demarcation over long runs.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-04.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Mesh</span><span class="rcard__name">Weld Mesh Panels</span><span class="rcard__text">Welded at every intersection. Flat, rigid and will not sag.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-05.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Mesh</span><span class="rcard__name">Woven Wire Mesh</span><span class="rcard__text">Flexible woven mesh for screening, plastering and poultry work.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-06.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Wire &amp; Rope</span><span class="rcard__name">GI Wire</span><span class="rcard__text">8 to 18 SWG galvanised wire, 40 to 275 GSM zinc coating.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-07.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Wire &amp; Rope</span><span class="rcard__name">Binding Wire</span><span class="rcard__text">Annealed binding wire by coil weight for reinforcement work.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-08.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Wire &amp; Rope</span><span class="rcard__name">Steel Wire Rope</span><span class="rcard__text">Wire rope by diameter and construction for lifting and rigging.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-09.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Sheets &amp; Plate</span><span class="rcard__name">GI Plain Sheet</span><span class="rcard__text">Galvanised sheet from 0.30 mm, cut to size from stock.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-10.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Sheets &amp; Plate</span><span class="rcard__name">MS Sheet &amp; Plate</span><span class="rcard__text">IS 2062 mild steel from 1 mm to 6 mm for fabrication.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-11.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Sheets &amp; Plate</span><span class="rcard__name">Rolling Shutter Sheet</span><span class="rcard__text">GI shutter sheet supplied by gauge and running length.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-12.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Roofing</span><span class="rcard__name">Colour Coated Sheet</span><span class="rcard__text">PPGI roofing cut to rafter length, so you skip the overlap waste.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-13.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Roofing</span><span class="rcard__name">GI Corrugated Sheet</span><span class="rcard__text">Plain galvanised corrugated roofing for sheds and godowns.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-14.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Hardware</span><span class="rcard__name">MS Wire Nails</span><span class="rcard__text">Wire and concrete nails by size, supplied by weight.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+        <span class="rcard">
+          <span class="rcard__img"><img src="assets/img/home/range-15.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__body"><span class="rcard__family">Hardware</span><span class="rcard__name">GI Bolts &amp; Fixings</span><span class="rcard__text">Galvanised bolts, nuts and fencing fixings by size and grade.</span><span class="rcard__cta">View product <i>→</i></span></span>
+        </span>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="wrap">
+    <p class="rangecar__hint">Hover to pause · scroll or swipe to browse</p>
+  </div>
 </section>
 
-<!-- ============================ QUOTE BUILDER ============================ -->
-<section class="section qb" id="quote" style="border-block:1px solid var(--line)">
-  <div class="grid-bg" aria-hidden="true"></div>
-  <div class="wrap" style="position:relative;z-index:1">
-    <header data-reveal style="margin-bottom:var(--s-7);max-width:62ch">
-      <p class="eyebrow">Quote Builder · 3 Steps</p>
-      <h2>Tell us the spec. We reply with a rate.</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        Fill this in and it writes your enquiry as a clean WhatsApp message with the whole
-        specification in one go, so the first reply you get is a price rather than four
-        questions. Takes about fifteen seconds.
+<!-- The old .trustbar strip stood here. Removed rather than relocated: it
+     carried exactly the four facts the "Why Naga Steels?" band above now
+     carries (24 years, 6 families, 14 districts, GSTIN), and stating them
+     twice on one page weakens both. The .trustbar CSS stays in
+     sections.css for the sub-pages that still use it. -->
+
+<!-- ============================ 03 · SIX FAMILIES ============================ -->
+<section class="catalog" id="products">
+  <div class="wrap">
+    <div class="catalog__head" data-reveal>
+      <div>
+        <p class="eyebrow">Complete product offering</p>
+        <h2>Six product families. One supplier.</h2>
+      </div>
+      <a class="inline-link" href="products/">Open the complete catalogue <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="catalog__grid" data-reveal>
+      <a href="fencing-manufacturer-madurai/" class="catalog-card catalog-card--brand">
+        <img class="catalog-card__logo" src="assets/img/brand/naga-fencing-logo.svg" width="512" height="512" alt="">
+        <span>01</span>
+        <p>Naga Fencing</p>
+        <h3>Fencing systems</h3>
+        <small>GI chain-link · Heavy-duty chain-link · PVC-coated chain-link · Barbed wire</small>
+        <span class="chips">
+          <span class="chip">8 – 12 SWG</span><span class="chip">1" – 3" mesh</span><span class="chip">3ft – 8ft</span>
+        </span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a href="gi-sheet-dealer-madurai/" class="catalog-card">
+        <span>02</span>
+        <p>Sheets &amp; plate</p>
+        <h3>GI, MS and steel sheet</h3>
+        <small>GI plain sheets · GI rolling sheets · MS sheets · Steel plate</small>
+        <span class="chips">
+          <span class="chip">0.30 – 6 mm</span><span class="chip">Cut to size</span><span class="chip">IS 277 / 2062</span>
+        </span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a href="gi-wire-supplier-madurai/" class="catalog-card">
+        <span>03</span>
+        <p>Wire &amp; rope</p>
+        <h3>Industrial wire products</h3>
+        <small>GI wire · Steel wire · Binding wire · Steel wire rope</small>
+        <span class="chips">
+          <span class="chip">8 – 18 SWG</span><span class="chip">40 – 275 GSM</span><span class="chip">IS 280</span>
+        </span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a href="wire-mesh-supplier-madurai/" class="catalog-card">
+        <span>04</span>
+        <p>Mesh</p>
+        <h3>Wire and welded mesh</h3>
+        <small>Wire mesh · GI wire mesh · Weld mesh · Welded wire mesh</small>
+        <span class="chips">
+          <span class="chip">10 – 16 SWG</span><span class="chip">½" – 4" grid</span><span class="chip">Rolls &amp; panels</span>
+        </span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a href="colour-coated-sheet-supplier-madurai/" class="catalog-card">
+        <span>05</span>
+        <p>Roofing</p>
+        <h3>Roofing sheet supply</h3>
+        <small>Colour-coated sheets · GI roofing sheets · Corrugated sheets · Ridge and flashing</small>
+        <span class="chips">
+          <span class="chip">0.30 – 0.80 mm</span><span class="chip">Cut to length</span><span class="chip">GI / GL / PPGI</span>
+        </span>
+        <i aria-hidden="true">→</i>
+      </a>
+      <a href="steel-hardware-supplier-madurai/" class="catalog-card">
+        <span>06</span>
+        <p>Fasteners &amp; hardware</p>
+        <h3>Nails, bolts and hardware</h3>
+        <small>Steel nails · Concrete nails · GI bolts · Industrial bolts</small>
+        <span class="chips">
+          <span class="chip">MS wire nails</span><span class="chip">GI bolts</span><span class="chip">By weight</span>
+        </span>
+        <i aria-hidden="true">→</i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 04 · VNC PARTNER BAND ============================ -->
+<section class="partner" aria-labelledby="partners-title">
+  <div class="wrap partner__grid">
+    <div data-reveal>
+      <p class="eyebrow">VNC product brands</p>
+      <h2 id="partners-title">Ask for the exact brand and specification.</h2>
+      <p>
+        Relevant VNC enquiries include Bestfence fencing systems, Bestwire wire products,
+        Bestarc welding electrodes and Voltwire electric-fence products. Product
+        availability and current manufacturer specifications are confirmed during quotation.
       </p>
-    </header>
+      <a class="inline-link" href="vnc-products-distributor-madurai/">Explore the VNC product range <span aria-hidden="true">→</span></a>
+    </div>
+
+    <!-- Each mark is now a real <img>, so supplied artwork drops in by
+         overwriting the file in assets/img/brand/ - no markup change.
+         The four shipped files are neutral type-lockup placeholders:
+         these are third-party registered marks and we hold no written
+         permission to reproduce the real artwork yet. -->
+    <div class="vnc-grid" data-reveal>
+      <a class="vnc-card" href="vnc-products-distributor-madurai/#bestfence">
+        <span class="vnc-card__mark"><img src="assets/img/brand/bestfence.webp" width="220" height="150" alt="" loading="lazy" decoding="async"></span>
+        <strong>Bestfence</strong>
+        <small>Chain-link &amp; fencing systems</small>
+        <span class="vnc-card__cta">Ask for this brand <i aria-hidden="true">→</i></span>
+      </a>
+      <a class="vnc-card" href="vnc-products-distributor-madurai/#bestwire">
+        <span class="vnc-card__mark"><img src="assets/img/brand/bestwire.webp" width="220" height="150" alt="" loading="lazy" decoding="async"></span>
+        <strong>Bestwire</strong>
+        <small>GI, binding &amp; wire products</small>
+        <span class="vnc-card__cta">Ask for this brand <i aria-hidden="true">→</i></span>
+      </a>
+      <a class="vnc-card" href="vnc-products-distributor-madurai/#bestarc">
+        <span class="vnc-card__mark"><img src="assets/img/brand/bestarc.webp" width="220" height="150" alt="" loading="lazy" decoding="async"></span>
+        <strong>Bestarc</strong>
+        <small>Welding electrodes</small>
+        <span class="vnc-card__cta">Ask for this brand <i aria-hidden="true">→</i></span>
+      </a>
+      <a class="vnc-card" href="vnc-products-distributor-madurai/#voltwire">
+        <span class="vnc-card__mark"><img src="assets/img/brand/voltwire.svg" width="220" height="150" alt="" loading="lazy" decoding="async"></span>
+        <strong>Voltwire</strong>
+        <small>Electric-fence wire products</small>
+        <span class="vnc-card__cta">Ask for this brand <i aria-hidden="true">→</i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 05 · BRAND STRUCTURE ============================ -->
+<section class="scope">
+  <div class="wrap scope__grid" data-reveal>
+    <div class="scope__head">
+      <p class="eyebrow">Brand structure</p>
+      <h2>Naga Steels is the master brand.</h2>
+    </div>
+    <article>
+      <span class="section-index">01 / Steel &amp; metal</span>
+      <h3>Naga Steels</h3>
+      <p>Steel, GI and MS sheets, plate, wire, mesh, roofing, nails, bolts, rope and related material supply.</p>
+      <a class="inline-link" href="products/">View the complete range <span aria-hidden="true">→</span></a>
+    </article>
+    <article>
+      <span class="section-index">02 / Fencing brand</span>
+      <h3>Naga Fencing</h3>
+      <p>The dedicated name for chain-link variants, barbed wire and fencing-related manufacturing and supply.</p>
+      <a class="inline-link" href="fencing-manufacturer-madurai/">Explore Naga Fencing <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- ============================ 06 · SERVICES & DELIVERY ============================ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="services__head" data-reveal>
+      <div>
+        <p class="eyebrow">Services &amp; delivery</p>
+        <h2>From specification to scheduled supply.</h2>
+      </div>
+      <p>
+        Clear scope, usable buying details and delivery planning — without treating
+        material supply, civil work and installation as the same thing.
+      </p>
+    </div>
+
+    <div class="services__layout">
+      <div class="services__grid" data-reveal>
+        <article>
+          <span>01</span>
+          <h3>Made-to-spec chain-link</h3>
+          <p>Manufacturing enquiries reviewed by wire size, mesh opening, height, length and quantity.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Material supply</h3>
+          <p>GI wire and sheets, MS sheets, wire mesh, weld mesh, barbed wire, coated sheets and related hardware.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Requirement review</h3>
+          <p>Drawings, BOQs, reference photos and line-item schedules help convert a general request into a usable quotation.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Dispatch coordination</h3>
+          <p>Purchasing unit, quantity, address, vehicle access and required date are reviewed before delivery is confirmed.</p>
+        </article>
+      </div>
+
+      <aside class="delivery-panel on-dark" id="delivery" data-reveal>
+        <p class="section-index section-index--light">Delivery coverage</p>
+        <h3>Madurai first. Project routes reviewed.</h3>
+        <div class="delivery-list">
+          <div><span>01</span><p><strong>Madurai city &amp; district</strong>Primary area for direct material and fencing enquiries. Collection from Chitrakara Street is usually same-day.</p></div>
+          <div><span>02</span><p><strong>Nearby districts</strong>Supply requests reviewed by route, order size and product availability.</p></div>
+          <div><span>03</span><p><strong>Tamil Nadu project locations</strong>Planned or phased deliveries reviewed for project and contractor requirements.</p></div>
+        </div>
+        <p class="delivery-note">Availability, transport charges, unloading arrangements and delivery dates are confirmed for each order. Freight is always quoted separately from material.</p>
+        <a class="btn btn--invert btn--sm" href="services-delivery/">See services &amp; delivery details <span aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 07 · COVERAGE ============================ -->
+<section class="coverage" id="coverage">
+  <div class="wrap coverage__grid">
+    <div data-reveal>
+      <p class="eyebrow">South Tamil Nadu delivery enquiries</p>
+      <h2>From Madurai to the southern districts.</h2>
+      <p>
+        Named service areas match the business listing and extend through the key southern
+        commercial routes. Every dispatch is still confirmed against material, quantity,
+        route, access and unloading.
+      </p>
+      <a class="inline-link" href="services-delivery/#service-map">View delivery details <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="coverage__visual" data-reveal>
+      <figure class="coverage-map">
+        <div class="coverage-map__kicker">
+          <span>South Tamil Nadu</span>
+          <strong>Delivery enquiry network</strong>
+        </div>
+        <!-- Pins are injected from the AREAS data so the coordinates live in
+             one place. The same town names appear as crawlable text below. -->
+        <div class="coverage-map__plot" id="coverage-plot" aria-hidden="true"></div>
+        <figcaption>Coverage schematic, not a route map. Delivery is confirmed by product, quantity, vehicle access, unloading and required date.</figcaption>
+      </figure>
+
+      <div class="coverage__lists">
+        <div>
+          <span>Listed service areas</span>
+          <p id="areas-primary">Madurai · Dindigul · Theni · Sivaganga · Virudhunagar · Sivakasi · Rajapalayam · Ramanathapuram · Rameswaram · Kovilpatti · Thoothukudi · Tenkasi · Tirunelveli · Nagercoil / Kanyakumari</p>
+        </div>
+        <div>
+          <span>Nearby, often same or next day</span>
+          <p id="areas-nearby">Melur · Thirumangalam · Usilampatti · Aruppukottai · Karaikudi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 08 · APPLICATIONS ============================ -->
+<section class="applications" id="applications">
+  <div class="wrap">
+    <div class="editorial-heading" data-reveal>
+      <div>
+        <p class="eyebrow">Choose by application</p>
+        <h2>Built around where the material will work.</h2>
+      </div>
+      <p>
+        Most people arrive knowing what they need to enclose, not which gauge does it.
+        Find the job below and the specification that usually suits it is already picked.
+      </p>
+    </div>
+
+    <div class="app-grid" data-reveal>
+      <article class="app-card">
+        <a href="agricultural-fencing/">
+          <figure class="concept-figure">
+            <div class="concept-image">
+              <img src="assets/img/applications/agricultural.webp" width="1536" height="1024"
+                   alt="Conceptual galvanised chain-link and barbed-wire agricultural boundary near Madurai"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption><span>Application study</span>Conceptual application visual. It explains a fencing context and is not a claim of a completed Naga Steels project.</figcaption>
+          </figure>
+          <div class="app-card__copy">
+            <span>01</span>
+            <h3>Fencing for agricultural land.</h3>
+            <p>Boundary material for farms, plots and agricultural land around Madurai, where cost per running foot over a long perimeter decides everything.</p>
+            <p class="app-card__spec">10 SWG chain link at 2" mesh, or barbed wire at five to seven strands for the longest runs.</p>
+            <strong>View application <span aria-hidden="true">→</span></strong>
+          </div>
+        </a>
+      </article>
+
+      <article class="app-card">
+        <a href="industrial-fencing/">
+          <figure class="concept-figure">
+            <div class="concept-image">
+              <img src="assets/img/applications/industrial.webp" width="1536" height="1024"
+                   alt="Conceptual galvanised chain-link and welded-mesh boundary at an industrial factory"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption><span>Application study</span>Conceptual application visual. No project history or installation claim is implied.</figcaption>
+          </figure>
+          <div class="app-card__copy">
+            <span>02</span>
+            <h3>Boundaries for industrial sites.</h3>
+            <p>Perimeter, separation and protective-mesh requirements for factories, where the fence is a security measure rather than a marker.</p>
+            <p class="app-card__spec">8 SWG chain link, heavy zinc coating, with a three-strand barbed top or razor coil.</p>
+            <strong>View application <span aria-hidden="true">→</span></strong>
+          </div>
+        </a>
+      </article>
+
+      <article class="app-card">
+        <a href="warehouse-fencing/">
+          <figure class="concept-figure">
+            <div class="concept-image">
+              <img src="assets/img/applications/warehouse.webp" width="1536" height="1024"
+                   alt="Conceptual wire-mesh partition and chain-link perimeter at a warehouse"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption><span>Application study</span>Conceptual application visual. The image is not presented as an actual customer installation.</figcaption>
+          </figure>
+          <div class="app-card__copy">
+            <span>03</span>
+            <h3>Perimeters and partitions for warehouses.</h3>
+            <p>Material for property boundaries, internal separation and protective storage areas inside a shed.</p>
+            <p class="app-card__spec">Welded mesh panels for internal work, chain link for the outer boundary.</p>
+            <strong>View application <span aria-hidden="true">→</span></strong>
+          </div>
+        </a>
+      </article>
+
+      <article class="app-card">
+        <a href="solar-plant-fencing/">
+          <figure class="concept-figure">
+            <div class="concept-image">
+              <img src="assets/img/applications/solar.webp" width="1536" height="1024"
+                   alt="Conceptual chain-link perimeter around a solar-panel site in Tamil Nadu"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption><span>Application study</span>Conceptual application visual only. It does not represent a completed Naga Steels solar project.</figcaption>
+          </figure>
+          <div class="app-card__copy">
+            <span>04</span>
+            <h3>Perimeter material for solar sites.</h3>
+            <p>Project-based boundary material for solar and infrastructure locations, usually driven by an approved drawing or BOQ.</p>
+            <p class="app-card__spec">8 to 10 SWG chain link, heavy coating, with a post and gate schedule priced alongside.</p>
+            <strong>View application <span aria-hidden="true">→</span></strong>
+          </div>
+        </a>
+      </article>
+
+      <article class="app-card">
+        <a href="residential-fencing/">
+          <figure class="concept-figure">
+            <div class="concept-image">
+              <img src="assets/img/applications/residential.webp" width="1536" height="1024"
+                   alt="Conceptual chain-link boundary around a private plot near Madurai"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption><span>Application study</span>Conceptual application visual. Site, house and fence are illustrative rather than a project reference.</figcaption>
+          </figure>
+          <div class="app-card__copy">
+            <span>05</span>
+            <h3>Clear boundaries for private land.</h3>
+            <p>Straightforward fencing for plots, compounds and privately owned land, where the fence has to look finished as well as work.</p>
+            <p class="app-card__spec">PVC coated chain link at 1½" to 2" mesh. The green disappears into planting.</p>
+            <strong>View application <span aria-hidden="true">→</span></strong>
+          </div>
+        </a>
+      </article>
+
+      <article class="app-card">
+        <a href="contractor-steel-supply/">
+          <figure class="concept-figure">
+            <div class="concept-image">
+              <img src="assets/img/applications/contractor.webp" width="1536" height="1024"
+                   alt="Conceptual staging area with steel sheets, wire coils, mesh and fencing materials"
+                   loading="lazy" decoding="async">
+            </div>
+            <figcaption><span>Application study</span>Conceptual material visual. Items shown illustrate categories, not confirmed stock or a customer order.</figcaption>
+          </figure>
+          <div class="app-card__copy">
+            <span>06</span>
+            <h3>Materials for contractors and fabricators.</h3>
+            <p>Specification-led material enquiries for fabrication, fencing and project execution, quoted against a schedule.</p>
+            <p class="app-card__spec">Binding wire, MS and GI sheet, weld mesh and fixings, on one bill and one lorry.</p>
+            <strong>View application <span aria-hidden="true">→</span></strong>
+          </div>
+        </a>
+      </article>
+    </div>
+
+   
+  </div>
+</section>
+
+<!-- ============================ 09 · PLAN YOUR FENCE ============================ -->
+<section class="planner" id="planner">
+  <div class="wrap">
+    <div class="editorial-heading" data-reveal>
+      <div>
+        <p class="eyebrow">Plan it before you buy it</p>
+        <h2>Set the specification. See the material.</h2>
+      </div>
+      <p>
+        Two tools. The configurator shows what a gauge and mesh combination actually looks
+        like; the estimator works out rolls, posts and struts from your boundary length.
+      </p>
+    </div>
+
+    <div class="planner__tabs" role="tablist" aria-label="Planning tools" data-planner-tabs>
+      <button class="planner__tab" type="button" role="tab" id="tab-config"
+              aria-controls="panel-config" aria-selected="true">Fence configurator</button>
+      <button class="planner__tab" type="button" role="tab" id="tab-calc"
+              aria-controls="panel-calc" aria-selected="false" tabindex="-1">Material estimator</button>
+    </div>
+
+    <!-- ---- Configurator ---- -->
+    <div class="planner__panel" id="panel-config" role="tabpanel" aria-labelledby="tab-config">
+      <div class="config" id="config">
+        <div class="config__view">
+          <span class="config__tag">Fig. 01 / Chain link weave</span>
+          <!-- Rendered as an SVG <pattern> by weave-svg.js. This replaced a
+               three.js scene that cost ~600 KB to communicate the same three
+               facts: wire thickness, mesh opening, coating colour. -->
+          <div id="weave-view" style="width:100%;height:100%"></div>
+          <dl class="readout">
+            <div><dt>Gauge</dt><dd id="ro-gauge">10 SWG</dd></div>
+            <div><dt>Wire Ø</dt><dd id="ro-mm">3.25 mm</dd></div>
+            <div><dt>Mesh</dt><dd id="ro-ap">2"</dd></div>
+          </dl>
+        </div>
+
+        <div class="config__controls">
+          <div class="ctrl">
+            <div class="ctrl__head">
+              <span class="ctrl__label">Wire gauge</span>
+              <span class="ctrl__value" id="lbl-gauge">10 SWG · 3.25 mm</span>
+            </div>
+            <!-- 8-12 SWG only: chain link is not woven below 12 SWG, and
+                 offering 14 here would let someone configure a spec the
+                 yard cannot supply. -->
+            <div class="segs" role="group" aria-label="Wire gauge">
+              <button class="seg" type="button" data-gauge="8"  aria-pressed="false">8<span class="seg__sub">4.06 mm</span></button>
+              <button class="seg" type="button" data-gauge="10" aria-pressed="true">10<span class="seg__sub">3.25 mm</span></button>
+              <button class="seg" type="button" data-gauge="12" aria-pressed="false">12<span class="seg__sub">2.64 mm</span></button>
+            </div>
+          </div>
+
+          <div class="ctrl">
+            <div class="ctrl__head">
+              <span class="ctrl__label">Mesh aperture</span>
+              <span class="ctrl__value" id="lbl-ap">2 inch · 50 mm</span>
+            </div>
+            <div class="segs" role="group" aria-label="Mesh aperture">
+              <button class="seg" type="button" data-ap="1"   aria-pressed="false">1"</button>
+              <button class="seg" type="button" data-ap="1.5" aria-pressed="false">1½"</button>
+              <button class="seg" type="button" data-ap="2"   aria-pressed="true">2"</button>
+              <button class="seg" type="button" data-ap="2.5" aria-pressed="false">2½"</button>
+              <button class="seg" type="button" data-ap="3"   aria-pressed="false">3"</button>
+            </div>
+          </div>
+
+          <div class="ctrl">
+            <div class="ctrl__head">
+              <span class="ctrl__label">Coating</span>
+              <span class="ctrl__value" id="lbl-coat">15–25 years life</span>
+            </div>
+            <div class="segs" role="group" aria-label="Coating">
+              <button class="seg seg--coat" type="button" data-coat="gi" aria-pressed="true">
+                <span class="swatch" style="background:#B9BEC4"></span>Hot-Dip GI</button>
+              <button class="seg seg--coat" type="button" data-coat="pvc" aria-pressed="false">
+                <span class="swatch" style="background:#1E6B3C"></span>PVC Green</button>
+              <button class="seg seg--coat" type="button" data-coat="ec" aria-pressed="false">
+                <span class="swatch" style="background:#D6DBE1"></span>Electro GI</button>
+            </div>
+          </div>
+
+          <a class="btn btn--wa btn--block" id="config-wa" href="#quote">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
+            Send this spec on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Calculator ---- -->
+    <div class="planner__panel" id="panel-calc" role="tabpanel" aria-labelledby="tab-calc" hidden>
+      <div class="calc">
+        <form id="calc-form">
+          <div class="field-row">
+            <div class="field">
+              <label for="c-len">Boundary length (running feet)</label>
+              <input class="input" id="c-len" type="number" min="1" step="1" value="500" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="c-ht">Fence height</label>
+              <select class="select" id="c-ht">
+                <option value="3">3 ft</option><option value="4">4 ft</option>
+                <option value="5" selected>5 ft</option><option value="6">6 ft</option>
+                <option value="7">7 ft</option><option value="8">8 ft</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="c-roll">Roll length supplied</label>
+              <select class="select" id="c-roll">
+                <option value="50">50 ft per roll</option>
+                <option value="75">75 ft per roll</option>
+                <option value="100" selected>100 ft per roll</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-spacing">Post spacing</label>
+              <select class="select" id="c-spacing">
+                <option value="8">8 ft centres (heavy)</option>
+                <option value="10" selected>10 ft centres (standard)</option>
+                <option value="12">12 ft centres (economy)</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-corners">Number of corners &amp; gates</label>
+            <input class="input" id="c-corners" type="number" min="0" step="1" value="4" inputmode="numeric">
+          </div>
+          <p class="calc__note" id="calc-note"></p>
+        </form>
+
+        <div>
+          <div class="calc__out" aria-live="polite">
+            <div class="calc__cell"><span class="calc__n" id="c-rolls">5</span><span class="calc__k">Rolls required</span></div>
+            <div class="calc__cell"><span class="calc__n" id="c-posts">51</span><span class="calc__k">Line posts</span></div>
+            <div class="calc__cell"><span class="calc__n" id="c-struts">8</span><span class="calc__k">Corner struts</span></div>
+            <div class="calc__cell"><span class="calc__n" id="c-area">2,500 <small>sq ft</small></span><span class="calc__k">Total mesh area</span></div>
+          </div>
+          <a class="btn btn--block" id="calc-send" href="#quote" style="margin-top:var(--s-4)">
+            Quote this quantity <span aria-hidden="true">→</span>
+          </a>
+          <p style="margin-top:var(--s-4);font-size:12px;color:var(--muted)">
+            Deliberately not a price estimator. Steel rates move weekly with zinc and HR coil,
+            so a hardcoded price would be wrong within a month and we will not quote a number
+            the yard cannot honour.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 10 · QUOTE BUILDER ============================ -->
+<section class="qb" id="quote">
+  <div class="wrap">
+    <div class="editorial-heading" data-reveal>
+      <div>
+        <p class="eyebrow">Quote builder · 3 steps</p>
+        <h2>Tell us the spec. We reply with a rate.</h2>
+      </div>
+      <p>
+        This writes your enquiry as a clean WhatsApp message with the whole specification
+        in one go, so the first reply you get is a price rather than four questions.
+      </p>
+    </div>
 
     <div class="qb__shell">
       <form class="qb__steps" id="qb-form" data-reveal novalidate>
-
-        <div class="step" data-n="1" data-done="true">
+        <div class="step" data-n="01" data-done="true">
           <h3>What do you need?</h3>
           <p class="step__hint">Pick the range. The specification options update to match.</p>
-          <div class="step__body">
-            <div class="field">
-              <label for="q-cat">Product range</label>
-              <select class="select" id="q-cat" name="category"></select>
-            </div>
+          <div class="field">
+            <label for="q-cat">Product range</label>
+            <select class="select" id="q-cat" name="category"></select>
           </div>
         </div>
 
-        <div class="step" data-n="2">
+        <div class="step" data-n="02">
           <h3>What specification?</h3>
           <p class="step__hint">Not sure? Leave the defaults and we will advise when we quote.</p>
-          <div class="step__body" id="q-specs"></div>
+          <div id="q-specs"></div>
         </div>
 
-        <div class="step" data-n="3">
+        <div class="step" data-n="03">
           <h3>How much, and where to?</h3>
           <p class="step__hint">A rough quantity is fine. We will confirm the exact weight.</p>
-          <div class="step__body">
-            <div class="field-row">
-              <div class="field">
-                <label for="q-qty">Quantity</label>
-                <input class="input" id="q-qty" name="qty" type="text" inputmode="decimal"
-                       placeholder="e.g. 500" autocomplete="off">
-              </div>
-              <div class="field">
-                <label for="q-unit">Unit</label>
-                <select class="select" id="q-unit" name="unit"></select>
-              </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="q-qty">Quantity</label>
+              <input class="input" id="q-qty" name="qty" type="text" inputmode="decimal"
+                     placeholder="e.g. 500" autocomplete="off">
             </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="q-town">Delivery town</label>
-                <input class="input" id="q-town" name="town" type="text"
-                       placeholder="e.g. Theni" autocomplete="address-level2" list="towns">
-                <datalist id="towns"></datalist>
-              </div>
-              <div class="field">
-                <label for="q-name">Your name</label>
-                <input class="input" id="q-name" name="name" type="text"
-                       placeholder="e.g. Murugan" autocomplete="name">
-              </div>
+            <div class="field">
+              <label for="q-unit">Unit</label>
+              <select class="select" id="q-unit" name="unit"></select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="q-town">Delivery town</label>
+              <input class="input" id="q-town" name="town" type="text"
+                     placeholder="e.g. Theni" autocomplete="address-level2" list="towns">
+              <datalist id="towns"></datalist>
+            </div>
+            <div class="field">
+              <label for="q-name">Your name</label>
+              <input class="input" id="q-name" name="name" type="text"
+                     placeholder="e.g. Murugan" autocomplete="name">
             </div>
           </div>
         </div>
       </form>
 
-      <!-- ---- Live message preview ---- -->
-      <aside class="preview" data-reveal aria-label="WhatsApp message preview">
+      <aside class="preview on-dark" data-reveal aria-label="WhatsApp message preview">
         <div class="preview__bar">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
           Message preview, live
         </div>
         <pre class="preview__msg" id="q-preview" aria-live="polite"></pre>
         <div class="preview__actions">
-          <!-- A real anchor, not window.open(). iOS Safari blocks programmatic
-               popups from async handlers, which silently kills the lead. -->
+          <!-- A real anchor, not window.open(). iOS Safari blocks
+               programmatic popups from async handlers, which silently
+               kills the lead. -->
           <a class="btn btn--wa btn--block" id="q-send" href="#" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
             Send on WhatsApp
@@ -690,7 +1529,7 @@
           </button>
           <p class="preview__note">
             No WhatsApp? Call <a href="tel:+919943606823" class="mono">+91 99436 06823</a><br>
-            Mon–Sat, 10 AM – 8 PM
+            Mon – Sat, 10 AM – 8 PM
           </p>
         </div>
       </aside>
@@ -698,261 +1537,233 @@
   </div>
 </section>
 
-<!-- ============================ CALCULATOR ============================ -->
-<section class="section" id="calculator">
+<!-- ============================ 11 · STANDARDS ============================ -->
+<section class="standards" id="standards">
   <div class="wrap">
-    <header data-reveal style="margin-bottom:var(--s-7);max-width:62ch">
-      <p class="eyebrow">Estimator · Material</p>
-      <h2>How much fencing does your boundary need?</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        Enter your perimeter and height. This works out the rolls, posts and total area,
-        the same arithmetic you would otherwise do on the back of a delivery note.
-      </p>
-    </header>
-
-    <div class="calc__shell" data-reveal>
-      <form id="calc-form" style="display:grid;gap:var(--s-4)">
-        <div class="field-row">
-          <div class="field">
-            <label for="c-len">Boundary length (running feet)</label>
-            <input class="input" id="c-len" type="number" min="1" step="1" value="500" inputmode="numeric">
-          </div>
-          <div class="field">
-            <label for="c-ht">Fence height</label>
-            <select class="select" id="c-ht">
-              <option value="3">3 ft</option>
-              <option value="4">4 ft</option>
-              <option value="5" selected>5 ft</option>
-              <option value="6">6 ft</option>
-              <option value="7">7 ft</option>
-              <option value="8">8 ft</option>
-            </select>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="c-roll">Roll length supplied</label>
-            <select class="select" id="c-roll">
-              <option value="50">50 ft per roll</option>
-              <option value="75">75 ft per roll</option>
-              <option value="100" selected>100 ft per roll</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="c-spacing">Post spacing</label>
-            <select class="select" id="c-spacing">
-              <option value="8">8 ft centres (heavy)</option>
-              <option value="10" selected>10 ft centres (standard)</option>
-              <option value="12">12 ft centres (economy)</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="c-corners">Number of corners &amp; gates</label>
-          <input class="input" id="c-corners" type="number" min="0" step="1" value="4" inputmode="numeric">
-        </div>
-        <p class="calc__note" id="calc-note"></p>
-      </form>
-
+    <div class="editorial-heading" data-reveal>
       <div>
-        <div class="calc__out" aria-live="polite">
-          <div class="calc__cell">
-            <span class="calc__n" id="c-rolls">5</span>
-            <span class="calc__k">Rolls required</span>
-          </div>
-          <div class="calc__cell">
-            <span class="calc__n" id="c-posts">51</span>
-            <span class="calc__k">Line posts</span>
-          </div>
-          <div class="calc__cell">
-            <span class="calc__n" id="c-struts">8</span>
-            <span class="calc__k">Corner struts</span>
-          </div>
-          <div class="calc__cell">
-            <span class="calc__n" id="c-area">2,500 <small>sq ft</small></span>
-            <span class="calc__k">Total mesh area</span>
-          </div>
-        </div>
-        <a class="btn btn--primary btn--block" id="calc-send" href="#quote" style="margin-top:var(--s-4)">
-          Quote this quantity
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <p class="eyebrow">Specification · Standards</p>
+        <h2>What actually decides how long a fence lasts.</h2>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ QUALITY / STANDARDS ============================ -->
-<section class="section" id="quality" style="background:var(--slate);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <header data-reveal style="margin-bottom:var(--s-7);max-width:62ch">
-      <p class="eyebrow">Specification · Standards</p>
-      <h2>What actually decides how long a fence lasts.</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        Almost every complaint about fencing comes down to one of three things: too little zinc,
-        too light a gauge, or the wrong coating for the location. Here is how to read a quote
-        so you can tell whether you are being offered the same fence twice.
+      <p>
+        Almost every complaint about fencing comes down to one of three things: too little
+        zinc, too light a gauge, or the wrong coating for the location. Here is how to read
+        a quote so you can tell whether you are being offered the same fence twice.
       </p>
-    </header>
+    </div>
 
-    <div class="qual" data-reveal style="margin-bottom:var(--s-7)">
-      <div class="qual__item">
-        <span class="qual__std">IS 4826</span>
+    <div class="standards__grid" data-reveal>
+      <article>
+        <span class="standards__std">IS 4826</span>
         <h3>Zinc coating, in GSM</h3>
         <p>The single number that decides lifespan. A 40 GSM commercial coating and a 275 GSM
            heavy coating look identical on the day they are installed. Four years later they
            do not. Always ask for the GSM in writing.</p>
-      </div>
-      <div class="qual__item">
-        <span class="qual__std">IS 280</span>
+      </article>
+      <article>
+        <span class="standards__std">IS 280</span>
         <h3>Gauge, not "thickness"</h3>
         <p>Wire is sold by SWG. A drop from 10 SWG to 12 SWG removes about a third of the steel
            from every foot of fence. If one quote is unusually cheap, check the gauge before
            you check the rate.</p>
-      </div>
-      <div class="qual__item">
-        <span class="qual__std">IS 278</span>
+      </article>
+      <article>
+        <span class="standards__std">IS 278</span>
         <h3>Barb spacing</h3>
         <p>Barbed wire is priced by weight, so a wider barb spacing means fewer barbs and less
            wire per kilogram. Compare the barb interval, not just the coil weight.</p>
-      </div>
+      </article>
     </div>
 
     <div class="panel" data-reveal style="padding:var(--s-5)">
-      <h3 style="margin-bottom:var(--s-4);font-size:1rem">Standard Wire Gauge reference</h3>
+      <h3 class="panel__h">Standard Wire Gauge reference</h3>
       <div class="table-scroll">
         <table class="spectable">
           <caption class="visually-hidden">SWG to millimetre conversion with typical applications</caption>
-          <thead>
-            <tr><th scope="col">SWG</th><th scope="col">Inches</th><th scope="col">Millimetres</th><th scope="col">Typical use</th></tr>
-          </thead>
+          <thead><tr><th scope="col">SWG</th><th scope="col">Inches</th><th scope="col">Millimetres</th><th scope="col">Typical use</th></tr></thead>
           <tbody id="swg-body"></tbody>
         </table>
       </div>
     </div>
 
     <div class="panel" data-reveal style="padding:var(--s-5);margin-top:var(--s-4)">
-      <h3 style="margin-bottom:var(--s-4);font-size:1rem">Zinc coating grades &amp; expected life</h3>
+      <h3 class="panel__h">Zinc coating grades &amp; expected life</h3>
       <div class="table-scroll">
         <table class="spectable">
           <caption class="visually-hidden">Zinc coating grade, GSM, expected life and application</caption>
-          <thead>
-            <tr><th scope="col">Grade</th><th scope="col">Coating (GSM)</th><th scope="col">Outdoor life</th><th scope="col">Suited to</th></tr>
-          </thead>
+          <thead><tr><th scope="col">Grade</th><th scope="col">Coating (GSM)</th><th scope="col">Outdoor life</th><th scope="col">Suited to</th></tr></thead>
           <tbody id="zinc-body"></tbody>
         </table>
       </div>
-      <p style="font-size:var(--t-sm);color:var(--ink-3);margin-top:var(--s-4)">
+      <p style="font-size:12px;color:var(--muted);margin-top:var(--s-4)">
         Expected life assumes inland Tamil Nadu conditions. Within roughly 20 km of the coast
-        (Ramanathapuram, Rameswaram, Tuticorin) drop one grade from these figures, or move to
+        (Ramanathapuram, Rameswaram, Thoothukudi) drop one grade from these figures, or move to
         PVC coated wire.
       </p>
     </div>
   </div>
 </section>
 
-<!-- ============================ SERVICE AREAS ============================ -->
-<section class="section" id="areas">
-  <div class="wrap">
-    <header data-reveal style="margin-bottom:var(--s-7);max-width:62ch">
-      <p class="eyebrow">Delivery · South Tamil Nadu</p>
-      <h2>Dispatched from Madurai, across the southern districts.</h2>
-      <p class="lede" style="margin-top:var(--s-4)">
-        We hold stock at Chitrakkara Street rather than ordering it in, so collection is usually
-        same-day. Freight is quoted to you separately from the material, so you should always be
-        able to see what the transport is costing.
-      </p>
-    </header>
-    <div class="areas" id="areas-grid" data-reveal></div>
-    <p style="margin-top:var(--s-5)">
-      <a href="service-areas/">Full delivery corridor, lead times and lorry minimums →</a>
-    </p>
+<!-- ============================ 12 · SINCE 2002 ============================ -->
+<section class="history on-dark" id="about">
+  <div class="wrap history__grid" data-reveal>
+    <div>
+      <p class="eyebrow eyebrow--light">Since 2002</p>
+      <h2>Built in Madurai.<br>Built over time.</h2>
+    </div>
+    <div>
+      <p>Naga Steels combines fencing manufacturing with the trading and supply of steel,
+         GI products, mesh and related materials. Two decades of the same trade, from the
+         same street.</p>
+      <blockquote>The right material.<br>The right specification.<br>A dependable supply relationship.</blockquote>
+      <a class="inline-link inline-link--light" href="about/">About Naga Steels <span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- ============================ FAQ ============================ -->
-<section class="section" id="faq" style="background:var(--slate);border-block:1px solid var(--line)">
+<!-- ============================ 13 · PRODUCT INDEX ============================ -->
+<section class="materials" id="product-details">
   <div class="wrap">
-    <header data-reveal style="margin-bottom:var(--s-6);max-width:62ch">
-      <p class="eyebrow">Procurement · FAQ</p>
-      <h2>The questions we get on WhatsApp every week.</h2>
-    </header>
+    <div class="editorial-heading" data-reveal>
+      <div>
+        <p class="eyebrow">Product detail pages</p>
+        <h2>Find the material. Send the specification.</h2>
+      </div>
+      <p>Open a product to see the key buying details, then share the size, quantity and
+         delivery location for a useful quotation.</p>
+    </div>
+
+    <div class="material-list" data-reveal>
+      <a href="chain-link-fencing-madurai/"><span>01</span><h3>Chain-link fencing in Madurai</h3><p>Manufactured</p><i aria-hidden="true">→</i></a>
+      <a href="gi-wire-supplier-madurai/"><span>02</span><h3>GI wire supplied from Madurai</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="gi-sheet-dealer-madurai/"><span>03</span><h3>GI sheets for practical requirements</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="ms-sheet-dealer-madurai/"><span>04</span><h3>MS sheets supplied in Madurai</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="wire-mesh-supplier-madurai/"><span>05</span><h3>Wire mesh supplied in Madurai</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="weld-mesh-supplier-madurai/"><span>06</span><h3>Weld mesh for partitions and protection</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="barbed-wire-supplier-madurai/"><span>07</span><h3>Barbed wire for boundary demarcation</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="colour-coated-sheet-supplier-madurai/"><span>08</span><h3>Colour-coated sheets supplied in Madurai</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="steel-hardware-supplier-madurai/"><span>09</span><h3>Nails, bolts and fencing hardware</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="tata-wiron-dealer-madurai/"><span>10</span><h3>Tata Wiron dealer and wire products</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="vnc-products-distributor-madurai/"><span>11</span><h3>VNC products distributor in Madurai</h3><p>Supplied</p><i aria-hidden="true">→</i></a>
+      <a href="products/"><span>12</span><h3>Complete product catalogue</h3><p>All families</p><i aria-hidden="true">→</i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 14 · BUYING GUIDE ============================ -->
+<section class="guide">
+  <div class="wrap guide__grid" data-reveal>
+    <div>
+      <p class="section-index">Buying guide</p>
+      <h2>Choosing fencing in Madurai.</h2>
+    </div>
+    <div class="prose">
+      <p>The right fencing depends on the property, the security requirement, the budget and
+         the expected service life. Those four decide the gauge and the coating long before
+         they decide the supplier.</p>
+      <p>Chain-link fencing provides a continuous mesh boundary and is commonly considered
+         where visibility and full perimeter coverage are required. Barbed-wire fencing is
+         generally considered where economical boundary demarcation over a long run is the
+         priority.</p>
+      <p>Wire mesh and welded mesh also support industrial partitions, protective enclosures,
+         plastering and fabrication applications, which is why they sit in the same
+         conversation as the boundary itself.</p>
+      <p>For a quotation, share the required material, the dimensions or wire specification,
+         the quantity and the delivery location. If something in the specification will cost
+         more than it needs to, we will say so before we quote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 15 · FAQ ============================ -->
+<section class="faq-section" id="faq">
+  <div class="wrap faq__grid">
+    <div data-reveal>
+      <p class="eyebrow">Questions before an enquiry</p>
+      <h2>Useful answers.</h2>
+    </div>
 
     <div class="faq" data-reveal>
       <details>
+        <summary>Where is Naga Steels located?</summary>
+        <div><p>Naga Steels is at 124, Chitrakara Street, Madurai 625001, Tamil Nadu. The godown is open Monday to Saturday, 10:00 AM to 8:00 PM, and closed on Sunday. Collection is usually same-day because we hold stock rather than ordering it in.</p></div>
+      </details>
+      <details>
+        <summary>What products does Naga Steels supply?</summary>
+        <div><p>Six families: fencing systems including chain link and barbed wire, GI and MS sheet and plate, GI and steel wire and wire rope, woven and welded mesh, colour-coated and GI roofing sheet, and nails, bolts and fencing hardware. Availability depends on the required specification.</p></div>
+      </details>
+      <details>
+        <summary>What is Naga Fencing?</summary>
+        <div><p>Naga Fencing is the dedicated Naga Steels brand for chain link, coated chain link, heavy-duty fencing, barbed wire and related boundary-fencing requirements. Naga Steels is the master brand covering all steel and metal supply.</p></div>
+      </details>
+      <details>
         <summary>What is the minimum order for chain link fencing in Madurai?</summary>
-        <div><p>There is no fixed minimum for collection from our Chitrakkara Street godown, because we cut
-        from the roll. For delivery to other districts a lorry load is typically 500 kg or more,
-        because below that the freight per kilogram stops making sense for you. Tell us your running
-        feet on WhatsApp and we will confirm whether it is worth delivering or better collected.</p></div>
+        <div><p>There is no fixed minimum for collection from our Chitrakara Street godown, because we cut from the roll. For delivery to other districts a lorry load is typically 500 kg or more, because below that the freight per kilogram stops making sense for you. Tell us your running feet on WhatsApp and we will confirm whether it is worth delivering or better collected.</p></div>
       </details>
       <details>
         <summary>Which gauge chain link should I use for farm fencing?</summary>
-        <div><p><strong>10 SWG (3.25 mm) in a 2 inch mesh</strong> is the standard choice for
-        agricultural boundary fencing and handles cattle pressure well. For a light garden or
-        poultry boundary, 12 SWG (2.64 mm) is enough and costs less. For industrial perimeter,
-        solar parks or anywhere security matters, use 8 SWG (4.06 mm).</p></div>
+        <div><p><strong>10 SWG (3.25 mm) in a 2 inch mesh</strong> is the standard choice for agricultural boundary fencing and handles cattle pressure well. For a light garden or poultry boundary, 12 SWG (2.64 mm) is enough and costs less. For industrial perimeter, solar parks or anywhere security matters, use 8 SWG (4.06 mm).</p></div>
       </details>
       <details>
-        <summary>Hot-dip galvanized or PVC coated: which should I buy?</summary>
-        <div><p>Hot-dip galvanized wire is dipped in molten zinc so the coating bonds to the steel
-        and covers every cut end and knuckle, giving roughly 15–25 years outdoors. PVC coated wire
-        has a galvanized core sealed inside a plastic jacket, lasting 20–30 years and performing
-        better in coastal or high-humidity conditions such as Ramanathapuram and Tirunelveli. PVC
-        costs more per foot but is usually the cheaper choice over the life of the fence near the
-        sea.</p></div>
-      </details>
-      <details>
-        <summary>Do you deliver outside Madurai?</summary>
-        <div><p>Yes. We regularly dispatch to Dindigul, Virudhunagar, Theni, Sivakasi, Karaikudi,
-        Aruppukottai, Usilampatti, Ramanathapuram and Tirunelveli. Nearby towns such as Melur and
-        Thirumangalam can often be same-day. Send your delivery pin on WhatsApp and we will quote
-        the material and the freight separately.</p></div>
+        <summary>What is the difference between hot-dip galvanized and PVC coated chain link?</summary>
+        <div><p>Hot-dip galvanized wire is dipped in molten zinc so the coating bonds to the steel and covers every cut end and knuckle, giving roughly 15 to 25 years outdoors. PVC coated wire has a galvanized core sealed inside a plastic jacket, lasting 20 to 30 years and performing better in coastal or high-humidity conditions such as Ramanathapuram and Tirunelveli. PVC costs more per foot but is usually the cheaper choice over the life of the fence near the sea.</p></div>
       </details>
       <details>
         <summary>Is chain link sold by weight or by length?</summary>
-        <div><p>Chain link is normally priced <strong>by weight</strong> but quoted to you in running
-        feet at a given height, because that is how you buy it. The weight for a given length depends
-        on the gauge and the aperture. A heavier gauge or a tighter mesh puts more steel into the
-        same running foot. Always compare quotes at the same gauge and the same aperture, otherwise
-        you are not comparing the same fence.</p></div>
+        <div><p>Chain link is normally priced <strong>by weight</strong> but quoted to you in running feet at a given height, because that is how you buy it. The weight for a given length depends on the gauge and the aperture. A heavier gauge or a tighter mesh puts more steel into the same running foot. Always compare quotes at the same gauge and the same aperture, otherwise you are not comparing the same fence.</p></div>
       </details>
       <details>
-        <summary>How many posts do I need for my boundary?</summary>
-        <div><p>Posts are normally set at 10 ft centres for standard chain link, so the count is your
-        perimeter divided by 10, plus one to close the run, plus extra struts at each corner and
-        gate. The <a href="#calculator">material calculator</a> above works this out for you along
-        with the number of rolls.</p></div>
+        <summary>How many fencing posts do I need for my boundary?</summary>
+        <div><p>Posts are normally set at 10 ft centres for standard chain link, so the count is your perimeter divided by 10, plus one to close the run, plus extra struts at each corner and gate. The <a href="#planner">material estimator</a> above works this out for you along with the number of rolls.</p></div>
+      </details>
+      <details>
+        <summary>What is the difference between wire mesh and weld mesh?</summary>
+        <div><p>Wire mesh is woven, so the wires interlock and the sheet stays flexible, which suits screening, plastering and poultry work. Weld mesh is electrically welded at every intersection, which makes a flat, rigid panel that will not sag, and suits partitions, machine guarding and protective enclosures.</p></div>
       </details>
       <details>
         <summary>What thickness roofing sheet should I use for a shed?</summary>
-        <div><p>For an agricultural godown or a domestic shed, <strong>0.45–0.50 mm</strong>
-        colour-coated sheet is the usual specification. For a factory shed or a longer purlin span,
-        go to 0.55 mm or above. We cut sheets to your rafter length so you do not pay for overlap
-        waste. See <a href="roofing-sheets/">roofing sheets</a> for the full range.</p></div>
+        <div><p>For an agricultural godown or a domestic shed, <strong>0.45–0.50 mm</strong> colour-coated sheet is the usual specification. For a factory shed or a longer purlin span, go to 0.55 mm or above. We cut sheets to your rafter length so you do not pay for overlap waste. See <a href="colour-coated-sheet-supplier-madurai/">roofing sheets</a> for the full range.</p></div>
+      </details>
+      <details>
+        <summary>Do you cut sheet and roofing to size?</summary>
+        <div><p>Yes. GI and MS sheet is cut to size from stock, and roofing sheet is cut to your rafter length. You buy the piece you need rather than the offcut, and there is no overlap waste to carry on the invoice.</p></div>
+      </details>
+      <details>
+        <summary>Do you supply Tata Wiron and VNC products?</summary>
+        <div><p>Yes. We supply <a href="tata-wiron-dealer-madurai/">Tata Wiron</a> galvanized, binding and fencing wire as a dealer, and <a href="vnc-products-distributor-madurai/">VNC Group</a> products as a distributor, including Bestfence fencing systems, Bestwire wire products, Bestarc welding electrodes and Voltwire electric-fence products. Product availability and current manufacturer specifications are confirmed during quotation.</p></div>
+      </details>
+      <details>
+        <summary>Where does Naga Steels deliver?</summary>
+        <div><p>Delivery enquiries are accepted across Madurai and South Tamil Nadu, including Dindigul, Theni, Sivaganga, Virudhunagar, Sivakasi, Ramanathapuram, Rameswaram, Kovilpatti, Thoothukudi, Tirunelveli, Tenkasi, Rajapalayam and Nagercoil or Kanyakumari. Every route remains subject to order and logistics confirmation. See <a href="services-delivery/">services and delivery</a>.</p></div>
+      </details>
+      <details>
+        <summary>Is freight included in the quoted rate?</summary>
+        <div><p>No, and deliberately so. Material and transport are quoted separately, so you can always see what the freight is costing you and decide whether collection makes more sense. Unloading arrangements are agreed before dispatch.</p></div>
+      </details>
+      <details>
+        <summary>What information do you need to give me a quotation?</summary>
+        <div><p>Send the product, the dimensions or wire specification, an approximate quantity and the delivery location. A drawing, a bill of quantities or a reference photograph also helps. With that we can usually reply with a rate rather than four follow-up questions.</p></div>
+      </details>
+      <details>
+        <summary>Do you provide installation or civil work?</summary>
+        <div><p>We are a material supplier and a fencing manufacturer. We supply the chain link, posts material, wire and fixings, and we review drawings and BOQs against them, but we do not treat material supply, civil work and installation as the same thing. For erection we will say so plainly rather than quote for work we do not perform.</p></div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ============================ CTA BAND ============================ -->
-<section class="section">
-  <div class="wrap">
-    <div class="ctaband" data-reveal>
-      <span class="regmark tl" aria-hidden="true"></span>
-      <span class="regmark tr" aria-hidden="true"></span>
-      <span class="regmark bl" aria-hidden="true"></span>
-      <span class="regmark br" aria-hidden="true"></span>
-      <p class="eyebrow" style="justify-content:center">Ready when you are</p>
-      <h2>Send us the spec. Get a rate back.</h2>
-      <p>Message the specification, the quantity and your delivery town. If something in
-         your spec will cost you more than it needs to, we will say so before we quote.</p>
-      <div class="ctaband__row">
-        <a class="btn btn--wa btn--lg" href="https://wa.me/919943606823?text=Hi%20Naga%20Steels%2C%20I%20would%20like%20a%20quote." target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
-          WhatsApp us
-        </a>
-        <a class="btn btn--ghost btn--lg" href="tel:+919943606823">Call +91 99436 06823</a>
+<!-- ============================ 16 · QUOTE BAND ============================ -->
+<section class="quote-band on-dark">
+  <div class="wrap quote-band__inner" data-reveal>
+    <div>
+      <p class="eyebrow eyebrow--light">Direct enquiry</p>
+      <h2>Tell us the material. We will ask for the rest.</h2>
+    </div>
+    <div>
+      <p>Product · dimensions · quantity · delivery location</p>
+      <div class="quote-band__row">
+        <a class="btn btn--invert" href="#quote">Request a quotation <span aria-hidden="true">→</span></a>
+        <a class="btn btn--outline-light" href="tel:+919943606823">Call +91 99436 06823</a>
       </div>
     </div>
   </div>
@@ -964,21 +1775,20 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
-      <div>
-        <a class="brand" href="./" style="margin-bottom:var(--s-4)">
-          <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect x="1" y="1" width="30" height="30" rx="3" stroke="#262D38"/>
-            <path d="M7 23V9l18 14V9" stroke="#F59E0B" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="round"/>
-            <circle cx="7" cy="9" r="1.8" fill="#C8CDD4"/><circle cx="25" cy="23" r="1.8" fill="#C8CDD4"/>
-          </svg>
-          <span>Naga Steels<span class="brand__sub">Madurai · Since 2002</span></span>
-        </a>
+      <div class="footer__brand">
+        <span class="brand">
+          <span class="brand__medallion">
+            <img src="assets/img/brand/naga-steels-main-logo.jpeg" width="512" height="512" alt="">
+          </span>
+          <span class="brand__text"><strong>Naga Steels</strong><small>Madurai · Since 2002</small></span>
+        </span>
+        <p>Steel distribution, metal supply and Naga Fencing manufacturing.</p>
         <address>
-          124, Chitrakkara Street,<br>
-          Kamarajar Salai, Madurai Main,<br>
-          Madurai, Tamil Nadu 625001<br><br>
+          124, Chitrakara Street,<br>
+          Madurai, Tamil Nadu 625001<br>
           <a href="tel:+919943606823" class="mono">+91 99436 06823</a><br>
-          <span style="color:var(--ink-3)">Mon – Sat, 10:00 AM – 8:00 PM</span><br><br>
+          <a href="mailto:nagasteelsindia@gmail.com">nagasteelsindia@gmail.com</a><br>
+          Mon – Sat, 10:00 AM – 8:00 PM<br><br>
           <span class="pill" data-open-pill data-open="false" hidden>
             <span class="pill__dot"></span><span data-open-text>Checking…</span>
           </span>
@@ -986,43 +1796,56 @@
       </div>
 
       <div>
-        <h2 class="footer__h">Fencing</h2>
+        <h2 class="footer__h">Steel &amp; metal</h2>
         <ul>
-          <li><a href="chain-link-fencing/">GI Chain Link Fencing</a></li>
-          <li><a href="welded-wire-mesh/">Welded Wire Mesh</a></li>
-          <li><a href="barbed-wire/">Barbed Wire</a></li>
-          <li><a href="gi-wire/">GI &amp; Binding Wire</a></li>
+          <li><a href="products/">Complete product range</a></li>
+          <li><a href="gi-wire-supplier-madurai/">GI &amp; steel wire</a></li>
+          <li><a href="gi-sheet-dealer-madurai/">GI sheets &amp; plate</a></li>
+          <li><a href="ms-sheet-dealer-madurai/">MS sheets &amp; plate</a></li>
+          <li><a href="colour-coated-sheet-supplier-madurai/">Roofing sheets</a></li>
+          <li><a href="steel-hardware-supplier-madurai/">Nails, bolts &amp; hardware</a></li>
         </ul>
       </div>
 
       <div>
-        <h2 class="footer__h">Sheet &amp; Hardware</h2>
+        <h2 class="footer__h">Brands &amp; fencing</h2>
         <ul>
-          <li><a href="roofing-sheets/">Roofing &amp; GI Sheets</a></li>
-          <li><a href="steel-hardware/">Nails, Ropes &amp; Bolts</a></li>
-          <li><a href="service-areas/">Delivery Areas</a></li>
-          <li><a href="#quote">Get a Quote</a></li>
+          <li><a href="fencing-manufacturer-madurai/">Naga Fencing</a></li>
+          <li><a href="chain-link-fencing-madurai/">Chain link fencing</a></li>
+          <li><a href="barbed-wire-supplier-madurai/">Barbed wire</a></li>
+          <li><a href="wire-mesh-supplier-madurai/">Wire mesh</a></li>
+          <li><a href="weld-mesh-supplier-madurai/">Weld mesh</a></li>
+          <li><a href="tata-wiron-dealer-madurai/">Tata Wiron products</a></li>
+          <li><a href="vnc-products-distributor-madurai/">VNC products</a></li>
         </ul>
       </div>
 
       <div>
-        <h2 class="footer__h">Find the yard</h2>
-        <a class="mapcard" href="https://maps.google.com/?q=Naga+Steels,124+Chitrakkara+Street,Madurai+625001"
+        <h2 class="footer__h">Company</h2>
+        <ul>
+          <li><a href="services-delivery/">Services &amp; delivery</a></li>
+          <li><a href="about/">About</a></li>
+          <li><a href="#applications">Applications</a></li>
+          <li><a href="contact/">Contact</a></li>
+          <li><a href="privacy/">Privacy</a></li>
+        </ul>
+
+        <a class="mapcard" style="margin-top:var(--s-5)" href="https://maps.google.com/?q=Naga+Steels,124+Chitrakara+Street,Madurai+625001"
            target="_blank" rel="noopener" aria-label="Open Naga Steels location in Google Maps">
-          <!-- Static SVG map. A live Maps iframe costs ~500KB and a pile of
+          <!-- Static SVG map. A live Maps iframe costs ~500 KB and a pile of
                third-party requests for something people only tap for directions. -->
           <svg viewBox="0 0 300 132" aria-hidden="true">
-            <rect width="300" height="132" fill="#12171E"/>
-            <g stroke="#1E2733" stroke-width="1" fill="none">
+            <rect width="300" height="132" fill="#10251A"/>
+            <g stroke="#1B3326" stroke-width="1" fill="none">
               <path d="M0 34h300M0 74h300M0 108h300M56 0v132M148 0v132M228 0v132"/>
             </g>
-            <path d="M0 92 L90 74 L166 88 L300 60" stroke="#2C3846" stroke-width="7" fill="none"/>
-            <path d="M148 0 L148 132" stroke="#2C3846" stroke-width="5" fill="none"/>
-            <circle cx="148" cy="74" r="17" fill="#F59E0B" opacity=".14"/>
-            <circle cx="148" cy="74" r="8" fill="#F59E0B"/>
-            <circle cx="148" cy="74" r="3" fill="#0B0D10"/>
+            <path d="M0 92 L90 74 L166 88 L300 60" stroke="#24513A" stroke-width="7" fill="none"/>
+            <path d="M148 0 L148 132" stroke="#24513A" stroke-width="5" fill="none"/>
+            <circle cx="148" cy="74" r="17" fill="#CDA535" opacity=".16"/>
+            <circle cx="148" cy="74" r="8" fill="#CDA535"/>
+            <circle cx="148" cy="74" r="3" fill="#10251A"/>
           </svg>
-          <span class="mapcard__label">Chitrakkara St · Madurai 625001</span>
+          <span class="mapcard__label">Chitrakara St · Madurai 625001</span>
         </a>
       </div>
     </div>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Placeholder for GI wire">
+  <!-- SLOT: range-06 · 1:1 · 800x800 · PRODUCT CUT-OUT ON WHITE -->
+  <rect width="800" height="800" fill="#FFFFFF"/>
+  <g fill="none" stroke="#006837" stroke-opacity=".4" stroke-width="9">
+    <circle cx="400" cy="350" r="190"/><circle cx="400" cy="350" r="140"/>
+    <circle cx="400" cy="350" r="92"/><circle cx="400" cy="350" r="46"/>
+  </g>
+  <text x="400" y="670" fill="#5C625D" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">GI Wire Coil</text>
+  <text x="400" y="714" fill="#9C7A1C" font-family="monospace" font-size="22" text-anchor="middle">800 × 800 · cut-out</text>
+</svg>

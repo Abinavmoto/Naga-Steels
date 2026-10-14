@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  VNC Group, supply-relationship wordmark.
+
+  Same reasoning as the Tata Wiron file: a neutral type lockup stating
+  the distributor relationship, not a reproduction of VNC's registered
+  mark. The four product names are set as plain text because those are
+  the words a buyer searches for.
+
+  ⚠ The distributor relationship is unverified. See OWNER-CHECKLIST.md.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150"
+     role="img" aria-labelledby="vnc-title">
+  <title id="vnc-title">VNC Group products, distributed in Madurai</title>
+  <rect width="520" height="150" rx="10" fill="#ffffff"/>
+
+  <rect x="26" y="34" width="118" height="82" rx="6" fill="#006837"/>
+  <text x="85" y="92" text-anchor="middle" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif" font-size="42"
+        font-weight="800" letter-spacing="3">VNC</text>
+
+  <text x="168" y="62" fill="#18362b" font-family="Arial, Helvetica, sans-serif"
+        font-size="26" font-weight="800" letter-spacing="2">GROUP</text>
+  <path d="M168 76h322" stroke="#d9ddd8" stroke-width="2"/>
+  <text x="168" y="100" fill="#5c625d" font-family="Arial, Helvetica, sans-serif"
+        font-size="13" font-weight="700" letter-spacing="1.5">BESTFENCE · BESTWIRE · BESTARC · VOLTWIRE</text>
+  <text x="168" y="122" fill="#006837" font-family="Arial, Helvetica, sans-serif"
+        font-size="12" font-weight="700" letter-spacing="2">DISTRIBUTED IN MADURAI</text>
+</svg>

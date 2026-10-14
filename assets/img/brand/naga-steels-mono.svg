@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Monochrome white variant, for the dark green footer band and anywhere
+  the full-colour medallion would fight its background.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Naga Steels">
+  <circle cx="256" cy="256" r="233" fill="none" stroke="#FFFFFF" stroke-width="15" opacity=".85"/>
+  <path fill="#FFFFFF" d="M128 120h96l118 150V120h-26V98h94v22h-24v296h-50L172 174v220h26v22h-94v-22h24V120z"/>
+</svg>

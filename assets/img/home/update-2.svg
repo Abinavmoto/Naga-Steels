@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 782" width="1200" height="782" role="img" aria-label="Placeholder for supply update two">
+  <!-- SLOT: update-2 · 1.53:1 · target 1200x782 · chain link roll -->
+  <defs>
+    <pattern id="u2" width="70" height="70" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 35h70M35 0v70" stroke="#006837" stroke-opacity=".28" stroke-width="4" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="782" fill="#E8ECE6"/>
+  <rect x="150" y="150" width="900" height="360" fill="url(#u2)" stroke="#006837" stroke-opacity=".3" stroke-width="5"/>
+  <text x="600" y="630" fill="#5C625D" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with chain-link roll photography</text>
+  <text x="600" y="678" fill="#9C7A1C" font-family="monospace" font-size="24" text-anchor="middle">1200 × 782</text>
+</svg>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NAGA STEELS, primary mark.
+
+  Vector redraw of the supplied raster logo. The raster is a gradient-heavy
+  512px PNG: fine at 54px in a header, soft at 128px and unusable as a
+  favicon. This redraw keeps the four things that actually identify the
+  mark, and drops the photographic bevel on the ring, which is noise at
+  every size the web uses it at.
+
+    · forest green field          #006837
+    · gold ring                   #CDA535 → #E8C86A
+    · white slab-serif N          with the horizontal slat cuts that read
+                                  as chain-link weave
+    · green S + gold check        + the magenta flash
+
+  The outer chain-link weave in the raster is deliberately omitted: it
+  disappears below ~96px and makes the medallion read as mud in a header.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+     role="img" aria-labelledby="ns-logo-title">
+  <title id="ns-logo-title">Naga Steels</title>
+
+  <defs>
+    <linearGradient id="ns-gold" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%"   stop-color="#F2D98A"/>
+      <stop offset="22%"  stop-color="#E8C86A"/>
+      <stop offset="50%"  stop-color="#CDA535"/>
+      <stop offset="78%"  stop-color="#A8801F"/>
+      <stop offset="100%" stop-color="#E3C063"/>
+    </linearGradient>
+
+    <!-- The slat cuts across the N's diagonal. Drawn as a mask rather than
+         as overlaid green bars so the mark stays correct on any background. -->
+    <mask id="ns-slats">
+      <rect width="512" height="512" fill="#fff"/>
+      <g fill="#000">
+        <rect x="236" y="214" width="196" height="13" transform="skewY(-38)"/>
+        <rect x="236" y="256" width="196" height="13" transform="skewY(-38)"/>
+        <rect x="236" y="298" width="196" height="13" transform="skewY(-38)"/>
+        <rect x="236" y="340" width="196" height="13" transform="skewY(-38)"/>
+        <rect x="236" y="382" width="196" height="13" transform="skewY(-38)"/>
+      </g>
+    </mask>
+  </defs>
+
+  <!-- Field -->
+  <circle cx="256" cy="256" r="256" fill="#006837"/>
+
+  <!-- Gold ring -->
+  <circle cx="256" cy="256" r="233" fill="none" stroke="url(#ns-gold)" stroke-width="17"/>
+  <circle cx="256" cy="256" r="222" fill="none" stroke="#00502A" stroke-width="2" opacity=".45"/>
+
+  <!-- N, slab serif, with weave slats through the diagonal -->
+  <g mask="url(#ns-slats)">
+    <path fill="#FFFFFF" d="M128 120h96l118 150V120h-26V98h94v22h-24v296h-50L172 174v220h26v22h-94v-22h24V120z"/>
+  </g>
+
+  <!-- Gold check -->
+  <path fill="#F5C518" d="M333 436 l92 -158 26 15 -92 158z"/>
+
+  <!-- Magenta flash -->
+  <rect x="300" y="332" width="68" height="34" fill="#8E2F77"/>
+
+  <!-- Green S -->
+  <path fill="#1E9E4F" d="M244 300c-18 0-31 10-31 25 0 13 10 20 28 25l14 4c7 2 10 5 10 9 0 6-6 10-15 10-11 0-18-5-20-14l-20 5c3 18 18 29 40 29 24 0 39-12 39-30 0-14-9-22-29-27l-14-4c-6-2-9-4-9-8 0-5 5-8 13-8 9 0 15 4 17 12l20-5c-3-15-17-23-43-23z"/>
+</svg>

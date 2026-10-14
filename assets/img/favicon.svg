@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#0B0D10"/>
-  <path d="M7 24V8l18 16V8" fill="none" stroke="#F59E0B" stroke-width="3"
-        stroke-linecap="square" stroke-linejoin="round"/>
-  <circle cx="7" cy="8" r="2" fill="#C8CDD4"/>
-  <circle cx="25" cy="24" r="2" fill="#C8CDD4"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Favicon. A simplified cut of the primary mark: at 16px the slat cuts,
+  the S, the check and the magenta flash all collapse into noise, so only
+  the three cues that survive are kept — green field, gold ring, white N.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Naga Steels">
+  <circle cx="32" cy="32" r="32" fill="#006837"/>
+  <circle cx="32" cy="32" r="28.5" fill="none" stroke="#CDA535" stroke-width="3"/>
+  <path fill="#FFFFFF" d="M18 17h11l14 19V17h11v30H43L29 28v19H18z"/>
 </svg>

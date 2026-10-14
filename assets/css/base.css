@@ -1,5 +1,6 @@
 /* ============================================================
    NAGA STEELS, Reset + base elements
+   Light premium theme.
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -10,14 +11,12 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   /* Offset for the sticky header so anchor jumps don't hide headings */
-  scroll-padding-top: calc(var(--header-h) + 1rem);
+  scroll-padding-top: calc(var(--header-h) + 10px);
 
-  /* `clip`, not `hidden`, and on html rather than body. `overflow: hidden` on
-     body is the usual way to kill sideways scroll, but whether it leaves body
-     as a scroll container (which silently breaks `position: sticky` on every
-     descendant) depends on propagation rules that browsers have not always
-     agreed on. `clip` never creates a scroll container, so the question does
-     not arise and the showcase's sticky stage is safe. */
+  /* `clip`, not `hidden`, and on html rather than body. `overflow: hidden`
+     on body may leave body as a scroll container, which silently breaks
+     `position: sticky` on every descendant. `clip` never creates a scroll
+     container, so the question does not arise. */
   overflow-x: clip;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -25,14 +24,13 @@ html {
 }
 
 body {
-  background: var(--void);
+  background: var(--off);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--t-base);
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Room for the sticky mobile action bar */
   padding-bottom: env(safe-area-inset-bottom);
 }
 
@@ -44,34 +42,42 @@ img { height: auto; }
 
 input, button, textarea, select { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
+button, a, summary { touch-action: manipulation; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: var(--track-display);
   text-wrap: balance;
 }
-h1 { font-size: var(--t-4xl); }
-h2 { font-size: var(--t-3xl); }
-h3 { font-size: var(--t-xl); }
+h1 { font-size: var(--t-4xl); letter-spacing: var(--track-hero); line-height: 0.94; }
+h2 { font-size: var(--t-3xl); line-height: 1; }
+h3 { font-size: var(--t-xl); letter-spacing: -0.035em; }
 
 p { text-wrap: pretty; }
 
-a { color: var(--amber); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--amber-hi); }
+/* Green, not gold. #CDA535 on white is roughly 2.1:1 and fails AA for
+   any body-size text, so gold is never allowed to carry a link. */
+a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--green-dark); }
 
-::selection { background: var(--amber); color: #000; }
+::selection { background: var(--yellow); color: var(--ink); }
 
 :focus-visible {
-  outline: 2px solid var(--amber);
+  outline: 3px solid var(--yellow);
   outline-offset: 3px;
   border-radius: 2px;
+}
+/* On a light background the yellow ring alone is weak, so it is paired
+   with a dark halo. Against the green bands the yellow carries on its own. */
+:focus-visible:not(.on-dark *) {
+  box-shadow: 0 0 0 1px var(--ink);
 }
 
 hr { border: 0; border-top: 1px solid var(--line); }
 
-/* ---- Utility ------------------------------------------------------ */
+/* ---- Layout -------------------------------------------------------- */
 
 .wrap {
   width: 100%;
@@ -81,6 +87,29 @@ hr { border: 0; border-top: 1px solid var(--line); }
 }
 
 .section { padding-block: var(--section-y); position: relative; }
+.section--tight { padding-block: clamp(2.5rem, 5vw, 3.5rem); }
+.section--paper { background: var(--paper); }
+.section--warm  { background: var(--green-tint-2); }
+
+/* Inverted green band. `.on-dark` also switches the focus-ring treatment. */
+.section--green,
+.on-dark {
+  background: var(--green);
+  color: var(--on-green);
+}
+.section--green h1, .section--green h2, .section--green h3,
+.on-dark h1, .on-dark h2, .on-dark h3 { color: var(--on-green); }
+.section--green p, .on-dark p { color: var(--on-green-soft); }
+
+/* `:not(.btn)` is load-bearing, not tidiness. These selectors are
+   (0,1,1) — one class plus one type — while a button modifier such as
+   .btn--invert is only (0,1,0). Without the exclusion the generic link
+   colour beats the component and every white CTA on a green band renders
+   white-on-white, visible only on hover where .btn--invert:hover (0,2,0)
+   takes over again. Buttons own their own colour in components.css; this
+   rule is for prose links. */
+.section--green a:not(.btn), .on-dark a:not(.btn) { color: var(--on-green); }
+.section--green a:not(.btn):hover, .on-dark a:not(.btn):hover { color: var(--yellow); }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px;
@@ -89,14 +118,15 @@ hr { border: 0; border-top: 1px solid var(--line); }
 }
 
 .skip-link {
-  position: absolute; top: 0; left: 0;
-  transform: translateY(-120%);
-  background: var(--amber); color: #000;
-  padding: var(--s-3) var(--s-5);
-  font-weight: 600; z-index: 999;
+  position: fixed; top: 12px; left: 12px; z-index: 1000;
+  background: var(--ink); color: #fff;
+  border-radius: var(--r-md);
+  padding: 10px 16px;
+  font-weight: 600;
+  transform: translateY(-180%);
   transition: transform var(--dur) var(--ease-out);
 }
-.skip-link:focus { transform: translateY(0); }
+.skip-link:focus { transform: none; color: #fff; }
 
 /* Monospace technical numerals, used for every spec figure on the site.
    tabular-nums stops values jittering when they animate or change. */
@@ -106,57 +136,150 @@ hr { border: 0; border-top: 1px solid var(--line); }
   letter-spacing: -0.02em;
 }
 
-/* Section eyebrow: the small technical label above every H2 */
+/* ---- Editorial furniture ------------------------------------------- */
+
+/* The small uppercase label above every H2. */
 .eyebrow {
-  display: inline-flex; align-items: center; gap: var(--s-3);
-  font-family: var(--font-mono);
+  display: block;
   font-size: var(--t-xs);
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: var(--s-4);
+  color: var(--green);
+  margin: 0 0 var(--s-5);
+  line-height: 1.4;
 }
-.eyebrow::before {
-  content: '';
-  width: 28px; height: 1px;
-  background: var(--amber);
-  opacity: 0.6;
+.eyebrow--light { color: var(--yellow); }
+
+.section-index {
+  display: block;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0 0 var(--s-5);
 }
+.section-index--light { color: var(--yellow); }
 
 .lede {
   font-size: var(--t-lg);
-  color: var(--ink-2);
+  color: var(--muted);
   max-width: var(--maxw-text);
 }
+.on-dark .lede, .section--green .lede { color: var(--on-green-soft); }
 
-/* ---- Technical grid backdrop -------------------------------------
-   Drawn in CSS, not an image. Two layers: fine 24px grid + coarse
-   120px rule, masked to fade out toward the edges.                   */
-.grid-bg {
-  position: absolute; inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
-  background-size: 120px 120px, 120px 120px;
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, #000 20%, transparent 78%);
-          mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, #000 20%, transparent 78%);
-  opacity: 0.75;
-  z-index: 0;
+/* The heavy rule that opens a section grid. This single hairline is what
+   makes the layout read as a printed catalogue rather than a stack of
+   cards, and it is used on nearly every grid in the site. */
+.rule-top { border-top: 1px solid var(--line-ink); }
+
+/* Inline text link with a trailing arrow. */
+.inline-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px;
+  font-size: 0.875rem; font-weight: 700;
+  color: var(--green);
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+.inline-link:hover { color: var(--ink); }
+.inline-link--light { color: #fff; }
+.inline-link--light:hover { color: var(--yellow); }
+.inline-link svg { width: 14px; height: 14px; }
+
+/* Two-column editorial heading: title left, supporting copy right. */
+.editorial-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: end;
+  gap: clamp(2rem, 5vw, 3.75rem);
+  margin-bottom: var(--s-6);
+}
+.editorial-heading > p {
+  max-width: 55ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+@media (max-width: 1024px) { .editorial-heading { gap: 2.5rem; } }
+@media (max-width: 800px)  { .editorial-heading { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+/* Reveal-on-scroll. Progressive: `html:not(.js)` shows everything. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
 
-/* Corner registration marks: the small crosshairs that make a panel
-   read as a drawing sheet rather than a card. */
-.regmark {
-  position: absolute; width: 9px; height: 9px;
-  pointer-events: none; opacity: 0.5;
+/* ============================================================
+   RESPONSIVE GUARDS
+   ------------------------------------------------------------
+   Site-wide rules that stop narrow viewports producing horizontal
+   scroll. These apply to all 24 pages, so a fix here is a fix
+   everywhere rather than 24 separate patches.
+   ============================================================ */
+
+/* A grid or flex item's default min-width is `auto`, meaning it refuses
+   to shrink below its content. One long unbroken string — a GSTIN, an
+   email address, a 14-town delivery list — then pushes the whole track
+   wider than the viewport and the page scrolls sideways. This is the
+   single most common cause of mobile overflow and it is invisible on a
+   desktop browser, which is why it ships so often. */
+.wrap > *,
+.editorial-heading > *,
+.dual > *,
+.guide__grid > *,
+.faq__grid > *,
+.detail-hero__grid > *,
+.contact-page__grid > *,
+.coverage__grid > *,
+.partner__grid > *,
+.services__layout > *,
+.brandstrip__grid > *,
+.update > * { min-width: 0; }
+
+/* Long atomic strings that have no break opportunity. Applied narrowly:
+   `anywhere` on body copy would hyphenate ordinary prose badly. */
+.mono,
+.footer address,
+.utilbar,
+.coverage__lists p,
+.contact-links a { overflow-wrap: break-word; }
+
+/* Email addresses and phone numbers are the worst offenders, because
+   they are long, unbreakable and always sit in a narrow column. */
+a[href^="mailto:"], a[href^="tel:"] { overflow-wrap: anywhere; }
+
+/* Tables cannot be made to reflow, so every spec table is wrapped in
+   .table-scroll. This makes the scroll affordance visible rather than
+   leaving the user to discover it, and contains it so the page itself
+   never scrolls. */
+.table-scroll {
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
 }
-.regmark::before, .regmark::after {
-  content: ''; position: absolute; background: var(--amber);
+@media (max-width: 620px) {
+  .table-scroll { position: relative; }
+  .table-scroll::after {
+    content: "Scroll for full table →";
+    display: block;
+    padding-top: 8px;
+    font-size: var(--t-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
 }
-.regmark::before { inset-inline: 0; top: 4px; height: 1px; }
-.regmark::after  { inset-block: 0; left: 4px; width: 1px; }
-.regmark.tl { top: 8px; left: 8px; }
-.regmark.tr { top: 8px; right: 8px; }
-.regmark.bl { bottom: 8px; left: 8px; }
-.regmark.br { bottom: 8px; right: 8px; }
+
+/* Very narrow phones, and anyone running a large default font size. */
+@media (max-width: 400px) {
+  :root { --gutter: 1rem; }
+  h1, h2, h3 { overflow-wrap: break-word; }
+}

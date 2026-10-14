@@ -7,7 +7,7 @@
    using the device clock would tell them the opposite.
    ============================================================ */
 
-import { BUSINESS } from './data/products.js';
+import { BUSINESS } from './data/business.js';
 
 const IST = 'Asia/Kolkata';
 
@@ -56,9 +56,8 @@ export function getStatus(date = new Date()) {
 }
 
 export function initOpenNow() {
-  // Every element marked [data-open-pill], not a single id: the header pill is
-  // hidden below 900px (it is long enough to push the Get Quote button off a
-  // 360px screen), so the footer carries a second one on mobile.
+  // Every element marked [data-open-pill], not a single id: the utility-bar
+  // pill is hidden below 860px, so the footer carries a second one on mobile.
   const pills = [...document.querySelectorAll('[data-open-pill]')];
   if (!pills.length) return;
 

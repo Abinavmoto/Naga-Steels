@@ -1,0 +1,14 @@
+{
+  "name": "naga-steels",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Naga Steels, Madurai. Static site for a steel distributor, metal supplier and fencing manufacturer.",
+  "type": "module",
+  "scripts": {
+    "build": "node build/build.js",
+    "serve": "node --watch-path=build build/build.js && npx --yes serve ."
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

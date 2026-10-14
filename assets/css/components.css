@@ -1,184 +1,319 @@
 /* ============================================================
    NAGA STEELS, Components
+   ------------------------------------------------------------
+   Reusable atoms and molecules. Page-level composition lives in
+   sections.css.
    ============================================================ */
 
 /* ---- Buttons ------------------------------------------------------
-   Amber is reserved exclusively for actions. Nothing amber on this
-   site is un-clickable, so the eye learns in one screen where to go. */
+   Green is the action colour. Gold is never a button fill with light
+   text on it: #CDA535 against white is ~2.1:1 and fails AA, so gold
+   only ever appears as a rule, a numeral, a ring or a dark-background
+   accent. */
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  gap: var(--s-3);
-  padding: 0.875rem 1.5rem;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 22px;
   font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  border-radius: var(--r-sm);
-  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  border: 1px solid var(--green);
+  border-radius: var(--r-md);
+  background: var(--green);
+  color: #fff;
   text-decoration: none;
   white-space: nowrap;
-  transition: background var(--dur-fast) var(--ease-out),
-              border-color var(--dur-fast) var(--ease-out),
-              color var(--dur-fast) var(--ease-out),
-              transform var(--dur-fast) var(--ease-out);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
 }
-.btn:active { transform: translateY(1px); }
+.btn:hover { background: var(--green-dark); border-color: var(--green-dark); color: #fff; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
 
-.btn--primary {
-  background: var(--amber); color: #0B0D10;
-  box-shadow: var(--glow-amber);
-}
-.btn--primary:hover { background: var(--amber-hi); color: #0B0D10; }
+/* White on a green band. */
+.btn--invert { background: #fff; border-color: #fff; color: var(--green); }
+.btn--invert:hover { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 
-.btn--wa { background: var(--signal); color: #05230F; }
-.btn--wa:hover { background: #2EE676; color: #05230F; }
+/* Outline on light. */
+.btn--ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+.btn--ghost:hover { background: var(--paper); border-color: var(--ink); color: var(--ink); }
 
-.btn--ghost {
-  background: transparent; color: var(--ink);
-  border-color: var(--line);
-}
-.btn--ghost:hover { border-color: var(--ink-3); background: var(--slate); color: var(--ink); }
+/* Outline on a dark band: white rule, white label, inverts to solid on hover.
+   .btn--ghost on green would be an --ink label on a dark background. */
+.btn--outline-light { background: transparent; border-color: rgb(255 255 255 / 0.55); color: #fff; }
+.btn--outline-light:hover { background: #fff; border-color: #fff; color: var(--green); }
 
-.btn--sm { padding: 0.5rem 0.875rem; font-size: var(--t-sm); }
-.btn--lg { padding: 1.0625rem 2rem; font-size: 1.0625rem; }
+/* Gold outline: the premium tertiary. Dark ink text, gold rule only. */
+.btn--gold { background: transparent; border-color: var(--gold); color: var(--ink); }
+.btn--gold:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+.btn--wa { background: var(--signal); border-color: var(--signal); color: #fff; }
+.btn--wa:hover { background: #178F43; border-color: #178F43; color: #fff; }
+
+/* ---- Button colour containment -------------------------------------
+   A button's label colour must come from its own modifier and nothing
+   else. Section-level rules such as `.on-dark a { color: #fff }` are
+   (0,1,1) and would otherwise beat a (0,1,0) modifier like .btn--invert,
+   producing a white label on a white fill — invisible until hover.
+   These selectors restate each modifier at (0,2,0) inside the inverted
+   contexts so the component always wins, whatever band it lands on. */
+.on-dark .btn--invert,
+.section--green .btn--invert,
+.footer .btn--invert { color: var(--green); }
+.on-dark .btn--invert:hover,
+.section--green .btn--invert:hover,
+.footer .btn--invert:hover { color: var(--ink); }
+
+.on-dark .btn:not([class*="btn--"]),
+.section--green .btn:not([class*="btn--"]),
+.footer .btn:not([class*="btn--"]) { color: #fff; }
+
+.on-dark .btn--wa, .section--green .btn--wa, .footer .btn--wa { color: #fff; }
+.on-dark .btn--outline-light, .section--green .btn--outline-light { color: #fff; }
+.on-dark .btn--outline-light:hover,
+.section--green .btn--outline-light:hover { color: var(--green); }
+
+.btn--sm { min-height: 44px; padding-inline: 18px; font-size: var(--t-sm); }
+.btn--lg { min-height: 56px; padding-inline: 28px; font-size: 1rem; }
 .btn--block { width: 100%; }
 
-/* On touch devices every control gets a 44px minimum height regardless of
-   its visual size. A thumb is not a mouse pointer, and this audience is
-   overwhelmingly on phones. */
-@media (pointer: coarse) {
-  .btn--sm { min-height: 44px; }
-}
+.btn svg { width: 17px; height: 17px; flex: none; }
 
-.btn svg { width: 18px; height: 18px; flex: none; }
-
-/* ---- Header -------------------------------------------------------- */
-
-.header {
-  position: sticky; top: 0; z-index: 100;
-  height: var(--header-h);
-  display: flex; align-items: center;
-  background: rgb(11 13 16 / 0.72);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-          backdrop-filter: blur(14px) saturate(150%);
-  border-bottom: 1px solid var(--line);
-  transition: background var(--dur) var(--ease-out);
-}
-/* Fallback for browsers without backdrop-filter. Stays legible. */
-@supports not (backdrop-filter: blur(1px)) {
-  .header { background: #0B0D10; }
-}
-
-.header__inner {
-  width: 100%; max-width: var(--maxw); margin-inline: auto;
-  padding-inline: var(--gutter);
-  display: flex; align-items: center; gap: var(--s-5);
-}
+/* ---- Brand lockup ---------------------------------------------------
+   The gold-ringed medallion is the single strongest brand cue the logo
+   gives us, so it is reproduced literally rather than redrawn. */
 
 .brand {
-  display: flex; align-items: center; gap: 0.625rem;
-  text-decoration: none; color: var(--ink);
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 1.0625rem; letter-spacing: -0.03em;
-  /* NEVER shrink. An earlier version used `min-width:0; flex:0 1 auto` to make
-     room on narrow screens, but combined with the nowrap below that shrank the
-     BOX while the TEXT kept its full width, so the brand spilled straight over
-     the nav. Space is made by shedding header items at breakpoints instead,
-     which is predictable. */
-  flex: none;
+  display: inline-flex; align-items: center; gap: 12px;
+  min-height: 52px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
 }
 .brand:hover { color: var(--ink); }
-.brand__mark { width: 30px; height: 30px; flex: none; }
-.brand > span { white-space: nowrap; }
-.brand__sub {
-  display: block;
-  font-family: var(--font-mono); font-size: 9px; font-weight: 400;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--ink-3); line-height: 1; margin-top: 2px;
-  white-space: nowrap;
+.brand__medallion {
+  display: block; flex: none;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--green);
+  border: 1px solid rgb(205 165 53 / 0.65);
+  box-shadow: 0 5px 16px rgb(0 104 55 / 0.18);
+}
+.brand__medallion img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.07); /* crops the raster's outer weave to a clean ring */
+}
+.brand__text { display: flex; flex-direction: column; }
+.brand__text strong {
+  font-family: var(--font-display);
+  font-size: 0.9375rem; font-weight: 700;
+  letter-spacing: 0.045em; line-height: 1.1;
+}
+.brand__text small {
+  margin-top: 4px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.11em;
+  color: var(--muted);
+}
+.on-dark .brand, .footer .brand { color: #fff; }
+.on-dark .brand__text small, .footer .brand__text small { color: rgb(255 255 255 / 0.55); }
+
+/* ---- Header ---------------------------------------------------------- */
+
+.header {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--header-h);
+  background: rgb(255 255 255 / 0.97);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+          backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid rgb(16 20 16 / 0.12);
+  box-shadow: 0 5px 20px rgb(16 20 16 / 0.035);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .header { background: #fff; }
+}
+.header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%;
+  width: 100%; max-width: var(--maxw); margin-inline: auto;
+  padding-inline: var(--gutter);
+  gap: var(--s-4);
 }
 
-.nav { display: flex; gap: var(--s-1); margin-left: auto; flex: none; }
-.nav a {
-  padding: var(--s-2) var(--s-3);
-  font-size: 0.875rem; font-weight: 500;
-  color: var(--ink-2); text-decoration: none;
+/* ---- Utility bar ------------------------------------------------------
+   The thin strip above the header carrying GSTIN, hours and the live
+   open/closed pill. Hidden on phones, where the action bar does the job. */
+
+.utilbar {
+  background: var(--green-deep);
+  color: rgb(255 255 255 / 0.8);
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+}
+.utilbar__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-4);
+  min-height: 34px;
+  width: 100%; max-width: var(--maxw); margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.utilbar__group { display: flex; align-items: center; gap: var(--s-5); }
+.utilbar a { color: #fff; text-decoration: none; }
+.utilbar a:hover { color: var(--yellow); }
+.utilbar strong { color: #fff; font-weight: 700; }
+@media (max-width: 860px) { .utilbar { display: none; } }
+
+/* ---- Desktop nav + mega menu ------------------------------------------ */
+
+.nav {
+  display: flex; align-items: center; gap: 24px;
+  font-size: 0.8125rem; font-weight: 600;
+}
+.nav > a:not(.btn) {
+  display: flex; align-items: center;
+  min-height: 42px;
+  position: relative;
+  color: var(--ink); text-decoration: none;
+  white-space: nowrap;
+}
+.nav > a:not(.btn)::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 4px;
+  height: 1px; background: var(--green);
+  transform: scaleX(0); transform-origin: 100%;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.nav > a:not(.btn):hover::after { transform: scaleX(1); transform-origin: 0; }
+.nav > a[aria-current="page"] { color: var(--green); }
+.nav > a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* Mega-menu panel. `details`-free so it can be fully keyboard driven
+   and closed on Escape from nav.js. */
+.nav__group { position: relative; }
+.nav__trigger {
+  position: relative;
+  display: flex; align-items: center; gap: 6px;
+  min-height: 42px;
+  font: inherit; color: var(--ink);
+  white-space: nowrap;
+}
+.nav__trigger svg {
+  width: 11px; height: 11px;
+  transition: transform var(--dur-fast) var(--ease);
+}
+.nav__trigger[aria-expanded="true"] { color: var(--green); }
+.nav__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+/* The trigger has to carry the current-page state itself, because the
+   plain `.nav > a[aria-current]` rule cannot reach it: the trigger is a
+   button nested inside .nav__group, not a direct anchor child of .nav. */
+.nav__trigger[aria-current="page"] { color: var(--green); }
+.nav__trigger[aria-current="page"]::after {
+  content: '';
+  position: absolute; left: 0; right: 18px; bottom: 4px;
+  height: 1px; background: var(--green);
+}
+
+/* Current-section state, matching the plain nav links. Used on the
+   products page, where the trigger replaces what was an
+   `aria-current="page"` anchor. */
+.nav__trigger[aria-current="page"] { color: var(--green); }
+.nav__trigger[aria-current="page"]::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 4px;
+  height: 1px; background: var(--green);
+}
+
+.nav__panel {
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  translate: -50% 0;
+  width: min(680px, calc(100vw - 48px));
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--green);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-3);
+  padding: var(--s-5);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity var(--dur) var(--ease),
+              transform var(--dur) var(--ease),
+              visibility var(--dur);
+}
+.nav__trigger[aria-expanded="true"] + .nav__panel {
+  opacity: 1; visibility: visible; transform: none;
+}
+.nav__panel a {
+  display: grid; gap: 2px;
+  padding: 10px 12px;
   border-radius: var(--r-sm);
-  white-space: nowrap;
-  transition: color var(--dur-fast), background var(--dur-fast);
+  color: var(--ink); text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
 }
-.nav a:hover { color: var(--ink); background: var(--slate); }
-.nav a[aria-current="page"] { color: var(--amber); }
-
-.header__cta { display: flex; align-items: center; gap: var(--s-3); flex: none; }
-
-/* The status pill never appears in the header at any width. It can read
-   "Closed, opens Monday 10 AM", roughly 200px of monospace, and the header
-   is capped at --maxw (1280px). Brand + eight nav items + two buttons
-   already fill that, so there is no viewport where the pill fits. It lives
-   in the footer instead, where there is room for the full sentence. */
-.header .pill { display: none; }
-
-/* Below this, the desktop nav is replaced by the burger, never by nothing.
-   1180px is measured: eight nav items plus the brand and both buttons need
-   that much before the Get Quote button starts being pushed off-screen. */
-@media (max-width: 1180px) {
-  .nav { display: none; }
-  .header__cta { margin-left: auto; }
+.nav__panel a:hover { background: var(--off); color: var(--ink); }
+.nav__panel a[aria-current="page"] {
+  background: var(--green-tint);
+  box-shadow: inset 2px 0 0 var(--green);
 }
-@media (max-width: 560px) { .header__cta .btn--ghost { display: none; } }
-@media (max-width: 420px) { .brand__sub { display: none; } }
+.nav__panel a[aria-current="page"] strong { color: var(--green); }
+.nav__panel strong {
+  font-family: var(--font-display);
+  font-size: 0.9375rem; font-weight: 650; letter-spacing: -0.02em;
+}
+.nav__panel small {
+  font-size: 11px; color: var(--muted); letter-spacing: 0.02em;
+}
+.nav__panel .nav__panel-foot {
+  grid-column: 1 / -1;
+  margin-top: var(--s-3); padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--muted);
+}
 
-/* ---- Mobile menu ----------------------------------------------------
-   Below 1080px the desktop nav is hidden. Before this existed there was no
-   navigation at all on a phone except the footer, which stops being
-   acceptable once there are ten pages to reach. */
+@media (max-width: 1160px) { .nav { gap: 17px; font-size: 0.75rem; } }
+@media (max-width: 1024px) { .nav { gap: 14px; font-size: 0.6875rem; } }
+@media (max-width: 920px)  { .nav { display: none; } }
+
+/* ---- Mobile menu ------------------------------------------------------ */
 
 .burger {
   display: none;
   align-items: center; justify-content: center;
+  flex-direction: column; gap: 6px;
   width: 44px; height: 44px;
-  margin-right: calc(var(--s-2) * -1);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
   color: var(--ink);
   flex: none;
 }
-/* Must come AFTER the base rule above, not with the .nav breakpoint higher
-   up the file: equal specificity means source order decides, and putting it
-   earlier left the burger hidden at every width. */
-@media (max-width: 1180px) { .burger { display: inline-flex; } }
-.burger:hover { background: var(--slate); }
+@media (max-width: 920px) { .burger { display: inline-flex; } }
 .burger span {
-  position: relative;
-  display: block; width: 19px; height: 1.5px;
+  display: block; width: 18px; height: 1.5px;
   background: currentColor; border-radius: 2px;
-  transition: transform var(--dur) var(--ease-out), background var(--dur-fast);
+  transition: transform var(--dur) var(--ease);
 }
-.burger span::before, .burger span::after {
-  content: ''; position: absolute; left: 0;
-  width: 19px; height: 1.5px; background: currentColor; border-radius: 2px;
-  transition: transform var(--dur) var(--ease-out), top var(--dur) var(--ease-out);
-}
-.burger span::before { top: -6px; }
-.burger span::after  { top: 6px; }
-
-/* Morph to a close icon. The middle bar goes transparent rather than
-   display:none so the transition stays smooth. */
-.burger[aria-expanded="true"] span { background: transparent; }
-.burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
-.burger[aria-expanded="true"] span::after  { top: 0; transform: rotate(-45deg); }
+.burger[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg); }
+.burger[aria-expanded="true"] span:last-child  { transform: translateY(-3.75px) rotate(-45deg); }
 
 .menu {
   position: fixed; inset: 0; z-index: 200;
-  visibility: hidden;
-  pointer-events: none;
+  visibility: hidden; pointer-events: none;
 }
 .menu[data-open="true"] { visibility: visible; pointer-events: auto; }
 
 .menu__scrim {
   position: absolute; inset: 0;
-  background: rgb(6 8 10 / 0.72);
+  background: rgb(16 20 16 / 0.45);
   opacity: 0;
   transition: opacity var(--dur) var(--ease-out);
 }
@@ -186,13 +321,12 @@
 
 .menu__panel {
   position: absolute; top: 0; right: 0; bottom: 0;
-  width: min(330px, 86vw);
-  background: var(--slate);
+  width: min(340px, 88vw);
+  background: var(--off);
   border-left: 1px solid var(--line);
   box-shadow: var(--shadow-3);
   display: flex; flex-direction: column;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
   padding: var(--s-5) var(--s-5) calc(var(--s-6) + env(safe-area-inset-bottom));
   transform: translateX(100%);
   transition: transform var(--dur-slow) var(--ease-out);
@@ -201,231 +335,200 @@
 
 .menu__head {
   display: flex; align-items: center; justify-content: space-between;
-  padding-bottom: var(--s-5); margin-bottom: var(--s-5);
+  padding-bottom: var(--s-4); margin-bottom: var(--s-4);
   border-bottom: 1px solid var(--line);
 }
 .menu__label {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  font-size: var(--t-xs); font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--green);
 }
 .menu__close {
   width: 36px; height: 36px; display: grid; place-items: center;
-  border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--muted);
 }
-.menu__close:hover { color: var(--ink); border-color: var(--ink-4); }
+.menu__close:hover { color: var(--ink); border-color: var(--ink); }
 .menu__close svg { width: 15px; height: 15px; }
 
-.menu nav { display: grid; gap: 1px; }
+.menu nav { display: grid; }
 .menu nav a {
-  /* Caption on its own line, not inline beside the label. A long label like
-     "GI, MS & Steel Sheets" wraps to two lines in a 330px panel, and an
-     inline caption then floats away from the text it belongs to. */
-  display: grid; gap: 1px;
-  padding: 0.8125rem 0.5rem;
+  display: grid; gap: 2px;
+  padding: 0.75rem 0.25rem;
+  min-height: 48px; align-content: center;
   color: var(--ink); text-decoration: none;
-  font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem;
-  letter-spacing: -0.02em; line-height: 1.25;
-  border-bottom: 1px solid var(--line-soft);
+  font-family: var(--font-display); font-weight: 650; font-size: 1rem;
+  letter-spacing: -0.025em; line-height: 1.2;
+  border-bottom: 1px solid var(--line);
   transition: color var(--dur-fast), padding-left var(--dur-fast);
 }
-.menu nav a:hover, .menu nav a:focus-visible { color: var(--amber); padding-left: 0.875rem; }
-.menu nav a[aria-current="page"] { color: var(--amber); }
+.menu nav a:hover, .menu nav a:focus-visible { color: var(--green); padding-left: 0.625rem; }
+.menu nav a[aria-current="page"] { color: var(--green); }
 .menu nav a i {
   font-style: normal;
-  font-family: var(--font-mono); font-size: 10px; font-weight: 400;
-  letter-spacing: 0.1em; color: var(--ink-4);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-2);
 }
-
-.menu__foot { margin-top: auto; padding-top: var(--s-6); display: grid; gap: var(--s-3); }
+.menu__section {
+  margin-top: var(--s-4); padding-top: var(--s-3);
+  font-size: var(--t-xs); font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--green);
+}
+.menu__foot { margin-top: auto; padding-top: var(--s-5); display: grid; gap: var(--s-3); }
 
 @media (prefers-reduced-motion: reduce) {
   .menu__panel, .menu__scrim { transition: none; }
 }
-
-/* The panel is the only thing that should scroll while the menu is open. */
 body.menu-open { overflow: hidden; }
 
-/* ---- Open-now pill ------------------------------------------------- */
+/* ---- Open-now pill ---------------------------------------------------- */
 
 .pill {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.3125rem 0.6875rem;
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.04em;
-  border: 1px solid var(--line);
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 0.25rem 0.625rem;
+  font-size: var(--t-xs); letter-spacing: 0.04em;
+  border: 1px solid var(--on-green-line);
   border-radius: 100px;
-  color: var(--ink-2);
+  color: rgb(255 255 255 / 0.8);
   white-space: nowrap;
 }
-.pill__dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--ink-4); flex: none;
-}
-.pill[data-open="true"]  { color: var(--ink); border-color: rgb(37 211 102 / 0.35); }
+.pill__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted-2); flex: none; }
+.pill[data-open="true"] { color: #fff; border-color: rgb(253 234 86 / 0.5); }
 .pill[data-open="true"] .pill__dot {
-  background: var(--signal);
-  box-shadow: 0 0 0 3px rgb(37 211 102 / 0.16);
+  background: var(--yellow);
+  box-shadow: 0 0 0 3px rgb(253 234 86 / 0.18);
   animation: pulse 2.4s var(--ease-in-out) infinite;
 }
-.pill[data-open="false"] .pill__dot { background: var(--ink-4); }
-
+/* On a light surface the pill inverts. */
+.pill--light { border-color: var(--line); color: var(--muted); }
+.pill--light[data-open="true"] { color: var(--ink); border-color: rgb(0 104 55 / 0.4); }
+.pill--light[data-open="true"] .pill__dot {
+  background: var(--signal); box-shadow: 0 0 0 3px rgb(30 167 81 / 0.15);
+}
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgb(37 211 102 / 0.16); }
-  50%      { box-shadow: 0 0 0 6px rgb(37 211 102 / 0.04); }
+  0%, 100% { box-shadow: 0 0 0 3px rgb(253 234 86 / 0.18); }
+  50%      { box-shadow: 0 0 0 6px rgb(253 234 86 / 0.04); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .pill__dot { animation: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { .pill__dot { animation: none !important; } }
 
-/* ---- Sticky mobile action bar --------------------------------------
+/* ---- Sticky mobile action bar ----------------------------------------
    Always-available conversion path. This audience scrolls fast with a
-   thumb hunting for a phone number, so never make them hunt.           */
+   thumb hunting for a phone number, so never make them hunt. */
 
 .actionbar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
   display: none;
-  gap: 1px;
-  background: var(--line);
+  grid-template-columns: 1fr 1fr;
+  background: #fff;
   border-top: 1px solid var(--line);
   padding-bottom: env(safe-area-inset-bottom);
 }
 .actionbar a {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-  padding: 0.9375rem 0.5rem;
-  font-family: var(--font-display); font-weight: 600; font-size: 0.9375rem;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 56px;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
   text-decoration: none;
 }
-.actionbar .ab-call { background: var(--slate); color: var(--ink); }
-.actionbar .ab-wa   { background: var(--signal); color: #05230F; }
-.actionbar svg { width: 19px; height: 19px; }
+.actionbar .ab-call { color: var(--ink); }
+.actionbar .ab-wa   { background: var(--green); color: #fff; }
+.actionbar svg { width: 18px; height: 18px; }
 
-@media (max-width: 860px) {
-  .actionbar { display: flex; }
+@media (max-width: 800px) {
+  .actionbar { display: grid; }
   body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
 }
 
-/* ---- Panel / card -------------------------------------------------- */
+/* ---- Supply badges ----------------------------------------------------- */
 
-.panel {
-  position: relative;
-  background: var(--slate);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
+.badges { display: flex; flex-wrap: wrap; gap: 7px; }
+.badges span {
+  padding: 6px 10px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #3D453F;
+  background: rgb(255 255 255 / 0.6);
+  border: 1px solid #BCC5BE;
+  border-radius: 999px;
 }
-
-/* ---- Trust bar ------------------------------------------------------ */
-
-.trustbar {
-  border-block: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--slate) 0%, var(--void) 100%);
-}
-.trustbar__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border-inline: 1px solid var(--line);
-}
-.trust {
-  background: var(--void);
-  padding: var(--s-6) var(--s-5);
-  display: flex; flex-direction: column; gap: 0.375rem;
-}
-.trust__v {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: var(--t-xl); letter-spacing: -0.03em;
-  color: var(--ink);
-  display: flex; align-items: center; gap: 0.4375rem;
-}
-.trust__v svg { width: 17px; height: 17px; color: var(--amber); flex: none; }
-.trust__l {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
-}
-@media (max-width: 780px) {
-  .trustbar__grid { grid-template-columns: repeat(2, 1fr); }
+.on-dark .badges span,
+.section--green .badges span {
+  color: #fff; background: rgb(255 255 255 / 0.1); border-color: var(--on-green-line);
 }
 
-/* ---- Catalogue cards ------------------------------------------------ */
+/* ---- Chips (spec pills on catalogue tiles) ----------------------------- */
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: var(--s-4);
-}
-
-.card {
-  position: relative;
-  display: flex; flex-direction: column;
-  background: var(--slate);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  padding: var(--s-5);
-  text-decoration: none; color: var(--ink);
-  overflow: hidden;
-  transition: border-color var(--dur) var(--ease-out),
-              background var(--dur) var(--ease-out),
-              transform var(--dur) var(--ease-out);
-}
-.card::after {
-  /* Amber sweep on hover, drawn not animated-in-JS */
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%),
-              rgb(245 158 11 / 0.07), transparent 42%);
-  opacity: 0; transition: opacity var(--dur) var(--ease-out);
-  pointer-events: none;
-}
-.card:hover {
-  border-color: var(--ink-4);
-  background: var(--slate-hi);
-  transform: translateY(-2px);
-  color: var(--ink);
-}
-.card:hover::after { opacity: 1; }
-
-.card__fig {
-  height: 128px; margin: calc(var(--s-5) * -1) calc(var(--s-5) * -1) var(--s-5);
-  border-bottom: 1px solid var(--line);
-  background: var(--void);
-  display: grid; place-items: center;
-  position: relative; overflow: hidden;
-}
-.card__fig svg { width: 100%; height: 100%; }
-
-.card__idx {
-  position: absolute; top: 10px; right: 12px;
-  font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.1em; color: var(--ink-4);
-}
-.card h3 { font-size: 1.0625rem; margin-bottom: 0.4375rem; }
-.card p { font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
-
-.card__specs {
-  margin-top: var(--s-4); padding-top: var(--s-4);
-  border-top: 1px dashed var(--line);
-  display: flex; flex-wrap: wrap; gap: 0.375rem;
-}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
   font-family: var(--font-mono); font-size: 10.5px;
-  letter-spacing: 0.04em;
-  padding: 0.1875rem 0.4375rem;
+  letter-spacing: 0.02em;
+  padding: 3px 7px;
   border: 1px solid var(--line);
   border-radius: 2px;
-  color: var(--ink-3);
+  color: var(--muted);
   white-space: nowrap;
 }
-.card__go {
-  margin-top: var(--s-4);
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--amber);
-  display: flex; align-items: center; gap: 0.4375rem;
+.on-dark .chip, .section--green .chip,
+.catalog-card--brand .chip {
+  color: rgb(255 255 255 / 0.85); border-color: var(--on-green-line);
 }
-.card__go svg { width: 13px; height: 13px; transition: transform var(--dur) var(--ease-out); }
-.card:hover .card__go svg { transform: translateX(4px); }
 
-/* ---- Spec table ------------------------------------------------------ */
+/* ---- Concept figure ---------------------------------------------------
+   Photographic card with a mandatory disclaimer caption. The caption is
+   not decoration: every application image is illustrative, and saying so
+   is the difference between an honest site and a dishonest one. */
+
+.concept-figure { margin: 0; }
+.concept-image {
+  aspect-ratio: 3 / 2;
+  background: #DEDED8;
+  overflow: hidden;
+  position: relative;
+}
+.concept-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur) var(--ease), filter var(--dur) var(--ease);
+}
+a:hover .concept-image img { transform: scale(1.012); filter: contrast(1.02); }
+.concept-figure figcaption {
+  display: flex; gap: 18px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px; line-height: 1.45; color: var(--muted);
+}
+.concept-figure figcaption span {
+  flex: none; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--green);
+}
+@media (max-width: 520px) {
+  .concept-figure figcaption { display: block; }
+  .concept-figure figcaption span { display: block; margin-bottom: 5px; }
+}
+
+/* ---- Numbered rail ------------------------------------------------------ */
+
+.numbered { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-ink); }
+.numbered li {
+  display: grid; grid-template-columns: 40px 1fr; gap: 10px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.numbered li > span { color: var(--green); font-size: 10px; font-weight: 700; }
+.numbered p { margin: 0; color: var(--muted); font-size: 0.875rem; }
+
+/* ---- Spec list (dl) ----------------------------------------------------- */
+
+.spec-list { margin: 0; border-top: 1px solid var(--line-ink); }
+.spec-list > div {
+  display: grid; grid-template-columns: 170px 1fr; gap: 30px;
+  padding-block: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.spec-list dt { font-size: 0.875rem; font-weight: 650; }
+.spec-list dd { margin: 0; font-size: 0.875rem; color: var(--muted); }
+@media (max-width: 800px) {
+  .spec-list > div { grid-template-columns: 1fr; gap: 5px; }
+}
+
+/* ---- Spec table ---------------------------------------------------------- */
 
 .spectable { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
 .spectable th, .spectable td {
@@ -434,119 +537,211 @@ body.menu-open { overflow: hidden; }
   border-bottom: 1px solid var(--line);
 }
 .spectable thead th {
-  font-family: var(--font-mono); font-size: var(--t-xs);
+  font-size: var(--t-xs); font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-3); font-weight: 400;
-  border-bottom-color: var(--ink-4);
+  color: var(--green);
+  border-bottom-color: var(--line-ink);
 }
 .spectable tbody tr { transition: background var(--dur-fast); }
-.spectable tbody tr:hover { background: var(--slate-hi); }
-.spectable td:first-child { color: var(--ink); font-weight: 500; }
+.spectable tbody tr:hover { background: var(--green-tint); }
+.spectable td:first-child { font-weight: 600; }
 .spectable .num {
   font-family: var(--font-mono); font-variant-numeric: tabular-nums;
-  color: var(--zinc);
+  color: var(--ink-2);
 }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-/* ---- FAQ ------------------------------------------------------------- */
+/* ---- Panel ---------------------------------------------------------------- */
 
-.faq { border-top: 1px solid var(--line); }
+.panel {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.panel__h {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 650; letter-spacing: -0.025em;
+  margin-bottom: var(--s-4);
+}
+
+/* ---- FAQ ------------------------------------------------------------------ */
+
+.faq { border-top: 1px solid var(--line-ink); }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq summary {
   list-style: none; cursor: pointer;
-  padding: var(--s-5) var(--s-7) var(--s-5) 0;
-  position: relative;
-  font-family: var(--font-display); font-weight: 600;
-  font-size: var(--t-lg); letter-spacing: -0.02em;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  min-height: 66px; padding: 14px 0;
+  font-family: var(--font-display);
+  font-size: 0.9375rem; font-weight: 650; letter-spacing: -0.015em;
   transition: color var(--dur-fast);
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary:hover { color: var(--amber); }
+.faq summary:hover { color: var(--green); }
 .faq summary::after {
-  content: ''; position: absolute; right: 6px; top: 50%;
-  width: 11px; height: 11px; margin-top: -5px;
-  border-right: 1.5px solid var(--amber);
-  border-bottom: 1.5px solid var(--amber);
-  transform: rotate(45deg); transform-origin: center;
-  transition: transform var(--dur) var(--ease-out);
+  content: '+';
+  flex: none;
+  font-size: 23px; font-weight: 400; line-height: 1;
+  color: var(--green);
+  transition: transform var(--dur) var(--ease);
 }
-.faq details[open] summary::after { transform: rotate(-135deg); }
+.faq details[open] summary::after { transform: rotate(45deg); }
 .faq details > div {
-  padding-bottom: var(--s-5);
-  color: var(--ink-2); max-width: var(--maxw-text);
+  max-width: 68ch;
+  padding: 0 44px 22px 0;
+  color: var(--muted); font-size: 0.875rem;
 }
 
-/* ---- Footer ----------------------------------------------------------- */
+/* ---- Forms ---------------------------------------------------------------- */
+
+.field { margin-bottom: 15px; }
+.field label {
+  display: block; margin-bottom: 6px;
+  font-size: 12px; font-weight: 650; color: #404640;
+}
+.input, .select, .textarea {
+  display: block; width: 100%;
+  min-height: 46px;
+  padding: 9px 11px;
+  background: #fff; color: var(--ink);
+  border: 1px solid #C9CEC9;
+  border-radius: var(--r-sm);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.textarea { min-height: 96px; resize: vertical; }
+.input:focus, .select:focus, .textarea:focus { border-color: var(--green); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 520px) { .field-row { grid-template-columns: 1fr; gap: 0; } }
+
+/* Segmented control, used by the configurator. */
+.segs { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px;
+  min-height: 46px; padding: 6px 12px;
+  background: #fff;
+  border: 1px solid #C9CEC9;
+  border-radius: var(--r-sm);
+  font-size: 0.875rem; font-weight: 650; color: var(--ink);
+  transition: border-color var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+.seg:hover { border-color: var(--green); }
+.seg[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+.seg__sub {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.seg[aria-pressed="true"] .seg__sub { color: rgb(255 255 255 / 0.75); }
+.seg--coat { flex-direction: row; gap: 7px; }
+.swatch {
+  width: 13px; height: 13px; flex: none;
+  border-radius: 2px; border: 1px solid rgb(16 20 16 / 0.2);
+}
+
+/* ---- Breadcrumb ------------------------------------------------------------ */
+
+.crumb {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  font-size: 12px; color: var(--muted);
+  margin-bottom: var(--s-6);
+}
+.crumb a { display: inline-flex; align-items: center; min-height: 40px; color: var(--muted); text-decoration: none; }
+.crumb a:hover { color: var(--green); }
+.crumb span[aria-current] { color: var(--ink); }
+.crumb--light { color: rgb(255 255 255 / 0.72); }
+.crumb--light a { color: rgb(255 255 255 / 0.72); }
+.crumb--light a:hover { color: var(--yellow); }
+.crumb--light span[aria-current] { color: #fff; }
+
+/* ---- Footer ------------------------------------------------------------------ */
 
 .footer {
-  border-top: 1px solid var(--line);
-  background: var(--slate);
-  padding-block: var(--s-8) var(--s-6);
+  background: #0C100D;
+  color: rgb(255 255 255 / 0.7);
+  padding-block: 52px 26px;
 }
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-  gap: var(--s-7) var(--s-5);
+  grid-template-columns: 1.65fr 1fr 1fr 1fr;
+  gap: 38px;
 }
-@media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 540px) { .footer__grid { grid-template-columns: 1fr; } }
-
+.footer__brand p { max-width: 270px; margin-top: 14px; font-size: 12px; }
 /* Semantically h2 (they follow page-level h2s, so h4 would skip a level in
    the document outline) but sized as small labels. Heading level is about
    structure, not size. That is what CSS is for. */
-.footer .footer__h {
-  font-family: var(--font-mono); font-size: var(--t-xs); font-weight: 400;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-3); margin-bottom: var(--s-4);
-  line-height: 1.4;
+.footer__h {
+  margin: 0 0 13px;
+  font-family: var(--font-display);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff;
 }
-.footer ul { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
-.footer ul a { color: var(--ink-2); text-decoration: none; font-size: 0.875rem; }
-.footer ul a:hover { color: var(--amber); }
-
-.footer address { font-style: normal; color: var(--ink-2); font-size: 0.875rem; line-height: 1.7; }
-.footer address a { color: var(--ink); text-decoration: none; }
-.footer address a:hover { color: var(--amber); }
-
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer ul a,
+.footer__links a {
+  display: flex; align-items: center;
+  min-height: 31px;
+  font-size: 12px;
+  color: rgb(255 255 255 / 0.7); text-decoration: none;
+}
+.footer a:hover { color: #fff; }
+.footer address {
+  font-style: normal; font-size: 12px; line-height: 1.8;
+  color: rgb(255 255 255 / 0.7);
+}
+.footer address a { color: #fff; text-decoration: none; }
+.footer address a:hover { color: var(--yellow); }
 .footer__bottom {
-  margin-top: var(--s-7); padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-  display: flex; flex-wrap: wrap; gap: var(--s-4);
-  justify-content: space-between; align-items: center;
-  font-size: var(--t-sm); color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: 8px;
+  justify-content: space-between;
+  margin-top: 38px; padding-top: 19px;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  font-size: 10px;
 }
-.gstin {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.05em; color: var(--ink-3);
+.footer .gstin { font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+@media (max-width: 1024px) {
+  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 800px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 520px) {
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__brand { grid-column: auto; }
 }
 
-/* Static map: an image that links out. A live Maps iframe costs ~500KB
+/* Static map: an image that links out. A live Maps iframe costs ~500 KB
    and a pile of third-party requests for something people only tap. */
 .mapcard {
   display: block; position: relative;
-  border: 1px solid var(--line); border-radius: var(--r-sm);
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: var(--r-sm);
   overflow: hidden; text-decoration: none;
-  background: var(--void);
   transition: border-color var(--dur);
 }
-.mapcard:hover { border-color: var(--amber); }
+.mapcard:hover { border-color: var(--gold); }
 .mapcard svg { width: 100%; height: 132px; display: block; }
 .mapcard__label {
   position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 0.5rem 0.6875rem;
-  background: linear-gradient(transparent, rgb(11 13 16 / 0.92) 55%);
-  font-family: var(--font-mono); font-size: 10.5px;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber);
+  padding: 8px 11px;
+  background: linear-gradient(transparent, rgb(12 16 13 / 0.94) 55%);
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--yellow);
 }
 
-/* ---- Breadcrumb -------------------------------------------------------- */
+/* ---- Disclaimer note --------------------------------------------------------- */
 
-.crumb {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.06em; color: var(--ink-3);
-  padding-top: var(--s-5);
+.disclaimer {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-top: var(--s-5); padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  background: var(--paper);
+  font-size: 12px; line-height: 1.5; color: var(--muted);
 }
-.crumb a { color: var(--ink-3); text-decoration: none; }
-.crumb a:hover { color: var(--amber); }
-.crumb span[aria-current] { color: var(--ink-2); }
+.disclaimer svg { width: 16px; height: 16px; flex: none; color: var(--gold-deep); margin-top: 1px; }

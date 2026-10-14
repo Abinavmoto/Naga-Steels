@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 1200" width="1680" height="1200" role="img" aria-label="Placeholder for the feature focus card">
+  <!-- SLOT: focus-feature · 7:5 · target 1680x1200
+       Chain-link weaving / works floor. Copy overlays the lower third. -->
+  <defs>
+    <linearGradient id="ff" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14402A"/>
+      <stop offset="1" stop-color="#0C2418"/>
+    </linearGradient>
+    <pattern id="ffw" width="80" height="80" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 40h80M40 0v80" stroke="#CDA535" stroke-opacity=".17" stroke-width="3" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="1680" height="1200" fill="url(#ff)"/>
+  <rect width="1680" height="1200" fill="url(#ffw)"/>
+  <circle cx="840" cy="440" r="150" fill="none" stroke="#CDA535" stroke-opacity=".5" stroke-width="9"/>
+  <text x="840" y="460" fill="#CDA535" font-family="system-ui,sans-serif" font-size="44" font-weight="700" text-anchor="middle">WEAVING</text>
+  <text x="840" y="680" fill="#FFFFFF" fill-opacity=".55" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with works-floor photography</text>
+  <text x="840" y="730" fill="#CDA535" fill-opacity=".7" font-family="monospace" font-size="26" text-anchor="middle">1680 × 1200 · 7:5</text>
+</svg>

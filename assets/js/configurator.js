@@ -1,28 +1,31 @@
 /* ============================================================
-   NAGA STEELS, Hero configurator controller
+   NAGA STEELS, Fence configurator
    ------------------------------------------------------------
-   Owns the segmented controls and the readout. The 3D scene is an
-   optional listener: every control works identically whether or not
-   WebGL ever loads, because the readout, the labels and the WhatsApp
-   message are all driven from the store, not from the canvas.
+   Owns the segmented controls, the readout and the SVG weave.
+
+   Everything is driven from the shared store, never from the
+   view, so the hero controls, the quote builder's selects and
+   the WhatsApp message can never disagree about the spec. A
+   customer who picks 8 SWG here and finds 10 SWG in the message
+   has been given a reason not to trust the quote.
    ============================================================ */
 
 import { gaugeToMm, APERTURES, coatingById } from './data/products.js';
 import * as store from './store.js';
-import { getTier, TIERS, demoteTier } from './capability.js';
+import { createWeave } from './weave-svg.js';
 
 const $ = (id) => document.getElementById(id);
 
 export function initConfigurator() {
-  const stage = $('stage');
+  const stage = $('config');
   if (!stage) return;
+
+  const weave = createWeave($('weave-view'));
 
   /* ---- Segmented controls ---- */
   const wire = (attr, key, cast = (v) => v) => {
     stage.querySelectorAll(`[data-${attr}]`).forEach((btn) => {
-      btn.addEventListener('click', () => {
-        store.set({ [key]: cast(btn.dataset[attr]) });
-      });
+      btn.addEventListener('click', () => store.set({ [key]: cast(btn.dataset[attr]) }));
     });
   };
   wire('gauge', 'gauge', Number);
@@ -35,87 +38,72 @@ export function initConfigurator() {
     });
   };
 
+  const set = (id, text) => { const el = $(id); if (el) el.textContent = text; };
+
   store.subscribe((s) => {
     const mm = gaugeToMm(s.gauge);
     const ap = APERTURES.find((a) => a.in === s.aperture);
     const coat = coatingById(s.coating);
+    if (!mm || !ap || !coat) return;
 
     syncPressed('gauge', s.gauge);
     syncPressed('ap', s.aperture);
     syncPressed('coat', s.coating);
 
-    $('lbl-gauge').textContent = `${s.gauge} SWG · ${mm} mm`;
-    $('lbl-ap').textContent = ap ? `${ap.in} inch · ${ap.mm} mm` : '';
-    $('lbl-coat').textContent = coat ? `${coat.life} life` : '';
+    set('lbl-gauge', `${s.gauge} SWG · ${mm} mm`);
+    set('lbl-ap', `${ap.in} inch · ${ap.mm} mm`);
+    set('lbl-coat', `${coat.life} life`);
 
-    $('ro-gauge').textContent = `${s.gauge} SWG`;
-    $('ro-mm').textContent = `${mm} mm`;
-    $('ro-ap').textContent = ap ? ap.label : '';
+    set('ro-gauge', `${s.gauge} SWG`);
+    set('ro-mm', `${mm} mm`);
+    set('ro-ap', ap.label);
+
+    weave?.render({
+      wireMm: mm,
+      apertureMm: ap.mm,
+      apertureLabel: ap.label,
+      gauge: s.gauge,
+      coating: coat,
+    });
+  });
+}
+
+/* ---- Planner tabs ----------------------------------------------------
+   Configurator and calculator share one block. Proper tab semantics:
+   roving tabindex, arrow-key navigation, aria-selected. */
+
+export function initPlannerTabs() {
+  const tablist = document.querySelector('[data-planner-tabs]');
+  if (!tablist) return;
+
+  const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+  if (!tabs.length) return;
+
+  const select = (tab) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !on;
+    });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(tab);
+      let next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (!next) return;
+      e.preventDefault();
+      select(next);
+      next.focus();
+    });
   });
 
-  /* ---- 3D, strictly opt-in ------------------------------------------
-     The import() below is the entire tiering strategy in one line: on a
-     Tier 0 device it never executes, so three.js is never fetched. Watch
-     for this in the network waterfall. A stray static import at the top
-     of this file would silently pull ~90 KB onto the critical path and
-     undo all of it.                                                    */
-
-  let tierId = getTier();
-  if (tierId === 0) return;
-
-  const boot = async () => {
-    const canvas = $('weave-canvas');
-    if (!canvas) return;
-
-    try {
-      const { createScene } = await import('./three/scene.js');
-
-      const scene = await createScene({
-        canvas,
-        tier: { ...TIERS[tierId] },
-        apertures: APERTURES.map((a) => a.mm),
-        initial: { apertureMm: APERTURES.find((a) => a.in === store.get().aperture)?.mm ?? 50 },
-        onDowngrade: (verdict) => {
-          if (verdict === 'abort') {
-            // Fall back to the poster. It is a complete experience, not a
-            // broken one, so there is nothing to apologise for visually.
-            stage.dataset['3d'] = 'poster';
-            demoteTier(tierId);
-          }
-        },
-        // The browser dropped the GL context. Cross-fade the poster back in
-        // rather than leaving a black rectangle where the weave was.
-        onContextLost: () => { stage.dataset['3d'] = 'poster'; },
-      });
-
-      stage.dataset['3d'] = 'live';
-
-      store.subscribe((s, changed) => {
-        if (changed.includes('gauge')) scene.setGauge(gaugeToMm(s.gauge));
-        if (changed.includes('aperture')) {
-          const ap = APERTURES.find((a) => a.in === s.aperture);
-          if (ap) scene.setAperture(ap.mm);
-        }
-        if (changed.includes('coating')) {
-          const c = coatingById(s.coating);
-          if (c) scene.setCoating(c);
-        }
-      });
-    } catch (err) {
-      // Any failure here leaves the poster in place and the configurator
-      // fully usable. A broken canvas must never break the quote path.
-      console.warn('[naga] 3D unavailable, using poster:', err);
-      stage.dataset['3d'] = 'poster';
-    }
-  };
-
-  /* The canvas must never be the LCP element. Wait for load, then for an
-     idle moment, then bring it in over the poster. */
-  const schedule = () => {
-    if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 2500 });
-    else setTimeout(boot, 400);
-  };
-
-  if (document.readyState === 'complete') schedule();
-  else window.addEventListener('load', schedule, { once: true });
+  select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0]);
 }

@@ -3,22 +3,23 @@
    ------------------------------------------------------------
    Two layers, deliberately:
 
-   1. An IntersectionObserver reveal that works with no dependency
-      at all. If GSAP never loads, every section still animates in.
-   2. GSAP ScrollTrigger for the blueprint draw-ins and count-ups,
-      desktop only.
+   1. An IntersectionObserver reveal that works with no
+      dependency at all. If GSAP never loads, every section
+      still animates in.
+   2. GSAP ScrollTrigger for the spec-table draw-ins and the
+      count-ups, desktop only.
 
-   Nothing is pinned below 768px. On Android, 100vh pinning plus the
-   URL bar collapsing mid-scroll retriggers ScrollTrigger.refresh()
-   and shifts the pinned section under the user's thumb.
+   Nothing is pinned, at any width. On Android, 100vh pinning
+   plus the URL bar collapsing mid-scroll retriggers
+   ScrollTrigger.refresh() and shifts the pinned section under
+   the user's thumb.
    ============================================================ */
 
 import { loadGsap } from './gsap-loader.js';
 
-const reduced = () =>
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---- Layer 1: dependency-free reveals -------------------------------- */
+/* ---- Layer 1: dependency-free reveals --------------------------------- */
 
 function initReveals() {
   const items = document.querySelectorAll('[data-reveal]');
@@ -40,7 +41,7 @@ function initReveals() {
   items.forEach((el) => io.observe(el));
 }
 
-/* ---- Count-up for spec figures --------------------------------------- */
+/* ---- Count-up for spec figures ----------------------------------------- */
 
 function countUp(el, gsap) {
   const raw = el.textContent.replace(/,/g, '');
@@ -69,7 +70,7 @@ function countUp(el, gsap) {
   });
 }
 
-/* ---- Layer 2: GSAP ---------------------------------------------------- */
+/* ---- Layer 2: GSAP ------------------------------------------------------ */
 
 export async function initScroll() {
   initReveals();
@@ -85,46 +86,34 @@ export async function initScroll() {
 
   const mm = gsap.matchMedia();
 
-  /* Desktop: blueprint draw-in on the spec tables, and count-ups. */
   mm.add('(min-width: 769px)', () => {
     gsap.utils.toArray('.spectable tbody tr').forEach((row) => {
       gsap.from(row, {
-        opacity: 0,
-        x: -14,
-        duration: 0.5,
-        ease: 'power2.out',
+        opacity: 0, x: -14, duration: 0.5, ease: 'power2.out',
         scrollTrigger: { trigger: row, start: 'top 92%', once: true },
       });
     });
 
     gsap.utils.toArray('.trust__v').forEach((el) => {
       gsap.from(el, {
-        opacity: 0,
-        y: 10,
-        duration: 0.5,
-        ease: 'power2.out',
+        opacity: 0, y: 10, duration: 0.5, ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top 95%', once: true },
       });
     });
-
-    // The hero glow drifts slightly with scroll. One scrubbed element on
-    // the whole page, and nothing is pinned.
-    const glow = document.querySelector('.hero__glow');
-    if (glow) {
-      gsap.to(glow, {
-        yPercent: 18,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 },
-      });
-    }
   });
+
+  /* No parallax on the homepage hero.
+     The obvious move is a scrubbed yPercent on `.hcol__bg`, but that
+     layer already owns `transform: scale()` for the ken-burns hover.
+     GSAP writes transforms inline, so it would win the cascade and the
+     hover effect would silently stop working. Animating a wrapper
+     instead would mean a fourth element per column for 4% of drift.
+     The ken-burns is the better effect; it keeps the layer. */
 
   /* Count-ups run on every size; they are one-shot and cheap. */
   gsap.utils.toArray('.calc__n').forEach((el) => {
     ScrollTrigger.create({
-      trigger: el,
-      start: 'top 90%',
-      once: true,
+      trigger: el, start: 'top 90%', once: true,
       onEnter: () => countUp(el, gsap),
     });
   });

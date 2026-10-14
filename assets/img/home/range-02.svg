@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Placeholder for PVC coated chain link">
+  <!-- SLOT: range-02 · 1:1 · 800x800 · PRODUCT CUT-OUT ON WHITE -->
+  <defs><pattern id="r2" width="86" height="86" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <path d="M0 43h86M43 0v86" stroke="#1E6B3C" stroke-opacity=".55" stroke-width="10" fill="none"/></pattern></defs>
+  <rect width="800" height="800" fill="#FFFFFF"/>
+  <rect x="110" y="150" width="580" height="420" fill="url(#r2)" stroke="#006837" stroke-opacity=".35" stroke-width="5"/>
+  <text x="400" y="670" fill="#5C625D" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">PVC Coated Chain Link</text>
+  <text x="400" y="714" fill="#9C7A1C" font-family="monospace" font-size="22" text-anchor="middle">800 × 800 · cut-out</text>
+</svg>

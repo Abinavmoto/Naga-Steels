@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER - Bestarc (VNC Group product brand).
+  Replace with supplied artwork, keeping the filename. See bestfence.webp
+  for the full note.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150"
+     role="img" aria-labelledby="ba-title">
+  <title id="ba-title">Bestarc</title>
+  <rect x="26" y="26" width="168" height="98" rx="6" fill="#1B4D36"/>
+  <text x="110" y="72" text-anchor="middle" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="28" font-weight="800" letter-spacing="3">BEST</text>
+  <text x="110" y="106" text-anchor="middle" fill="#FDEA56"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="28" font-weight="800" letter-spacing="3">ARC</text>
+</svg>

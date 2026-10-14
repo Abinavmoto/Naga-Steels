@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER - Bestfence (VNC Group product brand).
+
+  Replace this file with the supplied artwork. Keep the filename and the
+  4:3-ish viewBox and no markup change is needed; the card box uses
+  object-fit: contain, so any reasonable ratio will sit correctly.
+
+  This is a neutral type lockup, not a reproduction of the registered
+  mark. See OWNER-CHECKLIST.md - the distributor relationship and the
+  right to reproduce VNC artwork are both unverified.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150"
+     role="img" aria-labelledby="bf-title">
+  <title id="bf-title">Bestfence</title>
+  <rect x="26" y="26" width="168" height="98" rx="6" fill="#1B4D36"/>
+  <text x="110" y="72" text-anchor="middle" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="28" font-weight="800" letter-spacing="3">BEST</text>
+  <text x="110" y="106" text-anchor="middle" fill="#FDEA56"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="28" font-weight="800" letter-spacing="3">FENCE</text>
+</svg>

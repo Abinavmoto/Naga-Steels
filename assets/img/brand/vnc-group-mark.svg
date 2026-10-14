@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  VNC Group, COMPACT square mark for the brand strip.
+
+  Same reasoning as tata-wiron-mark.svg: the wide 520x150 lockup shrank
+  to roughly 46x13px inside a square contain box and read as a quarter
+  the size of the Naga marks next to it.
+
+  Type lockup, not a reproduction of VNC's registered mark.
+  The distributor relationship is unverified - see OWNER-CHECKLIST.md.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"
+     role="img" aria-labelledby="vncm-title">
+  <title id="vncm-title">VNC Group</title>
+  <rect x="14" y="36" width="132" height="62" rx="8" fill="#006837"/>
+  <text x="80" y="82" text-anchor="middle" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="38" font-weight="800" letter-spacing="4">VNC</text>
+  <text x="80" y="126" text-anchor="middle" fill="#18362b"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="19" font-weight="800" letter-spacing="4">GROUP</text>
+</svg>

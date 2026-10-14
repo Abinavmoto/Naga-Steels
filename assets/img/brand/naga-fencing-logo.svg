@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NAGA FENCING, sub-brand mark.
+
+  Built from the master mark's vocabulary rather than invented: same
+  forest field, same gold ring, same white slab N. The difference is the
+  chain-link weave, which on the fencing brand is the point rather than
+  a texture, so here it is drawn at full strength across the field.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+     role="img" aria-labelledby="nf-logo-title">
+  <title id="nf-logo-title">Naga Fencing</title>
+
+  <defs>
+    <linearGradient id="nf-gold" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0%"   stop-color="#F2D98A"/>
+      <stop offset="25%"  stop-color="#E8C86A"/>
+      <stop offset="55%"  stop-color="#CDA535"/>
+      <stop offset="100%" stop-color="#A8801F"/>
+    </linearGradient>
+
+    <!-- One chain-link picket period. Drawn as a real zig-zag with an
+         over/under crossing, not a lattice: the crossing is what makes
+         it read as woven. -->
+    <pattern id="nf-weave" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M0 0 L36 36 L0 72" fill="none" stroke="url(#nf-gold)" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+      <path d="M72 0 L36 36 L72 72" fill="none" stroke="url(#nf-gold)" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+      <path d="M36 36 L72 72" fill="none" stroke="#004427" stroke-width="10"
+            stroke-linecap="round" opacity=".5"/>
+      <path d="M72 0 L36 36" fill="none" stroke="url(#nf-gold)" stroke-width="7"
+            stroke-linecap="round" opacity=".55"/>
+    </pattern>
+
+    <clipPath id="nf-clip"><circle cx="256" cy="256" r="256"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#nf-clip)">
+    <rect width="512" height="512" fill="#006837"/>
+    <rect width="512" height="512" fill="url(#nf-weave)"/>
+    <!-- Centre plate, so the wordmark never fights the weave -->
+    <circle cx="256" cy="256" r="176" fill="#006837" opacity=".93"/>
+  </g>
+
+  <circle cx="256" cy="256" r="233" fill="none" stroke="url(#nf-gold)" stroke-width="17"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="url(#nf-gold)" stroke-width="3" opacity=".7"/>
+
+  <path fill="#FFFFFF" d="M166 168h62l76 97V168h-17v-15h61v15h-16v191h-32l-91-117v102h17v15h-61v-15h16V168z"/>
+
+  <text x="256" y="402" text-anchor="middle" fill="#FDEA56"
+        font-family="Arial, Helvetica, sans-serif" font-size="30"
+        font-weight="800" letter-spacing="7">FENCING</text>
+</svg>

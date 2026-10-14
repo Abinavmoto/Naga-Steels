@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 990" width="1480" height="990" role="img" aria-label="Placeholder for the VNC product focus card">
+  <!-- SLOT: focus-small-2 · 3:2 · target 1480x990 · VNC product stack -->
+  <defs>
+    <linearGradient id="fs2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123528"/>
+      <stop offset="1" stop-color="#0B2217"/>
+    </linearGradient>
+  </defs>
+  <rect width="1480" height="990" fill="url(#fs2)"/>
+  <g fill="none" stroke="#CDA535" stroke-opacity=".32" stroke-width="7">
+    <rect x="470" y="300" width="540" height="90"/>
+    <rect x="470" y="410" width="540" height="90"/>
+    <rect x="470" y="520" width="540" height="90"/>
+  </g>
+  <text x="740" y="760" fill="#FFFFFF" fill-opacity=".55" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with VNC product photography</text>
+  <text x="740" y="810" fill="#CDA535" fill-opacity=".7" font-family="monospace" font-size="24" text-anchor="middle">1480 × 990 · 3:2</text>
+</svg>

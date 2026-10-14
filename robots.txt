@@ -1,4 +1,18 @@
+# Naga Steels, Madurai
+# https://nagasteels.github.io/
+
 User-agent: *
 Allow: /
+
+# Retired short slugs. These are noindex meta-refresh stubs kept only so
+# existing links and any indexed URLs still resolve. They must stay
+# crawlable (not Disallow'd) or the canonical and the refresh cannot be
+# read, and the link equity on the old URL is simply lost.
+# Disallow is deliberately NOT used here.
+
+# The build tooling and reference material are not content.
+Disallow: /build/
+Disallow: /Reference%20themes/
+Disallow: /Reference themes/
 
 Sitemap: https://nagasteels.github.io/sitemap.xml

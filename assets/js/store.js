@@ -1,23 +1,29 @@
 /* ============================================================
    NAGA STEELS, Tiny shared store
    ------------------------------------------------------------
-   The hero configurator, the quote builder, the readout overlay
-   and the 3D scene all read the same specification. Without a
-   shared store they drift, and a user who sets 8 SWG in the hero
-   would find 10 SWG in the WhatsApp message, which destroys
-   trust in exactly the moment we are trying to earn it.
+   The configurator, the calculator, the quote builder, the
+   readout overlay and the SVG weave all read the same
+   specification. Without a shared store they drift, and a user
+   who sets 8 SWG in the configurator would find 10 SWG in the
+   WhatsApp message, which destroys trust in exactly the moment
+   we are trying to earn it.
 
    ~30 lines, no dependency. Subscribers are called with the full
-   state plus the list of keys that actually changed, so the 3D
-   scene can skip a geometry rebuild when only the coating moved.
+   state plus the list of keys that actually changed, so a
+   subscriber can skip expensive work when only an unrelated
+   field moved.
    ============================================================ */
 
 const state = {
   category: 'chain-link',
   gauge: 10,
-  aperture: 1,
+  aperture: 2,          // 2" is the most commonly stocked size, so it is the
+                        // honest default rather than the narrowest option
   coating: 'gi',
   height: '5 ft',
+  // Free-text specification for the ranges that are not configurable
+  // (sheet thickness, coil weight, roofing profile, fastener size).
+  spec: '',
   qty: '',
   unit: 'running feet',
   town: '',

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Placeholder for binding wire">
+  <!-- SLOT: range-07 · 1:1 · 800x800 · PRODUCT CUT-OUT ON WHITE -->
+  <rect width="800" height="800" fill="#FFFFFF"/>
+  <g fill="none" stroke="#006837" stroke-opacity=".4" stroke-width="8">
+    <ellipse cx="400" cy="350" rx="200" ry="130"/>
+    <ellipse cx="400" cy="350" rx="130" ry="82"/>
+    <ellipse cx="400" cy="350" rx="60" ry="36"/>
+    <path d="M200 350v60a200 130 0 0 0 400 0v-60"/>
+  </g>
+  <text x="400" y="670" fill="#5C625D" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Binding Wire</text>
+  <text x="400" y="714" fill="#9C7A1C" font-family="monospace" font-size="22" text-anchor="middle">800 × 800 · cut-out</text>
+</svg>

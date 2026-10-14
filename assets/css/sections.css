@@ -1,763 +1,1051 @@
 /* ============================================================
-   NAGA STEELS, Section layouts
+   NAGA STEELS, Page sections
+   ------------------------------------------------------------
+   Composition only. Atoms live in components.css.
+
+   The page alternates --off → --paper → --green-tint-2 → --green
+   so it reads as a paced editorial document rather than an
+   undifferentiated scroll.
    ============================================================ */
 
-/* ============ HERO = SPEC CONFIGURATOR =======================
-   The hero is not a rotating mesh. It is the configurator: the
-   weave moves only in response to input. Motion that responds
-   reads as expensive; motion that loops reads as cheap.
+/* ============================================================
+   01 · HERO
    ============================================================ */
 
 .hero {
+  background: var(--off-warm);
+  border-bottom: 1px solid var(--line);
   position: relative;
-  min-height: calc(100svh - var(--header-h));
-  display: flex; align-items: center;
-  padding-block: var(--s-7) var(--s-8);
   overflow: hidden;
-  isolation: isolate;
-}
-.hero__glow {
-  position: absolute; z-index: 0; pointer-events: none;
-  width: min(980px, 120vw); aspect-ratio: 1;
-  top: -32%; right: -18%;
-  background: radial-gradient(circle, rgb(245 158 11 / 0.11), transparent 62%);
 }
 
-.hero__inner {
-  position: relative; z-index: 1;
-  width: 100%; max-width: var(--maxw);
-  margin-inline: auto; padding-inline: var(--gutter);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+/* Full-bleed photographic plate behind the hero. Deliberately low
+   opacity: it sets a material context without ever competing with the
+   headline, and it means the LCP text paints against a stable colour
+   even before the image decodes. */
+.hero__media {
+  position: absolute; inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
-@media (max-width: 980px) {
-  .hero { min-height: 0; }
-  .hero__inner { grid-template-columns: 1fr; gap: var(--s-7); }
+.hero__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.16;
 }
-
-.hero h1 { margin-bottom: var(--s-5); }
-.hero h1 em {
-  font-style: normal; color: var(--amber);
-  /* Hand-drawn underline, so it survives text reflow at any width */
-  background-image: linear-gradient(var(--amber), var(--amber));
-  background-size: 100% 2px; background-repeat: no-repeat;
-  background-position: 0 100%;
-  padding-bottom: 2px;
-}
-.hero__lede { font-size: var(--t-lg); color: var(--ink-2); margin-bottom: var(--s-6); max-width: 54ch; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-bottom: var(--s-6); }
-
-.hero__proof {
-  display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
-  padding-top: var(--s-5); border-top: 1px solid var(--line);
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.05em; color: var(--ink-3);
-}
-.hero__proof span { display: inline-flex; align-items: center; gap: 0.4375rem; }
-.hero__proof svg { width: 13px; height: 13px; color: var(--amber); flex: none; }
-
-/* ---- Configurator stage ---------------------------------------------- */
-
-/* The whole stage, viewport AND controls, must fit inside one screen.
-   Changing a gauge is pointless if you have to scroll down to reach the
-   control and back up to see what it did. So the stage is a flex column
-   capped to the visible height, and the 3D view takes whatever is left
-   after the controls have had theirs. */
-.stage {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  /* A definite height, not max-height. aspect-ratio + flex-shrink is
-     unreliable across browsers for actually shrinking to fit; giving the
-     container a real height and the view flex:1/min-height:0 is what
-     makes it shrink correctly instead of overflowing past the viewport. */
-  height: calc(100svh - var(--header-h) - var(--s-7));
-  max-height: 660px;
-  background: linear-gradient(165deg, var(--slate) 0%, var(--void) 100%);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-3);
-}
-@supports not (height: 100svh) {
-  .stage { height: calc(100vh - var(--header-h) - var(--s-7)); }
-}
-@media (max-width: 980px) {
-  /* Stacked below the hero copy on mobile: let it size to its content
-     instead of fighting the viewport, same as before this fix. */
-  .stage { height: auto; max-height: none; }
-}
-
-.stage__view {
-  position: relative;
-  /* No aspect-ratio: the poster SVG and the canvas both fill via
-     position:absolute; inset:0, so the view can take exactly whatever
-     height flex leaves it instead of demanding its own. */
-  flex: 1 1 auto;
-  min-height: 0;
+.hero__media::after {
+  content: '';
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 44%, #1C232D 0%, #0B0D10 76%);
+    linear-gradient(100deg, var(--off-warm) 30%, rgb(247 246 241 / 0.55) 62%, rgb(247 246 241 / 0.2) 100%),
+    radial-gradient(ellipse 70% 60% at 12% 30%, rgb(0 104 55 / 0.06), transparent 70%);
 }
-@media (max-width: 980px) {
-  .stage__view { aspect-ratio: 4 / 3; flex: none; min-height: 280px; }
-}
+.hero > .wrap { position: relative; z-index: 1; }
 
-/* Poster is the LCP element, NOT the canvas. The canvas fades in over it
-   only after load + idle, and only on capable devices. */
-.stage__poster {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  opacity: 1;
-  transition: opacity 600ms var(--ease-out);
+.hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(430px, 0.94fr);
+  align-items: stretch;
+  gap: 42px;
+  padding-block: 34px;
 }
-.stage__canvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  opacity: 0;
-  transition: opacity 600ms var(--ease-out);
-  /* Dissolve the edges so the fabric reads as a detail of a much larger
-     fence, not as a rectangle of mesh floating in a box. Costs nothing;
-     doing the same in WebGL would mean an extra full-screen pass. */
-  -webkit-mask-image: radial-gradient(ellipse 84% 82% at 50% 46%, #000 40%, transparent 92%);
-          mask-image: radial-gradient(ellipse 84% 82% at 50% 46%, #000 40%, transparent 92%);
+.hero__copy {
+  display: flex; flex-direction: column; justify-content: center;
+  max-width: 720px;
+  padding-block: 6px;
 }
-.stage[data-3d="live"] .stage__poster { opacity: 0; }
-.stage[data-3d="live"] .stage__canvas { opacity: 1; }
-
-/* Readout overlay: the live spec figures on the stage */
-.readout {
-  position: absolute; left: 14px; bottom: 14px;
-  display: flex; gap: var(--s-5);
-  padding: 0.625rem 0.875rem;
-  background: rgb(11 13 16 / 0.62);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  border: 1px solid var(--line); border-radius: var(--r-sm);
-  pointer-events: none;
+.hero h1 { max-width: 720px; margin: 0; }
+.hero h1 em {
+  font-style: normal;
+  color: var(--green);
 }
-.readout div { display: grid; gap: 2px; }
-.readout dt {
-  font-family: var(--font-mono); font-size: 9.5px;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
-}
-.readout dd {
-  margin: 0;
-  font-family: var(--font-mono); font-size: 0.875rem;
-  font-variant-numeric: tabular-nums; color: var(--zinc);
-}
-@media (max-width: 420px) { .readout { gap: var(--s-4); left: 10px; bottom: 10px; } }
-
-.stage__tag {
-  position: absolute; top: 12px; left: 12px;
-  padding: 0.3125rem 0.5rem;
-  font-family: var(--font-mono); font-size: 9.5px;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-3);
-  /* Sits directly over the wire, so it needs its own ground to stay
-     readable at every gauge and coating. */
-  background: rgb(11 13 16 / 0.6);
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--r-sm);
-  pointer-events: none;
-}
-
-/* ---- Configurator controls -------------------------------------------- */
-
-/* Deliberately compact. The controls are labels and small targets; the 3D
-   view is the thing worth looking at, so the controls take the minimum they
-   need and the view keeps the rest. */
-.controls {
-  padding: 0.875rem var(--s-4) var(--s-4);
-  border-top: 1px solid var(--line);
-  display: grid; gap: 0.625rem;
-  background: var(--slate);
-  flex: none;
-}
-
-.ctrl__head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 0.3125rem;
-}
-.ctrl__label, .ctrl__value { font-size: 10.5px; }
-.ctrl__label {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
-}
-.ctrl__value {
-  font-family: var(--font-mono); font-size: var(--t-sm);
-  font-variant-numeric: tabular-nums; color: var(--amber);
-}
-
-/* Segmented option group, used for gauge, aperture and coating */
-.segs { display: flex; flex-wrap: wrap; gap: 0.3125rem; }
-.seg {
-  flex: 1 1 auto; min-width: 46px;
-  padding: 0.3125rem 0.375rem;
-  line-height: 1.25;
-  font-family: var(--font-mono); font-size: 12px;
-  font-variant-numeric: tabular-nums;
+.hero__intro {
+  max-width: 640px;
+  margin: 22px 0 0;
+  font-size: clamp(1rem, 1.35vw, 1.1875rem);
+  line-height: 1.48;
   color: var(--ink-2);
-  background: var(--void);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  transition: all var(--dur-fast) var(--ease-out);
 }
-.seg:hover { border-color: var(--ink-4); color: var(--ink); }
-/* Touch still gets a proper target, just not on desktop where it is waste. */
-@media (pointer: coarse) { .seg { min-height: 42px; } }
-.seg[aria-pressed="true"] {
-  background: var(--amber); border-color: var(--amber);
-  color: #0B0D10; font-weight: 600;
+.hero__actions {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 26px; margin-top: 26px;
 }
-.seg__sub { display: block; font-size: 9px; opacity: 0.72; letter-spacing: 0.03em; }
-
-/* The stage CTA sits directly under the controls, so it does not need the
-   full button padding as well. */
-.controls .btn--block { padding: 0.6875rem 1rem; }
-
-/* Coating swatches carry a colour dot so the choice is visible without
-   relying on the 3D view having loaded. */
-.seg--coat { display: flex; align-items: center; justify-content: center; gap: 0.4375rem; }
-.swatch {
-  width: 11px; height: 11px; border-radius: 2px; flex: none;
-  border: 1px solid rgb(255 255 255 / 0.22);
-}
-
-/* ============ SCROLL-MORPH SHOWCASE ==========================
-   A sticky 3D stage holds position while six product panels scroll
-   past it. The model rebuilds into each product as it arrives.
-
-   CSS `position: sticky`, never ScrollTrigger `pin: true`. Sticky is
-   resolved by the browser's own scrolling machinery, the same code
-   path that moves the Android URL bar, so it cannot desynchronise
-   from the thumb. It also survives GSAP failing to load, which the
-   codebase treats as a supported state.
-   ============================================================ */
-
-.showcase {
-  display: grid;
-  position: relative;
-  border-block: 1px solid var(--line);
-  background: var(--void);
-}
-.showcase__stage, .showcase__panels { grid-area: 1 / 1; }
-
-.showcase__stage {
-  position: sticky;
-  top: var(--header-h);
-  /* svh, never dvh. `dvh` changes as the URL bar moves, which would resize
-     the canvas mid-scroll and reallocate the framebuffer on every gesture. */
-  height: calc(100svh - var(--header-h));
-  align-self: start;
-  /* MANDATORY. A full-viewport canvas that swallows touch is the fastest
-     possible way to trap a contractor hunting for a phone number. */
-  pointer-events: none;
-  overflow: hidden;
-}
-@supports not (height: 100svh) {
-  .showcase__stage { height: calc(100vh - var(--header-h)); }
-}
-@media (max-width: 860px) {
-  .showcase__stage { height: calc(100svh - var(--header-h) - 56px); }
-}
-
-.showcase__canvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  opacity: 0;
-  transition: opacity 700ms var(--ease-out);
-  -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 48%, #000 42%, transparent 92%);
-          mask-image: radial-gradient(ellipse 78% 78% at 50% 48%, #000 42%, transparent 92%);
-}
-.showcase[data-3d="live"] .showcase__canvas { opacity: 1; }
-
-/* Fallback lattice, shown until (or instead of) the canvas. */
-.showcase__poster {
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-  opacity: 1;
-  transition: opacity 700ms var(--ease-out);
-}
-.showcase[data-3d="live"] .showcase__poster { opacity: 0; }
-.showcase__poster svg { width: min(74%, 560px); height: auto; opacity: 0.5; }
-
-/* ---- Progress ticks -------------------------------------------------
-   The single thing that stops a long sticky section feeling infinite:
-   it says there are exactly six, and you are on three. */
-
-.showcase__ticks {
-  position: absolute; right: clamp(1rem, 3vw, 2.5rem); top: 50%;
-  transform: translateY(-50%);
-  list-style: none; margin: 0; padding: 0;
-  display: grid; gap: 0.875rem;
-  pointer-events: none;
-}
-.showcase__ticks li {
-  display: flex; align-items: center; gap: 0.625rem;
-  justify-content: flex-end;
-  font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.12em; color: var(--ink-4);
-  transition: color var(--dur) var(--ease-out);
-}
-.showcase__ticks li::after {
-  content: ''; width: 18px; height: 2px;
-  background: var(--ink-4); border-radius: 2px;
-  transition: width var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
-}
-.showcase__ticks li[aria-current="true"] { color: var(--amber); }
-.showcase__ticks li[aria-current="true"]::after { width: 34px; background: var(--amber); }
-@media (max-width: 640px) {
-  .showcase__ticks li span { display: none; }
-  .showcase__ticks { gap: 0.625rem; }
-}
-
-.showcase__skip {
-  position: absolute; left: 50%; bottom: 1.25rem;
-  transform: translateX(-50%);
-  pointer-events: auto;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.5rem 0.875rem;
-  font-family: var(--font-mono); font-size: 10.5px;
+.hero__service-line {
+  margin: 20px 0 0;
+  font-size: 10px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-3); text-decoration: none;
-  /* Solid, never backdrop-filter. Blurring over a constantly-changing WebGL
-     layer forces a canvas readback every frame and costs 4-10ms on a Redmi. */
-  background: rgb(11 13 16 / 0.92);
-  border: 1px solid var(--line); border-radius: 100px;
-}
-.showcase__skip:hover { color: var(--amber); border-color: var(--amber); }
-
-/* ---- Panels ---------------------------------------------------------
-   The panels create the section height. That one decision makes the
-   Tier 0 collapse free: drop min-height and 600svh becomes natural
-   content height with no JavaScript at all. */
-
-.showcase__panels { position: relative; z-index: 2; pointer-events: none; }
-
-.showcase__panel {
-  min-height: 100svh;
-  display: flex; align-items: center;
-  padding-block: var(--s-8);
-}
-@supports not (min-height: 100svh) { .showcase__panel { min-height: 100vh; } }
-@media (max-width: 768px) { .showcase__panel { min-height: 85svh; } }
-@media (min-width: 1200px) { .showcase__panel { min-height: 110svh; } }
-
-.showcase__card {
-  pointer-events: auto;
-  width: min(440px, 100%);
-  background: rgb(20 24 31 / 0.92);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  padding: var(--s-6);
-  box-shadow: var(--shadow-3);
-  display: grid; gap: 0.625rem;
-  opacity: 0.35;
-  transform: translateY(10px);
-  transition: opacity var(--dur-slow) var(--ease-out),
-              transform var(--dur-slow) var(--ease-out),
-              border-color var(--dur-slow) var(--ease-out);
-}
-.showcase__panel[data-active="true"] .showcase__card {
-  opacity: 1; transform: none; border-color: var(--ink-4);
-}
-.showcase__idx {
-  font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.16em; color: var(--amber);
-}
-.showcase__card h3 { font-size: var(--t-xl); }
-.showcase__card > p { color: var(--ink-2); font-size: 0.9375rem; }
-.showcase__card .card__specs { margin-top: var(--s-2); border-top: 0; padding-top: 0; }
-.showcase__go {
-  margin-top: var(--s-3);
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--amber); text-decoration: none;
-}
-.showcase__go svg { width: 13px; height: 13px; transition: transform var(--dur); }
-.showcase__go:hover svg { transform: translateX(4px); }
-
-/* Alternate sides on desktop so the eye moves and the model is never
-   permanently hidden behind the card. */
-@media (min-width: 981px) {
-  .showcase__panel:nth-child(even) { justify-content: flex-end; }
+  color: var(--muted);
 }
 
-/* ---- Tier 0 and reduced motion --------------------------------------
-   Collapse to a plain stack. Reduced motion must disable the STICKY, not
-   just the 3D: a pinned panel whose content changes as you scroll is
-   motion, whatever is rendering it. */
+/* ---- Hero brand panel ------------------------------------------------
+   The four-up lockup. This is the single clearest statement of the brand
+   architecture on the whole site, so it sits beside the headline rather
+   than being buried further down. */
 
-.showcase[data-3d="off"] .showcase__stage { display: none; }
-.showcase[data-3d="off"] .showcase__panel { min-height: 0; padding-block: var(--s-5); }
-.showcase[data-3d="off"] .showcase__card { opacity: 1; transform: none; }
-.showcase[data-3d="off"] .showcase__panels {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: var(--s-4);
-}
-.showcase[data-3d="off"] .showcase__card { width: 100%; }
-
-@media (prefers-reduced-motion: reduce) {
-  .showcase__stage { position: static; display: none; }
-  .showcase__panel { min-height: 0; padding-block: var(--s-5); }
-  .showcase__card { opacity: 1; transform: none; transition: none; }
-}
-
-/* ============ BRANDS & SUPPLY PARTNERS =======================
-   A quiet band, not a logo salad. The role label matters more than
-   the logo: "authorised dealer" is the claim doing the work.
-   ============================================================ */
-
-.brands {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  overflow: hidden;
-}
-@media (max-width: 900px) { .brands { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .brands { grid-template-columns: 1fr; } }
-
-.brandcard {
-  background: var(--slate);
-  padding: var(--s-5);
-  display: grid; align-content: start; gap: 0.375rem;
-}
-.brandcard__idx {
-  font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.14em; color: var(--ink-4);
-  padding-bottom: var(--s-4);
-}
-.brandcard__role {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber);
-}
-.brandcard__name {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 1.0625rem; letter-spacing: -0.02em; color: var(--ink);
-}
-.brandcard p { font-size: 0.8125rem; color: var(--ink-3); line-height: 1.55; }
-
-/* ============ APPLICATIONS ===================================
-   The only photography on the site. See the disclaimer in the
-   markup: these are illustrative, not Naga Steels' own projects.
-   ============================================================ */
-
-.apps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-4);
-}
-@media (max-width: 900px) { .apps { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .apps { grid-template-columns: 1fr; } }
-
-.appcard {
-  position: relative;
+.hero__brands {
   display: flex; flex-direction: column;
+  min-height: 410px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+}
+.hero__brands-head {
+  display: flex; justify-content: space-between; align-items: end; gap: 18px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ink);
+}
+.hero__brands-head span {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--green);
+}
+.hero__brands-head strong { font-size: 14px; font-weight: 650; letter-spacing: -0.015em; }
+
+.hero__brand-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; }
+.hero__brand-grid > a {
+  display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: 14px;
+  min-height: 142px; padding: 13px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none; color: var(--ink);
+  transition: background var(--dur-fast) var(--ease);
+}
+.hero__brand-grid > a:nth-child(odd) { border-right: 1px solid var(--line); }
+.hero__brand-grid > a:hover { background: #F3F5F2; color: var(--ink); }
+.hero__brand-grid img { width: 76px; height: 76px; object-fit: contain; }
+.hero__brand-grid > a:nth-child(-n+2) img { object-fit: cover; border-radius: var(--r-sm); }
+.hero__brand-grid > a:nth-child(n+3) img { width: 82px; height: auto; }
+.hero__brand-grid span { display: flex; flex-direction: column; min-width: 0; }
+.hero__brand-grid strong { font-size: 14px; font-weight: 650; line-height: 1.15; }
+.hero__brand-grid small {
+  margin-top: 6px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.hero__brand-foot {
+  display: flex; justify-content: space-between; align-items: center; gap: 18px;
+  min-height: 55px; padding: 11px 16px;
+  background: var(--green); color: #fff; text-decoration: none;
+}
+.hero__brand-foot:hover { background: var(--green-dark); color: #fff; }
+.hero__brand-foot span {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow);
+}
+.hero__brand-foot strong { font-size: 10px; font-weight: 650; text-align: right; }
+
+/* ---- Product rail ----------------------------------------------------- */
+
+.rail {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  border-top: 1px solid var(--ink);
+}
+.rail a {
+  position: relative;
+  display: flex; flex-direction: column; justify-content: center;
+  min-height: 82px; padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none; color: var(--ink);
+  transition: background var(--dur-fast) var(--ease);
+}
+.rail a + a { border-left: 1px solid var(--line); }
+.rail a:hover { background: var(--paper); color: var(--ink); }
+.rail span {
+  position: absolute; top: 10px; right: 12px;
+  font-size: 9px; font-weight: 700; color: var(--green);
+}
+.rail strong { font-size: 0.9375rem; letter-spacing: -0.015em; }
+.rail small {
+  margin-top: 3px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* ============================================================
+   02 · TRUST BAR
+   ============================================================ */
+
+.trustbar { background: var(--paper); border-bottom: 1px solid var(--line); }
+.trustbar__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line-ink);
+}
+.trust {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: var(--s-5) var(--s-5) var(--s-5) 0;
+}
+.trust + .trust { border-left: 1px solid var(--line); padding-left: var(--s-5); }
+.trust__v {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-size: var(--t-xl); font-weight: 650; letter-spacing: -0.035em;
+}
+.trust__v svg { width: 17px; height: 17px; flex: none; color: var(--green); }
+.trust__l {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.trust__l.mono { letter-spacing: 0.04em; text-transform: none; }
+@media (max-width: 780px) {
+  .trustbar__grid { grid-template-columns: 1fr 1fr; }
+  .trust:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .trust:nth-child(even) { border-left: 1px solid var(--line); padding-left: var(--s-5); }
+}
+
+/* ============================================================
+   03 · CATALOGUE PREVIEW (six families)
+   ============================================================ */
+
+.catalog { background: var(--paper); padding-block: clamp(3.25rem, 6vw, 4.5rem); }
+.catalog__head {
+  display: flex; justify-content: space-between; align-items: end; gap: 40px;
+  padding-top: 22px; margin-bottom: 25px;
+  border-top: 1px solid var(--line-ink);
+}
+.catalog__head h2 { max-width: 760px; font-size: clamp(2.15rem, 3.5vw, 3.05rem); }
+.catalog__grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-ink);
+}
+.catalog-card {
+  position: relative;
+  min-height: 190px; padding: 20px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none; color: var(--ink);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.catalog-card:nth-child(3n) { border-right: 0; }
+.catalog-card:hover { background: var(--off); color: var(--ink); }
+.catalog-card > span { font-size: 9px; font-weight: 700; color: var(--green); }
+.catalog-card > p {
+  margin: 18px 0 3px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--green);
+}
+.catalog-card h3 { margin: 0; font-size: 1.25rem; font-weight: 650; letter-spacing: -0.03em; }
+.catalog-card small {
+  display: block; max-width: 340px; margin-top: 11px;
+  font-size: 11px; line-height: 1.5; color: var(--muted);
+}
+.catalog-card .chips { margin-top: 12px; }
+.catalog-card i {
+  position: absolute; right: 20px; bottom: 16px;
+  font-style: normal; color: var(--green);
+}
+.catalog-card__logo {
+  position: absolute; top: 16px; right: 16px;
+  width: 64px; height: 64px;
+  object-fit: cover;
+  border: 1px solid rgb(255 255 255 / 0.38);
+  border-radius: var(--r-md);
+}
+/* The Naga Fencing tile inverts, because it is our own manufactured
+   range and the one thing that distinguishes us from a reseller. */
+.catalog-card--brand { background: var(--green); color: #fff; }
+.catalog-card--brand > span,
+.catalog-card--brand > p,
+.catalog-card--brand i { color: var(--yellow); }
+.catalog-card--brand h3 { color: #fff; }
+.catalog-card--brand small { color: rgb(255 255 255 / 0.76); }
+.catalog-card--brand:hover { background: var(--green-dark); color: #fff; }
+.catalog-card--brand h3,
+.catalog-card--brand small { max-width: calc(100% - 76px); }
+
+@media (max-width: 1024px) {
+  .catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .catalog-card { border-right: 1px solid var(--line); }
+  .catalog-card:nth-child(2n), .catalog-card:nth-child(6) { border-right: 0; }
+  .catalog-card:nth-child(3n) { border-right: 1px solid var(--line); }
+}
+@media (max-width: 800px) {
+  .catalog { padding-block: 3rem; }
+  .catalog__head { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+@media (max-width: 620px) {
+  .catalog__grid { grid-template-columns: 1fr; }
+  .catalog-card, .catalog-card:nth-child(3n) { border-right: 0; }
+  .catalog-card { min-height: 0; padding: 18px; }
+}
+
+/* ============================================================
+   04 · VNC PARTNER BAND
+   ============================================================ */
+
+.partner { background: var(--green-tint-2); padding-block: clamp(3.25rem, 6vw, 4.5rem); }
+.partner__grid { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: clamp(2.5rem, 5vw, 4rem); }
+.partner__grid h2 { max-width: 560px; font-size: clamp(2.1rem, 3.6vw, 3.2rem); }
+.partner__grid > div:first-child > p:not(.eyebrow) { max-width: 520px; margin: 22px 0; color: var(--muted); }
+
+/* Four-up card grid, in the editorial-reference register: white card,
+   mark centred in a fixed contain box, name, descriptor, gold rule on
+   hover. The fixed mark box is what keeps the row visually even. */
+.vnc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.vnc-card {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding: var(--s-5);
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
-  overflow: hidden;
-  background: var(--slate);
   text-decoration: none; color: var(--ink);
-  transition: border-color var(--dur) var(--ease-out),
-              transform var(--dur) var(--ease-out);
+  position: relative; overflow: hidden;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.appcard:hover { border-color: var(--amber); transform: translateY(-3px); color: var(--ink); }
+/* Gold rule that wipes in from the left on hover. */
+.vnc-card::after {
+  content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 3px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur) var(--ease);
+}
+.vnc-card:hover { color: var(--ink); box-shadow: var(--shadow-2); transform: translateY(-3px); }
+.vnc-card:hover::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .vnc-card:hover { transform: none; } }
 
-.appcard__media {
-  position: relative; display: block;
-  aspect-ratio: 3 / 2; overflow: hidden;
-  background: var(--void);
+.vnc-card__mark {
+  display: grid; place-items: center;
+  width: 100%; height: 120px;
+  margin-bottom: var(--s-4);
+  background: var(--green-tint);
+  border-radius: var(--r-sm);
 }
-.appcard__media img {
-  width: 100%; height: 100%; object-fit: cover;
-  /* Knock the saturation back so six unrelated photographs read as one set
-     and do not fight the amber. Restored slightly on hover. */
-  filter: saturate(0.55) contrast(1.05) brightness(0.82);
-  transition: filter var(--dur-slow) var(--ease-out),
-              transform var(--dur-slow) var(--ease-out);
+/* Contain, so any ratio of supplied artwork sits correctly without
+   cropping. Raised from 72%/76px once the marks became real <img>
+   files - the old ceiling was sized for the inline type lockup. */
+.vnc-card__mark img { max-width: 82%; max-height: 92px; object-fit: contain; }
+.vnc-card strong { font-size: 1.0625rem; font-weight: 650; }
+.vnc-card small {
+  margin-top: 6px;
+  font-size: 10px; font-weight: 650;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
 }
-.appcard:hover .appcard__media img {
-  filter: saturate(0.9) contrast(1.05) brightness(0.95);
-  transform: scale(1.04);
+.vnc-card__cta {
+  margin-top: var(--s-4);
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--green);
 }
-.appcard__media::after {
+.vnc-card__cta i { font-style: normal; font-size: 1.3em; line-height: 0; transition: transform var(--dur-fast) var(--ease); }
+.vnc-card:hover .vnc-card__cta i { transform: translateX(3px); }
+
+/* .vnc-type was the inline type lockup used before the marks became real
+   image files. The four brands now load from assets/img/brand/*.svg, so
+   supplied artwork can replace them by overwriting the file. The rule is
+   kept because the VNC distributor page still uses the lockup inline. */
+.vnc-type {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  width: 108px; height: 76px;
+  background: #1B4D36; color: #fff;
+  border-radius: var(--r-sm);
+  font-size: 17px; font-weight: 800; line-height: 1.12; letter-spacing: 0.08em;
+}
+.vnc-type span { color: var(--yellow); }
+
+@media (max-width: 1024px) { .partner__grid { grid-template-columns: 1fr; gap: 2.25rem; } }
+@media (max-width: 760px)  { .vnc-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+@media (max-width: 520px) {
+  .vnc-grid { grid-template-columns: 1fr; }
+  .vnc-card { padding: var(--s-4); }
+  .vnc-card__mark { height: 96px; }
+}
+
+/* ============================================================
+   05 · BRAND STRUCTURE (scope)
+   ============================================================ */
+
+.scope { background: var(--paper); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.scope__grid {
+  display: grid; grid-template-columns: 1.05fr 1fr 1fr;
+  border-top: 1px solid var(--line-ink);
+}
+.scope__grid > * { padding: 30px 30px 24px 0; }
+.scope__grid > * + * { border-left: 1px solid var(--line); padding-left: 30px; }
+.scope__grid article h3 { margin: 35px 0 12px; font-size: 1.4375rem; font-weight: 650; }
+.scope__grid article p { min-height: 74px; margin: 0 0 18px; font-size: 0.875rem; color: var(--muted); }
+
+@media (max-width: 1024px) {
+  .scope__grid { grid-template-columns: 1fr 1fr; }
+  .scope__head { grid-column: 1 / -1; border-bottom: 1px solid var(--line); }
+  .scope__grid > *:nth-child(2) { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 800px) {
+  .scope__grid { grid-template-columns: 1fr; }
+  .scope__grid > * { padding: 24px 0; }
+  .scope__grid > * + * { border-left: 0; padding-left: 0; }
+  .scope__grid article h3 { margin-top: 26px; }
+  .scope__grid article p { min-height: 0; }
+}
+
+/* ============================================================
+   06 · SERVICES & DELIVERY
+   ============================================================ */
+
+.services { background: var(--green-tint-2); padding-block: clamp(3.25rem, 6vw, 4.375rem); }
+.services__head {
+  display: grid; grid-template-columns: 1.2fr 0.8fr;
+  align-items: end; gap: clamp(2rem, 5vw, 3.75rem);
+  padding-top: 26px;
+  border-top: 1px solid var(--line-ink);
+}
+.services__head > p { max-width: 520px; margin: 0; font-size: 0.875rem; color: var(--muted); }
+.services__layout {
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px; margin-top: 34px;
+}
+.services__grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; border-top: 1px solid var(--line-ink); }
+.services__grid article {
+  min-height: 170px; padding: 22px 8px 20px 0;
+  border-bottom: 1px solid #C9CEC8;
+}
+.services__grid article:nth-child(even) { border-left: 1px solid #C9CEC8; padding-left: 28px; }
+.services__grid article > span { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--green); }
+.services__grid h3 { margin: 24px 0 8px; font-size: 1.1875rem; font-weight: 650; }
+.services__grid p { margin: 0; font-size: 0.8125rem; line-height: 1.48; color: var(--muted); }
+
+.delivery-panel { background: var(--green); color: #fff; padding: 30px; }
+.delivery-panel h3 {
+  max-width: 520px; margin: 0 0 22px;
+  font-size: clamp(1.6rem, 2.5vw, 2.3rem); font-weight: 650; letter-spacing: -0.045em;
+  color: #fff;
+}
+.delivery-list { border-top: 1px solid rgb(255 255 255 / 0.35); }
+.delivery-list > div {
+  display: grid; grid-template-columns: 36px 1fr;
+  padding: 13px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.2);
+}
+.delivery-list span { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--yellow); }
+.delivery-list p { margin: 0; font-size: 12px; color: rgb(255 255 255 / 0.78); }
+.delivery-list strong { display: block; margin-bottom: 2px; font-size: 14px; color: #fff; }
+.delivery-note { margin: 18px 0; font-size: 11px; color: rgb(255 255 255 / 0.72); }
+
+/* Expanded service grid, used on the services-delivery page where each
+   service gets the full `detail` paragraph rather than the short blurb. */
+.service-detail-grid { border-top: 1px solid var(--line-ink); }
+.service-detail-grid article {
+  min-height: 190px; padding: 24px 10px 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.service-detail-grid article:nth-child(even) { border-left: 1px solid var(--line); padding-left: 28px; }
+.service-detail-grid article > span { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--green); }
+.service-detail-grid h3 { margin: 28px 0 10px; font-size: 1.25rem; font-weight: 650; line-height: 1.1; }
+.service-detail-grid p { margin: 0; font-size: 0.8125rem; line-height: 1.55; color: var(--muted); }
+@media (max-width: 620px) {
+  .service-detail-grid { grid-template-columns: 1fr !important; }
+  .service-detail-grid article:nth-child(even) { border-left: 0; padding-left: 0; }
+  .service-detail-grid article { min-height: 0; }
+}
+
+@media (max-width: 900px) {
+  .services__head, .services__layout { grid-template-columns: 1fr; }
+  .services__head { gap: 20px; }
+}
+@media (max-width: 620px) {
+  .services__grid { grid-template-columns: 1fr; }
+  .services__grid article:nth-child(even) { border-left: 0; padding-left: 0; }
+  .delivery-panel { padding: 24px 20px; }
+}
+
+/* ============================================================
+   07 · COVERAGE MAP
+   ============================================================ */
+
+.coverage { background: var(--paper); padding-block: clamp(3.25rem, 6vw, 4.5rem); }
+.coverage__grid {
+  display: grid; grid-template-columns: 0.68fr 1.32fr;
+  align-items: center; gap: clamp(2rem, 5vw, 4rem);
+}
+.coverage__grid > div:first-child > h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 0.98; }
+.coverage__grid > div:first-child > p:not(.eyebrow) { max-width: 500px; margin: 22px 0; color: var(--muted); }
+.coverage__visual { display: grid; gap: 14px; }
+
+.coverage-map {
+  position: relative; overflow: hidden;
+  min-height: 520px; margin: 0;
+  background: var(--green-ink); color: #fff;
+  border-radius: var(--r-md);
+}
+.coverage-map::before {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgb(20 24 31 / 0.9) 100%);
+  background:
+    radial-gradient(circle at 50% 25%, rgb(253 234 86 / 0.12), transparent 22%),
+    linear-gradient(135deg, rgb(255 255 255 / 0.04), transparent 60%);
+}
+.coverage-map__kicker { position: absolute; top: 22px; left: 24px; z-index: 2; }
+.coverage-map__kicker span {
+  display: block;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow);
+}
+.coverage-map__kicker strong { display: block; margin-top: 3px; font-size: 16px; }
+.coverage-map__plot { position: absolute; inset: 70px 24px 48px; }
+.coverage-map__plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.coverage-map__plot line { stroke: rgb(255 255 255 / 0.16); stroke-width: 0.32px; vector-effect: non-scaling-stroke; }
+.coverage-pin {
+  position: absolute; z-index: 2;
+  display: flex; align-items: center; gap: 5px;
+  transform: translate(-4px, -50%);
+  font-size: 9px; font-weight: 650; line-height: 1;
+  color: rgb(255 255 255 / 0.76); white-space: nowrap;
+}
+.coverage-pin i {
+  display: block; flex: none;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green-ink);
+  border: 1.5px solid var(--yellow);
+  box-shadow: 0 0 0 3px rgb(253 234 86 / 0.08);
+}
+.coverage-pin--hub { z-index: 3; color: #fff; font-size: 12px; font-weight: 700; }
+.coverage-pin--hub i {
+  width: 13px; height: 13px;
+  background: var(--green); border: 3px solid var(--yellow);
+  box-shadow: 0 0 0 7px rgb(253 234 86 / 0.12);
+}
+.coverage-map figcaption {
+  position: absolute; left: 22px; right: 22px; bottom: 16px;
+  font-size: 9px; color: rgb(255 255 255 / 0.5);
 }
 
-.appcard__body { padding: var(--s-5); display: grid; gap: 0.4375rem; }
-.appcard__idx {
-  font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.14em; color: var(--amber);
+.coverage__lists { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line-ink); }
+.coverage__lists > div { padding: 14px 16px 10px 0; }
+.coverage__lists > div + div { border-left: 1px solid var(--line); padding-left: 16px; }
+.coverage__lists span {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.11em; text-transform: uppercase; color: var(--green);
 }
-.appcard__body strong {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 1.0625rem; letter-spacing: -0.02em;
+.coverage__lists p { margin: 5px 0 0; font-size: 11px; color: var(--muted); }
+
+@media (max-width: 1024px) {
+  .coverage__grid { grid-template-columns: 1fr; gap: 2.125rem; }
 }
-.appcard__blurb { font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
-.appcard__spec {
-  margin-top: 0.25rem; padding-top: var(--s-3);
-  border-top: 1px dashed var(--line);
-  font-family: var(--font-mono); font-size: 11.5px;
-  color: var(--ink-3); line-height: 1.5;
+@media (max-width: 800px) {
+  .coverage-map { min-height: 500px; }
+  .coverage__lists { grid-template-columns: 1fr; }
+  .coverage__lists > div + div { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+}
+@media (max-width: 620px) {
+  .coverage-map { min-height: 470px; }
+  .coverage-map__plot { left: 18px; right: 18px; }
+  .coverage-pin { font-size: 8px; }
+  .coverage-pin--hub { font-size: 11px; }
+}
+@media (max-width: 520px) {
+  .coverage-map { min-height: 450px; }
+  .coverage-map__kicker { top: 18px; left: 18px; }
+  .coverage-map__plot { inset: 64px 14px 45px; }
+  .coverage-pin i { width: 6px; height: 6px; }
 }
 
-.disclaimer {
-  margin-top: var(--s-5);
-  font-size: var(--t-xs); color: var(--ink-4);
-  display: flex; gap: 0.5rem; align-items: flex-start;
-  max-width: 74ch;
+/* ============================================================
+   08 · APPLICATIONS
+   ============================================================ */
+
+.applications { background: var(--off); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.app-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 24px;
+  border-top: 1px solid var(--line-ink);
 }
-.disclaimer svg { width: 13px; height: 13px; flex: none; margin-top: 2px; }
+.app-card { padding-block: 24px; border-bottom: 1px solid var(--line); }
+.app-card > a { display: block; text-decoration: none; color: inherit; }
+.app-card .concept-figure figcaption { display: none; }
+.app-card__copy {
+  display: grid; grid-template-columns: 30px 1fr;
+  align-items: baseline; gap: 6px; margin-top: 16px;
+}
+.app-card__copy > span { font-size: 10px; font-weight: 700; color: var(--green); }
+.app-card__copy h3 { margin: 0; font-size: 1.3125rem; font-weight: 650; line-height: 1.08; }
+.app-card__copy p {
+  grid-column: 2; max-width: 560px; margin: 7px 0 11px;
+  font-size: 12px; line-height: 1.45; color: var(--muted);
+}
+.app-card__copy .app-card__spec {
+  grid-column: 2; margin: 0 0 11px;
+  font-size: 11px; line-height: 1.5; color: var(--ink-2);
+  border-left: 2px solid var(--gold); padding-left: 10px;
+}
+.app-card__copy strong { grid-column: 2; font-size: 11px; color: var(--green); }
 
-/* ============ QUOTE BUILDER ================================== */
+@media (max-width: 1024px) { .app-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 800px) {
+  .app-grid { grid-template-columns: 1fr; }
+  .app-card { padding-block: 22px; }
+}
 
-.qb { position: relative; }
-.qb__shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: var(--s-6);
+/* ============================================================
+   09 · CONFIGURATOR + CALCULATOR ("Plan your fence")
+   ============================================================ */
+
+.planner { background: var(--paper); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.planner__tabs {
+  display: flex; gap: 0;
+  border-top: 1px solid var(--line-ink);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-6);
+}
+.planner__tab {
+  position: relative;
+  min-height: 56px; padding: 0 22px;
+  font-family: var(--font-display);
+  font-size: 0.9375rem; font-weight: 650; letter-spacing: -0.02em;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease);
+}
+.planner__tab:hover { color: var(--ink); }
+.planner__tab[aria-selected="true"] { color: var(--green); }
+.planner__tab[aria-selected="true"]::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: var(--green);
+}
+.planner__panel[hidden] { display: none; }
+
+.config {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   align-items: start;
 }
-@media (max-width: 900px) { .qb__shell { grid-template-columns: 1fr; } }
+.config__view {
+  position: relative; overflow: hidden;
+  aspect-ratio: 6 / 5;
+  background: var(--green-ink);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.config__view svg { width: 100%; height: 100%; }
+.config__tag {
+  position: absolute; top: 12px; left: 14px; z-index: 2;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow);
+}
+.readout {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  margin: 0;
+  background: rgb(255 255 255 / 0.14);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.readout > div { background: rgb(16 37 26 / 0.88); padding: 9px 11px; }
+.readout dt {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow);
+}
+.readout dd {
+  margin: 3px 0 0;
+  font-family: var(--font-mono); font-size: 0.875rem; color: #fff;
+}
+.config__controls { display: grid; gap: var(--s-5); }
+.ctrl__head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  margin-bottom: 9px;
+}
+.ctrl__label { font-size: 12px; font-weight: 650; color: #404640; }
+.ctrl__value { font-family: var(--font-mono); font-size: 11px; color: var(--green); }
 
+@media (max-width: 860px) { .config { grid-template-columns: 1fr; } }
+
+.calc {
+  display: grid; grid-template-columns: 1fr 0.85fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+.calc__out {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md); overflow: hidden;
+}
+.calc__cell { background: var(--paper); padding: var(--s-5) var(--s-4); }
+.calc__n {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--t-2xl); font-weight: 650; letter-spacing: -0.045em;
+  color: var(--green);
+}
+.calc__n small { font-size: 0.875rem; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.calc__k {
+  display: block; margin-top: 4px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.calc__note {
+  margin: 0; padding: 12px 14px;
+  background: var(--off);
+  border-left: 3px solid var(--gold);
+  font-size: 12px; line-height: 1.55; color: var(--muted);
+}
+.calc__note strong { color: var(--ink); }
+@media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   10 · QUOTE BUILDER
+   ============================================================ */
+
+.qb { background: var(--green-tint-2); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.qb__shell {
+  display: grid; grid-template-columns: 1fr minmax(330px, 0.8fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
 .qb__steps { display: grid; gap: var(--s-5); }
-
 .step {
   position: relative;
-  padding-left: calc(var(--s-6) + 0.5rem);
+  padding: 20px 22px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
 }
 .step::before {
   content: attr(data-n);
-  position: absolute; left: 0; top: 0;
-  width: 30px; height: 30px;
-  display: grid; place-items: center;
-  font-family: var(--font-mono); font-size: var(--t-sm);
-  border: 1px solid var(--line); border-radius: 50%;
-  color: var(--ink-3);
-  transition: all var(--dur) var(--ease-out);
+  position: absolute; top: 20px; right: 20px;
+  font-size: 10px; font-weight: 700; color: var(--green);
 }
-.step[data-done="true"]::before {
-  border-color: var(--amber); color: var(--amber);
-}
-/* Connector rule between steps */
-.step:not(:last-child)::after {
-  content: ''; position: absolute;
-  left: 15px; top: 34px; bottom: calc(var(--s-5) * -1 + 4px);
-  width: 1px; background: var(--line);
-}
-.step h3 { font-size: 1rem; margin-bottom: 0.375rem; }
-.step__hint { font-size: var(--t-sm); color: var(--ink-3); margin-bottom: var(--s-4); }
-.step__body { display: grid; gap: var(--s-4); }
-
-.field { display: grid; gap: 0.4375rem; }
-.field > label {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
-}
-.input, .select {
-  width: 100%;
-  padding: 0.6875rem 0.8125rem;
-  background: var(--void);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  color: var(--ink);
-  transition: border-color var(--dur-fast);
-}
-.input::placeholder { color: var(--ink-4); }
-.input:focus, .select:focus { border-color: var(--amber); outline: none; }
-.select {
-  appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%),
-                    linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
-  background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%;
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
-  padding-right: 2rem;
-}
-.select option { background: var(--slate); }
-
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
-@media (max-width: 460px) { .field-row { grid-template-columns: 1fr; } }
-
-/* ---- Live message preview ----------------------------------------- */
+.step[data-done="true"] { border-color: rgb(0 104 55 / 0.4); }
+.step h3 { margin: 0 0 4px; font-size: 1.125rem; font-weight: 650; }
+.step__hint { margin: 0 0 16px; font-size: 12px; color: var(--muted); }
 
 .preview {
-  position: sticky; top: calc(var(--header-h) + var(--s-4));
-  background: var(--slate);
+  position: sticky; top: calc(var(--header-h) + 16px);
+  background: var(--green-ink); color: #fff;
+  border-radius: var(--r-md); overflow: hidden;
+}
+.preview__bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 16px;
+  background: rgb(255 255 255 / 0.06);
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow);
+}
+.preview__bar svg { width: 15px; height: 15px; }
+.preview__msg {
+  margin: 0; padding: 16px;
+  max-height: 320px; overflow: auto;
+  font-family: var(--font-mono); font-size: 11.5px; line-height: 1.7;
+  color: rgb(255 255 255 / 0.9);
+  white-space: pre-wrap; word-break: break-word;
+}
+.preview__actions {
+  display: grid; gap: 10px;
+  padding: 16px;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+.copybtn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: var(--r-md);
+  font-size: 0.8125rem; font-weight: 650; color: #fff;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.copybtn:hover { border-color: var(--yellow); background: rgb(255 255 255 / 0.06); }
+.copybtn svg { width: 15px; height: 15px; }
+.preview__note { margin: 4px 0 0; font-size: 11px; line-height: 1.6; color: rgb(255 255 255 / 0.65); }
+.preview__note a { color: var(--yellow); }
+
+@media (max-width: 980px) {
+  .qb__shell { grid-template-columns: 1fr; }
+  .preview { position: static; }
+}
+
+/* ============================================================
+   11 · STANDARDS / SPEC INTELLIGENCE
+   ============================================================ */
+
+.standards { background: var(--off); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.standards__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 28px;
+  border-top: 1px solid var(--line-ink);
+  margin-bottom: var(--s-6);
+}
+.standards__grid article { padding: 24px 10px 24px 0; border-bottom: 1px solid var(--line); }
+.standards__grid article + article { border-left: 1px solid var(--line); padding-left: 28px; }
+.standards__std {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.1em; color: var(--green);
+  padding: 3px 7px; border: 1px solid var(--line); border-radius: 2px;
+}
+.standards__grid h3 { margin: 24px 0 10px; font-size: 1.25rem; font-weight: 650; }
+.standards__grid p { margin: 0; font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
+@media (max-width: 800px) {
+  .standards__grid { grid-template-columns: 1fr; }
+  .standards__grid article + article { border-left: 0; padding-left: 0; }
+}
+
+/* ============================================================
+   12 · HISTORY BAND
+   ============================================================ */
+
+.history { background: var(--green); color: #fff; padding-block: clamp(3.5rem, 7vw, 5.375rem); }
+.history__grid { display: grid; grid-template-columns: 1fr 0.85fr; gap: clamp(2.5rem, 7vw, 5.625rem); }
+.history h2 { color: #fff; }
+.history__grid > div:last-child > p { max-width: 620px; margin: 0; font-size: 1rem; color: rgb(255 255 255 / 0.74); }
+.history blockquote {
+  margin: 34px 0 26px; padding-left: 24px;
+  border-left: 1px solid var(--yellow);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem); font-weight: 600;
+  letter-spacing: -0.04em; line-height: 1.12;
+  color: #fff;
+}
+@media (max-width: 800px) {
+  .history__grid { grid-template-columns: 1fr; gap: 2.125rem; }
+  .history blockquote { margin-top: 30px; }
+}
+
+/* ============================================================
+   13 · PRODUCT INDEX
+   ============================================================ */
+
+.materials { background: var(--paper); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.material-list {
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 34px;
+  border-top: 1px solid var(--line-ink);
+}
+.material-list a {
+  display: grid; grid-template-columns: 42px minmax(0, 1fr) 94px 18px;
+  align-items: center; gap: 12px;
+  min-height: 72px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none; color: var(--ink);
+  transition: border-color var(--dur-fast) var(--ease), padding var(--dur-fast) var(--ease);
+}
+.material-list a:hover { border-bottom-color: var(--green); padding-inline: 6px; color: var(--ink); }
+.material-list span { font-size: 10px; font-weight: 700; color: var(--green); }
+.material-list h3 { margin: 0; font-size: 1.0625rem; font-weight: 650; letter-spacing: -0.025em; }
+.material-list p {
+  margin: 0; text-align: right;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+.material-list i { font-style: normal; color: var(--green); }
+@media (max-width: 800px) {
+  .material-list { grid-template-columns: 1fr; }
+  .material-list a { grid-template-columns: 40px 1fr 22px; min-height: 68px; }
+  .material-list p { display: none; }
+}
+
+/* ============================================================
+   14 · BUYING GUIDE
+   ============================================================ */
+
+.guide { background: var(--off); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+.guide__grid, .faq__grid {
+  display: grid; grid-template-columns: 0.78fr 1fr;
+  gap: clamp(2.5rem, 6vw, 5.125rem);
+}
+.prose { max-width: 690px; }
+.prose p { margin: 0 0 18px; color: var(--muted); }
+.prose p:first-child { color: var(--ink); font-size: 1.125rem; }
+@media (max-width: 800px) {
+  .guide__grid, .faq__grid { grid-template-columns: 1fr; gap: 2.125rem; }
+}
+
+/* ============================================================
+   15 · FAQ
+   ============================================================ */
+
+.faq-section { background: var(--paper); padding-block: clamp(3.25rem, 6vw, 4.875rem); }
+
+/* ============================================================
+   16 · QUOTE BAND
+   ============================================================ */
+
+.quote-band { background: var(--green); color: #fff; padding-block: clamp(3rem, 5.5vw, 4.25rem); }
+.quote-band__inner {
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
+  align-items: end; gap: clamp(2.5rem, 6vw, 4.375rem);
+}
+.quote-band h2 { max-width: 800px; color: #fff; }
+.quote-band__inner > div:last-child { display: flex; flex-direction: column; align-items: flex-start; }
+.quote-band__inner > div:last-child p { margin: 0 0 18px; font-size: 0.8125rem; color: rgb(255 255 255 / 0.72); }
+.quote-band__row { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 800px) {
+  .quote-band__inner { grid-template-columns: 1fr; gap: 2.125rem; }
+}
+
+/* ============================================================
+   17 · DETAIL PAGE FURNITURE (sub-pages)
+   ============================================================ */
+
+.detail-hero {
+  background: var(--off);
+  border-bottom: 1px solid var(--line);
+  padding-block: 30px clamp(2.5rem, 5vw, 4.125rem);
+}
+.detail-hero__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 270px;
+  align-items: end; gap: clamp(2.5rem, 5vw, 4.25rem);
+}
+.detail-hero h1 { max-width: 930px; font-size: clamp(2.6rem, 5.6vw, 4.6rem); }
+.detail-lead { max-width: 760px; margin: 24px 0 0; font-size: 1.125rem; line-height: 1.5; color: var(--muted); }
+.detail-hero aside { padding-top: 15px; border-top: 1px solid var(--line-ink); }
+.detail-hero aside span {
+  display: block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.detail-hero aside strong {
+  display: block; margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: 1.3125rem; font-weight: 620; line-height: 1.2; color: var(--green);
+}
+.detail-hero aside p { margin: 18px 0 0; font-size: 12px; color: var(--muted); }
+
+.detail-section { padding-block: clamp(3rem, 6vw, 4.875rem); }
+.detail-section--paper { background: var(--paper); }
+.detail-visual { padding-block: clamp(2rem, 4vw, 3rem); }
+.detail-visual .concept-image { aspect-ratio: 3 / 2; }
+.detail-visual .concept-figure figcaption { justify-content: space-between; }
+
+/* Product shots, reused from the homepage range carousel. Same files, so
+   a visitor who clicks a carousel card lands on a page showing the image
+   they just clicked, and there is one asset per product to maintain
+   rather than two. The art is square cut-outs on white, so `contain` on
+   a tinted panel - `cover` would clip the edges off. */
+.product-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+.product-shot {
+  margin: 0;
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
   overflow: hidden;
 }
-@media (max-width: 900px) { .preview { position: static; } }
+.product-shot img {
+  display: block;
+  width: 100%; height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: var(--green-tint);
+  padding: 12px;
+}
+.product-shot figcaption { padding: 13px var(--s-4) 15px; border-top: 1px solid var(--line); }
+.product-shot figcaption strong {
+  display: block;
+  font-size: 0.9375rem; font-weight: 650; letter-spacing: -0.015em;
+}
+.product-shot figcaption span {
+  display: block; margin-top: 4px;
+  font-size: var(--t-xs); line-height: 1.5; color: var(--muted);
+}
+@media (max-width: 520px) {
+  .product-shots { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .product-shot img { padding: 8px; }
+  .product-shot figcaption { padding: 10px 12px 12px; }
+  .product-shot figcaption strong { font-size: 0.8125rem; }
+  .product-shot figcaption span { display: none; }
+}
 
-.preview__bar {
-  display: flex; align-items: center; gap: 0.5rem;
-  padding: 0.6875rem 0.875rem;
+.dual { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 4.375rem); }
+.dual > div + div { border-left: 1px solid var(--line); padding-left: clamp(1.5rem, 3vw, 3.375rem); }
+.dual h2 { margin-bottom: 30px; font-size: clamp(1.9rem, 3vw, 2.75rem); }
+@media (max-width: 800px) {
+  .detail-hero__grid { grid-template-columns: 1fr; gap: 2.125rem; }
+  .dual { grid-template-columns: 1fr; gap: 2.125rem; }
+  .dual > div + div { border-left: 0; border-top: 1px solid var(--line); padding: 2.125rem 0 0; }
+}
+
+.related { background: var(--off); border-top: 1px solid var(--line); padding-block: clamp(2.5rem, 5vw, 3rem); }
+.related__links { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-ink); }
+.related__links a {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 64px; padding-right: 20px;
   border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  font-size: 0.875rem; font-weight: 650;
+  text-decoration: none; color: var(--ink);
 }
-.preview__bar svg { width: 14px; height: 14px; color: var(--signal); }
-
-.preview__msg {
-  margin: 0; padding: var(--s-5) var(--s-4);
-  font-family: var(--font-mono); font-size: 0.8125rem;
-  line-height: 1.75; color: var(--ink-2);
-  white-space: pre-wrap; word-break: break-word;
-  max-height: 340px; overflow-y: auto;
-  background:
-    repeating-linear-gradient(180deg, transparent 0 27px, var(--line-soft) 27px 28px);
+.related__links a + a { border-left: 1px solid var(--line); padding-left: 20px; }
+.related__links a:hover { color: var(--green); }
+.related__links a span { color: var(--green); }
+/* Three columns at tablet width squeezes "Colour coated sheet supplier"
+   into three lines, so drop to two before dropping to one. */
+@media (max-width: 1024px) {
+  .related__links { grid-template-columns: repeat(2, 1fr); }
+  .related__links a:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .related__links a:nth-child(even) { border-left: 1px solid var(--line); padding-left: 20px; }
 }
-.preview__msg b { color: var(--ink); font-weight: 600; }
-.preview__actions {
-  padding: var(--s-4); border-top: 1px solid var(--line);
-  display: grid; gap: var(--s-3);
-}
-.preview__note {
-  font-size: var(--t-xs); color: var(--ink-4); text-align: center; line-height: 1.5;
+@media (max-width: 680px) {
+  .related__links { grid-template-columns: 1fr; }
+  .related__links a,
+  .related__links a + a,
+  .related__links a:nth-child(even) { border-left: 0; padding-left: 0; }
 }
 
-.copybtn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-  padding: 0.625rem; width: 100%;
-  font-size: var(--t-sm); color: var(--ink-3);
-  border: 1px solid var(--line); border-radius: var(--r-sm);
-  transition: all var(--dur-fast);
-}
-.copybtn:hover { color: var(--ink); border-color: var(--ink-4); }
-.copybtn svg { width: 15px; height: 15px; }
+/* ---- Contact page ------------------------------------------------------- */
 
-/* ============ CALCULATOR ===================================== */
-
-.calc__shell {
-  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-  gap: var(--s-6); align-items: start;
+.contact-page { background: var(--green); color: #fff; padding-block: 30px clamp(3rem, 6vw, 4.75rem); }
+.contact-page__grid {
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(480px, 1fr);
+  gap: clamp(2.5rem, 6vw, 5.125rem);
 }
-@media (max-width: 820px) { .calc__shell { grid-template-columns: 1fr; } }
-
-.calc__out {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: var(--r-md);
-  overflow: hidden;
+.contact-page h1 { max-width: 640px; color: #fff; font-size: clamp(2.6rem, 5.6vw, 4.6rem); }
+.contact-page__intro { margin: 30px 0 0; font-size: 1.0625rem; color: rgb(255 255 255 / 0.76); }
+.contact-page address { margin-top: 36px; font-style: normal; font-size: 0.875rem; color: rgb(255 255 255 / 0.8); }
+.contact-page address strong { color: #fff; letter-spacing: 0.05em; text-transform: uppercase; }
+.contact-links { display: flex; flex-direction: column; align-items: flex-start; margin-top: 22px; }
+.contact-links a {
+  display: flex; align-items: center; min-height: 38px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.32);
+  font-size: 0.875rem; color: #fff; text-decoration: none;
 }
-.calc__cell { background: var(--slate); padding: var(--s-5); display: grid; gap: 0.3125rem; }
-.calc__n {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: var(--t-2xl); letter-spacing: -0.035em;
-  color: var(--amber); font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-.calc__n small { font-size: 0.5em; font-weight: 500; color: var(--ink-3); letter-spacing: 0; }
-.calc__k {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
-}
-.calc__note {
-  font-size: var(--t-sm); color: var(--ink-3);
-  padding: var(--s-4); border: 1px dashed var(--line);
-  border-radius: var(--r-sm); margin-top: var(--s-4); line-height: 1.6;
+.contact-links a:hover { color: var(--yellow); }
+.verification-note { max-width: 480px; margin: 22px 0 0; font-size: 11px; color: rgb(255 255 255 / 0.6); }
+@media (max-width: 1024px) { .contact-page__grid { grid-template-columns: 0.75fr 1fr; } }
+@media (max-width: 800px) {
+  .contact-page__grid { grid-template-columns: 1fr; gap: 2.125rem; }
 }
 
-/* ============ QUALITY / STANDARDS ============================ */
+/* ---- Legal / 404 --------------------------------------------------------- */
 
-.qual {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--s-4);
-}
-.qual__item {
-  padding: var(--s-5);
-  border: 1px solid var(--line); border-radius: var(--r-md);
-  background: var(--slate);
-}
-.qual__item h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-.qual__item p { font-size: 0.875rem; color: var(--ink-2); }
-.qual__std {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.1em; color: var(--amber);
-  display: block; margin-bottom: var(--s-3);
-}
+.legal-page, .not-found-page { min-height: 70vh; padding-block: clamp(3rem, 6vw, 4.5rem); }
+.legal-content { max-width: 760px; }
+.legal-content h1, .not-found-page h1 { margin: 0 0 24px; font-size: clamp(2.5rem, 5vw, 4.3rem); }
+.legal-content h2 { margin: 34px 0 10px; font-size: 1.375rem; }
+.legal-content p, .not-found-page p { color: var(--muted); }
 
-/* ============ SERVICE AREAS ================================== */
+/* ============================================================
+   RESPONSIVE: hero
+   ============================================================ */
 
-.areas {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: var(--r-md);
-  overflow: hidden;
+@media (max-width: 1024px) {
+  .hero__layout { grid-template-columns: 1fr 0.95fr; gap: 30px; }
+  .hero__brand-grid > a { grid-template-columns: 62px 1fr; }
+  .hero__brand-grid img { width: 62px; height: 62px; }
+  .hero__brand-grid > a:nth-child(n+3) img { width: 68px; }
 }
-.area {
-  background: var(--slate); padding: var(--s-4) var(--s-5);
-  display: grid; gap: 0.1875rem;
-  transition: background var(--dur-fast);
+@media (max-width: 800px) {
+  .hero__layout { grid-template-columns: 1fr; gap: 22px; padding-block: 30px 24px; }
+  .hero h1 { font-size: clamp(2.6rem, 12.4vw, 3.9rem); }
+  .hero__intro { margin-top: 20px; font-size: 1rem; }
+  .hero__actions { align-items: flex-start; gap: 18px; margin-top: 22px; }
+  .hero__brands { min-height: 0; }
+  .hero__brand-grid > a { grid-template-columns: 72px 1fr; min-height: 125px; }
+  .hero__brand-grid img { width: 72px; height: 72px; }
+  .rail { grid-template-columns: 1fr 1fr; }
+  .rail a { min-height: 68px; }
+  .rail a:nth-child(odd) { border-left: 0; }
 }
-.area:hover { background: var(--slate-hi); }
-.area__n { font-weight: 600; font-size: 0.9375rem; }
-.area__d {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  color: var(--ink-3); letter-spacing: 0.04em;
+@media (max-width: 520px) {
+  .hero h1, .detail-hero h1, .contact-page h1 { overflow-wrap: anywhere; }
+  .hero__actions { flex-direction: column; gap: 12px; align-items: stretch; }
+  .hero__actions .btn { width: 100%; }
+  .hero__brands-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .hero__brand-grid > a { grid-template-columns: 56px 1fr; gap: 10px; min-height: 116px; padding: 11px; }
+  .hero__brand-grid img { width: 56px; height: 56px; }
+  .hero__brand-grid > a:nth-child(n+3) img { width: 58px; }
+  .hero__brand-grid strong { font-size: 12px; }
+  .hero__brand-grid small { font-size: 8px; }
+  .hero__brand-foot { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .hero__brand-foot strong { text-align: left; }
+  .rail strong { font-size: 0.8125rem; }
+  .rail small { font-size: 8px; }
+  .calc__out { grid-template-columns: 1fr; }
 }
-
-/* ============ ARTICLE (product pages) ======================== */
-
-.article { max-width: var(--maxw-text); }
-.article h2 { font-size: var(--t-2xl); margin-top: var(--s-7); margin-bottom: var(--s-4); }
-.article h3 { font-size: var(--t-lg); margin-top: var(--s-6); margin-bottom: var(--s-3); }
-.article p  { color: var(--ink-2); margin-bottom: var(--s-4); }
-.article ul, .article ol { color: var(--ink-2); padding-left: 1.25rem; margin-bottom: var(--s-4); }
-.article li { margin-bottom: 0.5rem; }
-.article li::marker { color: var(--amber); }
-.article strong { color: var(--ink); font-weight: 600; }
-
-.pagehead {
-  padding-block: var(--s-6) var(--s-7);
-  border-bottom: 1px solid var(--line);
-  position: relative; overflow: hidden;
-}
-.pagehead h1 { font-size: var(--t-3xl); margin-bottom: var(--s-4); }
-
-/* Related links strip at the foot of each product page */
-.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-3); }
-.related a {
-  display: flex; flex-direction: column; gap: 0.25rem;
-  padding: var(--s-4); text-decoration: none;
-  border: 1px solid var(--line); border-radius: var(--r-sm);
-  background: var(--slate);
-  transition: border-color var(--dur-fast), background var(--dur-fast);
-}
-.related a:hover { border-color: var(--amber); background: var(--slate-hi); }
-.related strong { color: var(--ink); font-size: 0.9375rem; font-weight: 600; }
-.related span { font-size: var(--t-xs); color: var(--ink-3); font-family: var(--font-mono); }
-
-/* ---- CTA band --------------------------------------------------------- */
-
-.ctaband {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: linear-gradient(135deg, var(--slate) 0%, var(--void) 100%);
-  padding: clamp(2rem, 5vw, 3.5rem);
-  text-align: center;
-  position: relative; overflow: hidden;
-}
-.ctaband h2 { font-size: var(--t-2xl); margin-bottom: var(--s-4); }
-.ctaband p { color: var(--ink-2); max-width: 52ch; margin: 0 auto var(--s-6); }
-.ctaband__row { display: flex; flex-wrap: wrap; gap: var(--s-3); justify-content: center; }
-
-/* ---- Scroll reveal base state -----------------------------------------
-   JS adds .is-in. If JS never runs, the CSS below is overridden by the
-   no-js rule in the HTML head, so content is always visible.            */
-[data-reveal] { opacity: 0; transform: translateY(18px); }
-[data-reveal].is-in {
-  opacity: 1; transform: none;
-  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+@media (max-width: 350px) {
+  .hero h1, .detail-hero h1, .contact-page h1 { font-size: 2.6rem; }
 }

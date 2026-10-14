@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1800" width="1200" height="1800" role="img" aria-label="Placeholder for the Naga Fencing hero column">
+  <!-- SLOT: hero-01-fencing · 2:3 portrait · target 1200x1800
+       Subject must sit in the TOP 55%. The bottom 40% is covered by the
+       scrim and the headline block, so anything placed there is lost. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14402A"/>
+      <stop offset=".55" stop-color="#0D2E1D"/>
+      <stop offset="1" stop-color="#10251A"/>
+    </linearGradient>
+    <pattern id="weave" width="90" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 45h90M45 0v90" stroke="#CDA535" stroke-opacity=".16" stroke-width="3" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1800" fill="url(#g)"/>
+  <rect width="1200" height="1800" fill="url(#weave)"/>
+  <circle cx="600" cy="620" r="210" fill="none" stroke="#CDA535" stroke-opacity=".45" stroke-width="10"/>
+  <text x="600" y="600" fill="#CDA535" font-family="system-ui,sans-serif" font-size="58" font-weight="700" text-anchor="middle" letter-spacing="4">01</text>
+  <text x="600" y="672" fill="#FFFFFF" fill-opacity=".82" font-family="system-ui,sans-serif" font-size="34" font-weight="600" text-anchor="middle">FENCING</text>
+  <text x="600" y="930" fill="#FFFFFF" fill-opacity=".58" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with chain-link photography</text>
+  <text x="600" y="980" fill="#CDA535" fill-opacity=".7" font-family="monospace" font-size="26" text-anchor="middle">1200 × 1800 · 2:3</text>
+</svg>

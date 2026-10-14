@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1800" width="1200" height="1800" role="img" aria-label="Placeholder for the steel and roofing hero column">
+  <!-- SLOT: hero-02-steel · 2:3 portrait · target 1200x1800
+       Subject must sit in the TOP 55%. -->
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#17352A"/>
+      <stop offset=".55" stop-color="#0E2A20"/>
+      <stop offset="1" stop-color="#10251A"/>
+    </linearGradient>
+    <pattern id="corr" width="64" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 20h64" stroke="#CDA535" stroke-opacity=".14" stroke-width="6" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1800" fill="url(#g2)"/>
+  <rect width="1200" height="1800" fill="url(#corr)"/>
+  <rect x="390" y="420" width="420" height="400" fill="none" stroke="#CDA535" stroke-opacity=".45" stroke-width="10"/>
+  <text x="600" y="600" fill="#CDA535" font-family="system-ui,sans-serif" font-size="58" font-weight="700" text-anchor="middle" letter-spacing="4">02</text>
+  <text x="600" y="672" fill="#FFFFFF" fill-opacity=".82" font-family="system-ui,sans-serif" font-size="34" font-weight="600" text-anchor="middle">STEEL</text>
+  <text x="600" y="930" fill="#FFFFFF" fill-opacity=".58" font-family="system-ui,sans-serif" font-size="30" text-anchor="middle">Replace with sheet / coil yard photography</text>
+  <text x="600" y="980" fill="#CDA535" fill-opacity=".7" font-family="monospace" font-size="26" text-anchor="middle">1200 × 1800 · 2:3</text>
+</svg>

@@ -5,9 +5,16 @@
    lookup + TLS handshake on an Indian mobile connection, no
    third-party request, and the files can never change under us.
 
-   Four faces only (137 KB total, latin subset). Weight 500 is
-   deliberately absent. The browser synthesises it from 400,
-   which is imperceptible here and saves 47 KB.
+   Three faces only (latin subset). Space Grotesk has been
+   dropped: it reads "tech startup", which is precisely the
+   register this revamp moves away from.
+
+   Display type is Inter at weight 600 set very tight
+   (--track-display: -0.052em, line-height 1). That is the same
+   construction the premium editorial references use, where the
+   display weight sits around 600-650 rather than a hard 700.
+   A heavier cut is deliberately NOT loaded: it would cost
+   another ~45 KB to make headings marginally denser.
    ============================================================ */
 
 @font-face {
@@ -24,12 +31,15 @@
   font-display: swap;
   src: url('../fonts/Inter-600.woff2') format('woff2');
 }
+/* 700 is mapped to the 600 file. The browser synthesises the extra
+   weight, which at display sizes with this much negative tracking is
+   imperceptible, and it saves a whole font request. */
 @font-face {
-  font-family: 'Space Grotesk';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../fonts/SpaceGrotesk-700.woff2') format('woff2');
+  src: url('../fonts/Inter-600.woff2') format('woff2');
 }
 @font-face {
   font-family: 'JetBrains Mono';

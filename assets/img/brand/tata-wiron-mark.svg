@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tata Wiron, COMPACT square mark for the brand strip.
+
+  The wide 520x150 wordmark (tata-wiron-wordmark.svg) renders at roughly
+  46x13px when contained in a square box, which is why it looked half the
+  size of the two square Naga marks sitting beside it. This square
+  lockup carries the same information at the same optical weight.
+
+  Still a TYPE LOCKUP, not a reproduction of the registered mark. We hold
+  no written permission to reproduce third-party artwork.
+  The dealer relationship itself is unverified - see OWNER-CHECKLIST.md.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"
+     role="img" aria-labelledby="twm-title">
+  <title id="twm-title">Tata Wiron</title>
+  <text x="80" y="62" text-anchor="middle" fill="#18362b"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="25" font-weight="800" letter-spacing="7">TATA</text>
+  <text x="80" y="107" text-anchor="middle" fill="#18362b"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="35" font-weight="800" letter-spacing="1">W<tspan fill="#007a3d">I</tspan>RON</text>
+  <path d="M52 124h56" stroke="#CDA535" stroke-width="5" stroke-linecap="round"/>
+</svg>

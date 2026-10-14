@@ -6,9 +6,13 @@
   "type": "module",
   "scripts": {
     "build": "node build/build.js",
+    "images": "node build/images.js",
     "serve": "node --watch-path=build build/build.js && npx --yes serve ."
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }

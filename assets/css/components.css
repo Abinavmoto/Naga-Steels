@@ -745,3 +745,77 @@ a:hover .concept-image img { transform: scale(1.012); filter: contrast(1.02); }
   font-size: 12px; line-height: 1.5; color: var(--muted);
 }
 .disclaimer svg { width: 16px; height: 16px; flex: none; color: var(--gold-deep); margin-top: 1px; }
+
+/* ---- Image loading skeletons ---------------------------------------------
+   Applied by img-load.js, and only to images that have not already
+   decoded, so a cached load shows no skeleton at all.
+
+   The overlay fades OUT rather than the <img> fading in. That distinction
+   matters here: .hero__media img is deliberately held at opacity .16 and
+   .fcard sits under a scrim, so animating image opacity would fight two
+   existing rules. An overlay that retreats is unambiguous everywhere. */
+
+.is-ph {
+  --ph-base:  var(--green-tint);
+  --ph-sheen: rgb(255 255 255 / 0.62);
+}
+
+/* Containing block, applied only to the two hosts that do not already
+   establish one. Deliberately NOT a blanket `.is-ph { position: relative }`:
+   .hcol__bg is position:absolute and .update__media/.concept-image/.fcard
+   are already relative, so a blanket rule would either be redundant or
+   would silently depend on stylesheet order to avoid breaking the hero. */
+.rcard__img.is-ph,
+.product-shot.is-ph { position: relative; }
+
+/* Dark hosts get a dark skeleton. A pale grey shimmer over a near-black
+   hero column reads as a rendering fault, not as loading. */
+.hcol__bg.is-ph,
+.fcard.is-ph {
+  --ph-base:  #16281D;
+  --ph-sheen: rgb(255 255 255 / 0.09);
+}
+
+.is-ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      var(--ph-sheen) 50%,
+      transparent 100%),
+    var(--ph-base);
+  background-size: 220% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  animation: phShimmer 1.3s linear infinite;
+  transition: opacity 0.35s var(--ease);
+}
+
+/* .product-shot is a <figure> wrapping img + figcaption, so constrain the
+   overlay to the square image region rather than letting it cover the
+   caption text as well. */
+.product-shot.is-ph::after {
+  bottom: auto;
+  aspect-ratio: 1 / 1;
+}
+
+/* .fcard__content is z-index 2 and this overlay is z-index 1, so the card
+   headline and buttons stay readable while the photo is still arriving. */
+
+.is-ph.is-ready::after {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes phShimmer {
+  from { background-position: -110% 0, 0 0; }
+  to   { background-position:  210% 0, 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-ph::after { animation: none; background: var(--ph-base); }
+}

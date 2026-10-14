@@ -42,7 +42,7 @@
      cannot be matched to an element is fetched anyway and then warned
      about as unused, so the old arrangement paid the bytes twice over
      without ever raising the element's own priority. -->
-<link rel="preload" href="assets/img/home/hero-01-fencing.png" as="image" fetchpriority="high">
+<link rel="preload" href="assets/img/home/hero-01-fencing.webp" as="image" fetchpriority="high">
 
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/tokens.css">
@@ -383,7 +383,7 @@
            label, title and description as real text. Describing the photo
            again would make a screen reader read the same card twice. -->
       <span class="hcol__bg">
-        <img src="assets/img/home/hero-01-fencing.png" width="1024" height="1536" alt=""
+        <img src="assets/img/home/hero-01-fencing.webp" width="1024" height="1536" alt=""
              fetchpriority="high" decoding="async">
       </span>
       <span class="hcol__inner">
@@ -400,8 +400,12 @@
 
     <a class="hcol" href="products/">
       <span class="hcol__bg">
-        <img src="assets/img/home/hero-02-steel.png" width="1024" height="1536" alt=""
-             loading="lazy" decoding="async">
+        <!-- Not lazy. At >=860px all three columns are above the fold, and
+             lazy-loading an above-the-fold image defers the request until
+             after layout, which is precisely the blank-column effect.
+             fetchpriority="low" keeps it from competing with column 01. -->
+        <img src="assets/img/home/hero-02-steel.webp" width="1024" height="1536" alt=""
+             fetchpriority="low" decoding="async">
       </span>
       <span class="hcol__inner">
         <span class="hcol__label">Naga Steels</span>
@@ -417,8 +421,8 @@
 
     <a class="hcol" href="contractor-steel-supply/">
       <span class="hcol__bg">
-        <img src="assets/img/home/hero-03-contractor.png" width="1024" height="1536" alt=""
-             loading="lazy" decoding="async">
+        <img src="assets/img/home/hero-03-contractor.webp" width="1024" height="1536" alt=""
+             fetchpriority="low" decoding="async">
       </span>
       <span class="hcol__inner">
         <span class="hcol__label">Projects</span>
@@ -473,7 +477,7 @@
            content, which would make the h3 invalid. -->
       <a class="update" href="products/" data-slide>
         <div class="update__media">
-          <img src="assets/img/home/update-1.png" width="1200" height="782"
+          <img src="assets/img/home/update-1.webp" width="1200" height="782"
                alt="Steel sheet, wire coils and mesh rolls stacked in a supply yard" decoding="async">
         </div>
         <div class="update__body">
@@ -488,7 +492,7 @@
 
       <a class="update" href="fencing-manufacturer-madurai/" data-slide hidden>
         <div class="update__media">
-          <img src="assets/img/home/update-2.png" width="1200" height="782"
+          <img src="assets/img/home/update-2.webp" width="1200" height="782"
                alt="Galvanised chain link mesh roll ready for dispatch" loading="lazy" decoding="async">
         </div>
         <div class="update__body">
@@ -503,7 +507,7 @@
 
       <a class="update" href="services-delivery/" data-slide hidden>
         <div class="update__media">
-          <img src="assets/img/home/update-3.png" width="1200" height="782"
+          <img src="assets/img/home/update-3.webp" width="1200" height="782"
                alt="Loaded lorry prepared for a steel material delivery run" loading="lazy" decoding="async">
         </div>
         <div class="update__body">
@@ -572,7 +576,7 @@
 
     <div class="focus__grid">
       <article class="fcard fcard--lg">
-        <img class="fcard__bg" src="assets/img/home/focus-feature.png" width="1486" height="1061"
+        <img class="fcard__bg" src="assets/img/home/focus-feature.webp" width="1486" height="1061"
              alt="Chain link weaving machine producing galvanised diamond mesh"
              loading="lazy" decoding="async">
         <div class="fcard__content">
@@ -593,7 +597,7 @@
 
       <div class="focus__col">
         <a class="fcard fcard--sm" href="tata-wiron-dealer-madurai/">
-          <img class="fcard__bg" src="assets/img/home/focus-small-1.png" width="1480" height="990"
+          <img class="fcard__bg" src="assets/img/home/focus-small-1.webp" width="1480" height="990"
                alt="" loading="lazy" decoding="async">
           <span class="fcard__content">
             <span class="fcard__label">Dealer supply</span>
@@ -604,7 +608,7 @@
         </a>
 
         <a class="fcard fcard--sm" href="vnc-products-distributor-madurai/">
-          <img class="fcard__bg" src="assets/img/home/focus-small-2.png" width="1480" height="990"
+          <img class="fcard__bg" src="assets/img/home/focus-small-2.webp" width="1480" height="990"
                alt="" loading="lazy" decoding="async">
           <span class="fcard__content">
             <span class="fcard__label">Distributor supply</span>
@@ -699,7 +703,7 @@
     <div class="rangecar__track">
       <div class="rangecar__set">
         <a class="rcard" href="chain-link-fencing-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-01.png" width="800" height="800" alt="GI chain link mesh" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-01.webp" width="800" height="800" alt="GI chain link mesh" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Naga Fencing</span>
             <span class="rcard__name">GI Chain Link</span>
@@ -708,7 +712,7 @@
           </span>
         </a>
         <a class="rcard" href="chain-link-fencing-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-02.png" width="800" height="800" alt="PVC coated chain link mesh" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-02.webp" width="800" height="800" alt="PVC coated chain link mesh" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Naga Fencing</span>
             <span class="rcard__name">PVC Coated Chain Link</span>
@@ -717,7 +721,7 @@
           </span>
         </a>
         <a class="rcard" href="barbed-wire-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-03.png" width="800" height="800" alt="Barbed wire" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-03.webp" width="800" height="800" alt="Barbed wire" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Naga Fencing</span>
             <span class="rcard__name">Barbed Wire</span>
@@ -726,7 +730,7 @@
           </span>
         </a>
         <a class="rcard" href="weld-mesh-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-04.png" width="800" height="800" alt="Welded mesh panel" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-04.webp" width="800" height="800" alt="Welded mesh panel" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Mesh</span>
             <span class="rcard__name">Weld Mesh Panels</span>
@@ -735,7 +739,7 @@
           </span>
         </a>
         <a class="rcard" href="wire-mesh-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-05.png" width="800" height="800" alt="Woven wire mesh" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-05.webp" width="800" height="800" alt="Woven wire mesh" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Mesh</span>
             <span class="rcard__name">Woven Wire Mesh</span>
@@ -744,7 +748,7 @@
           </span>
         </a>
         <a class="rcard" href="gi-wire-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-06.png" width="800" height="800" alt="GI wire coil" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-06.webp" width="800" height="800" alt="GI wire coil" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Wire &amp; Rope</span>
             <span class="rcard__name">GI Wire</span>
@@ -753,7 +757,7 @@
           </span>
         </a>
         <a class="rcard" href="gi-wire-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-07.png" width="800" height="800" alt="Binding wire coil" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-07.webp" width="800" height="800" alt="Binding wire coil" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Wire &amp; Rope</span>
             <span class="rcard__name">Binding Wire</span>
@@ -762,7 +766,7 @@
           </span>
         </a>
         <a class="rcard" href="gi-wire-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-08.png" width="800" height="800" alt="Steel wire rope" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-08.webp" width="800" height="800" alt="Steel wire rope" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Wire &amp; Rope</span>
             <span class="rcard__name">Steel Wire Rope</span>
@@ -771,7 +775,7 @@
           </span>
         </a>
         <a class="rcard" href="gi-sheet-dealer-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-09.png" width="800" height="800" alt="GI plain sheet stack" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-09.webp" width="800" height="800" alt="GI plain sheet stack" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Sheets &amp; Plate</span>
             <span class="rcard__name">GI Plain Sheet</span>
@@ -780,7 +784,7 @@
           </span>
         </a>
         <a class="rcard" href="ms-sheet-dealer-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-10.png" width="800" height="800" alt="MS sheet and plate" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-10.webp" width="800" height="800" alt="MS sheet and plate" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Sheets &amp; Plate</span>
             <span class="rcard__name">MS Sheet &amp; Plate</span>
@@ -789,7 +793,7 @@
           </span>
         </a>
         <a class="rcard" href="gi-sheet-dealer-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-11.png" width="800" height="800" alt="GI rolling shutter sheet" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-11.webp" width="800" height="800" alt="GI rolling shutter sheet" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Sheets &amp; Plate</span>
             <span class="rcard__name">Rolling Shutter Sheet</span>
@@ -798,7 +802,7 @@
           </span>
         </a>
         <a class="rcard" href="colour-coated-sheet-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-12.png" width="800" height="800" alt="Colour coated roofing sheet" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-12.webp" width="800" height="800" alt="Colour coated roofing sheet" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Roofing</span>
             <span class="rcard__name">Colour Coated Sheet</span>
@@ -807,7 +811,7 @@
           </span>
         </a>
         <a class="rcard" href="colour-coated-sheet-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-13.png" width="800" height="800" alt="GI corrugated roofing sheet" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-13.webp" width="800" height="800" alt="GI corrugated roofing sheet" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Roofing</span>
             <span class="rcard__name">GI Corrugated Sheet</span>
@@ -816,7 +820,7 @@
           </span>
         </a>
         <a class="rcard" href="steel-hardware-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-14.png" width="800" height="800" alt="MS wire nails" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-14.webp" width="800" height="800" alt="MS wire nails" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Hardware</span>
             <span class="rcard__name">MS Wire Nails</span>
@@ -825,7 +829,7 @@
           </span>
         </a>
         <a class="rcard" href="steel-hardware-supplier-madurai/">
-          <span class="rcard__img"><img src="assets/img/home/range-15.png" width="800" height="800" alt="GI bolts and fencing fixings" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-15.webp" width="800" height="800" alt="GI bolts and fencing fixings" loading="lazy" decoding="async"></span>
           <span class="rcard__body">
             <span class="rcard__family">Hardware</span>
             <span class="rcard__name">GI Bolts &amp; Fixings</span>
@@ -839,63 +843,63 @@
            accessibility tree and the tab order. -->
       <div class="rangecar__set rangecar__set--clone" aria-hidden="true" inert>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-01.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-01.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Naga Fencing</span><span class="rcard__name">GI Chain Link</span><span class="rcard__text">Hot-dip galvanised, 8 to 12 SWG, woven to your mesh opening.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-02.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-02.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Naga Fencing</span><span class="rcard__name">PVC Coated Chain Link</span><span class="rcard__text">Galvanised core in a plastic jacket. The right call near the coast.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-03.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-03.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Naga Fencing</span><span class="rcard__name">Barbed Wire</span><span class="rcard__text">IS 278 barbed wire for economical boundary demarcation over long runs.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-04.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-04.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Mesh</span><span class="rcard__name">Weld Mesh Panels</span><span class="rcard__text">Welded at every intersection. Flat, rigid and will not sag.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-05.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-05.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Mesh</span><span class="rcard__name">Woven Wire Mesh</span><span class="rcard__text">Flexible woven mesh for screening, plastering and poultry work.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-06.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-06.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Wire &amp; Rope</span><span class="rcard__name">GI Wire</span><span class="rcard__text">8 to 18 SWG galvanised wire, 40 to 275 GSM zinc coating.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-07.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-07.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Wire &amp; Rope</span><span class="rcard__name">Binding Wire</span><span class="rcard__text">Annealed binding wire by coil weight for reinforcement work.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-08.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-08.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Wire &amp; Rope</span><span class="rcard__name">Steel Wire Rope</span><span class="rcard__text">Wire rope by diameter and construction for lifting and rigging.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-09.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-09.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Sheets &amp; Plate</span><span class="rcard__name">GI Plain Sheet</span><span class="rcard__text">Galvanised sheet from 0.30 mm, cut to size from stock.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-10.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-10.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Sheets &amp; Plate</span><span class="rcard__name">MS Sheet &amp; Plate</span><span class="rcard__text">IS 2062 mild steel from 1 mm to 6 mm for fabrication.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-11.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-11.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Sheets &amp; Plate</span><span class="rcard__name">Rolling Shutter Sheet</span><span class="rcard__text">GI shutter sheet supplied by gauge and running length.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-12.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-12.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Roofing</span><span class="rcard__name">Colour Coated Sheet</span><span class="rcard__text">PPGI roofing cut to rafter length, so you skip the overlap waste.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-13.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-13.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Roofing</span><span class="rcard__name">GI Corrugated Sheet</span><span class="rcard__text">Plain galvanised corrugated roofing for sheds and godowns.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-14.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-14.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Hardware</span><span class="rcard__name">MS Wire Nails</span><span class="rcard__text">Wire and concrete nails by size, supplied by weight.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
         <span class="rcard">
-          <span class="rcard__img"><img src="assets/img/home/range-15.png" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
+          <span class="rcard__img"><img src="assets/img/home/range-15.webp" width="800" height="800" alt="" loading="lazy" decoding="async"></span>
           <span class="rcard__body"><span class="rcard__family">Hardware</span><span class="rcard__name">GI Bolts &amp; Fixings</span><span class="rcard__text">Galvanised bolts, nuts and fencing fixings by size and grade.</span><span class="rcard__cta">View product <i>→</i></span></span>
         </span>
       </div>

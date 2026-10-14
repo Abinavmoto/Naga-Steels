@@ -25,6 +25,7 @@ import { initQuoteBuilder } from './quote-builder.js';
 import { initCalculator } from './calculator.js';
 import { initConfigurator, initPlannerTabs } from './configurator.js';
 import { initScroll } from './scroll.js';
+import { initImgLoad } from './img-load.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -120,6 +121,11 @@ function boot() {
   initConfigurator();
   initQuoteBuilder();
   initCalculator();
+
+  // Before initScroll(): the skeleton must be attached before any image
+  // can fire its load event, or a fast cache hit lands first and the
+  // container is left shimmering over a decoded image.
+  initImgLoad();
 
   // Homepage-only blocks. Dynamically imported so the other 23 pages
   // never fetch or parse the module; the hero is the sentinel because

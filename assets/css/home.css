@@ -846,11 +846,15 @@
   .rcard:hover { transform: none; }
 }
 
+/* Tinted, not --paper. These are cut-outs on white, so a white panel made
+   an undecoded card a white rectangle on a white card - indistinguishable
+   from a broken image. A faint tint reads as deliberate framing and gives
+   the loading skeleton something to sit against. */
 .rcard__img {
   height: 220px;
   display: grid;
   place-items: center;
-  background: var(--paper);
+  background: var(--green-tint);
   overflow: hidden;
 }
 /* `contain`, not `cover`. These are product cut-outs on white; cropping
